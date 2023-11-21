@@ -94,7 +94,9 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
 #endif /* CONFIG_PM_S2RAM */
 
 #if defined(CONFIG_PLATFORM_SPECIFIC_INIT)
+#ifndef CONFIG_INGCHIP_918
     bl z_arm_platform_init
+#endif
 #endif
 
 #if defined(CONFIG_INIT_ARCH_HW_AT_BOOT)
@@ -150,6 +152,7 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
     ldr r1, =CONFIG_ISR_STACK_SIZE + MPU_GUARD_ALIGN_AND_SIZE
     adds r0, r0, r1
     msr PSP, r0
+#ifndef CONFIG_INGCHIP_918
     mrs r0, CONTROL
     movs r1, #2
     orrs r0, r1 /* CONTROL_SPSEL_Msk */
@@ -160,10 +163,61 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
      * after the ISB instruction execute using the new stack pointer.
      */
     isb
-
+#endif
     /*
      * 'bl' jumps the furthest of the branch instructions that are
      * supported on all platforms. So it is used when jumping to z_arm_prep_c
      * (even though we do not intend to return).
      */
+#ifndef CONFIG_INGCHIP_918
     bl z_arm_prep_c
+#else 
+Reset_Handler:
+
+    push    {r1, lr}
+
+/*  Single section scheme.
+ *
+ *  The ranges of copy from/to are specified by following symbols
+ *    __etext: LMA of start of the section to copy from. Usually end of text
+ *    __data_start__: VMA of start of the section to copy to
+ *    __data_end__: VMA of end of the section to copy to
+ *
+ *  All addresses must be aligned to 4 bytes boundary.
+ */
+    ldr    r1, =__rodata_region_start
+    ldr    r2, =_image_ram_start
+    ldr    r3, =__kernel_ram_end
+
+.L_loop1:
+    cmp    r2, r3
+    ittt    lt
+    ldrlt    r0, [r1], #4
+    strlt    r0, [r2], #4
+    blt    .L_loop1
+/*  Single BSS section scheme.
+ *
+ *  The BSS section is specified by following symbols
+ *    __bss_start__: start of the BSS section.
+ *    __bss_end__: end of the BSS section.
+ *
+ *  Both addresses must be aligned to 4 bytes boundary.
+ */
+    ldr    r1, =__bss_start
+    ldr    r2, =__bss_end
+    movs    r0, 0
+.L_loop3:
+    cmp    r1, r2
+    itt    lt
+    strlt    r0, [r1], #4
+    blt    .L_loop3
+
+    
+    ldr     r0, =app_main
+    blx     r0
+
+    pop     {r1, pc}
+
+    .pool
+    .size    Reset_Handler, . - Reset_Handler
+#endif
