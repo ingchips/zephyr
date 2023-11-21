@@ -1,0 +1,1484 @@
+Archive member included to satisfy reference by file (symbol)
+
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o (exit)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o (__libc_init_array)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+                              obj/trace.o (symbol from plugin) (memcpy)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o (memset)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+                              obj/trace.o (symbol from plugin) (sprintf)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+                              obj/trace.o (symbol from plugin) (strcpy)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strlen.o)
+                              obj/trace.o (symbol from plugin) (strlen)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o) (_svfprintf_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (_printf_i)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (memchr)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (memmove)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (_free_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (_malloc_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o) (_realloc_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o) (_sbrk_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o) (__malloc_lock)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o) (_malloc_usable_size_r)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o) (errno)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o) (__retarget_lock_acquire_recursive)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o) (_sbrk)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+                              /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o) (_exit)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_dsub)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_ddiv)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_d2f)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_ui2f)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_fdiv)
+/Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+                              /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o (__aeabi_f2uiz)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+ .text          0x0000000000000000       0x88 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .data          0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .bss           0x0000000000000000       0x1c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .rodata        0x0000000000000000       0x24 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .tm_clone_table
+                0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .init_array    0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+ .text          0x0000000000000000       0x7c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .ARM.extab     0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .ARM.exidx     0x0000000000000000       0x10 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .ARM.attributes
+                0x0000000000000000       0x1b /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+ .text          0x0000000000000000        0x0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text._write   0x0000000000000000       0x38 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.adc_get_power_state
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_PowerCtrl
+                0x0000000000000000       0x8c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_Enable
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_Reset
+                0x0000000000000000       0x28 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_SetClkSel
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_SetMode
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_SetLoopDelay
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_EnableChannel
+                0x0000000000000000       0x44 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_ClearChannelDataValid
+                0x0000000000000000       0x50 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_IsChannelDataValid
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.ADC_ReadChannelData
+                0x0000000000000000       0xa0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_GetDirection
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_ReadValue
+                0x0000000000000000       0x28 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_ReadOutputValue
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_ConfigIntSource
+                0x0000000000000000       0x54 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_GetIntStatus
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_ClearIntStatus
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL0_SET
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL0_CLR
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL0_TOG
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL1_SET
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL1_CLR
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_CTRL1_TOG
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GET_I2C_CTRL1_DATA_ENGINE_CMPLT_IRQ
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECTRL_SET
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECTRL_CLR
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECTRL_TOG
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECMD_SET
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECMD_CLR
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_QUEUECMD_TOG
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_DEBUG0_SET
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_DEBUG0_CLR
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.I2C_DEBUG0_TOG
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SetPadPwmSel
+                0x0000000000000000       0x50 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_AntSelIndex
+                0x0000000000000000       0x7c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SetGeneralPadMode
+                0x0000000000000000      0x148 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelUartCtsIn
+                0x0000000000000000       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelSpiDiIn
+                0x0000000000000000       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelSpiClkIn
+                0x0000000000000000       0x38 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelI2cSclIn
+                0x0000000000000000       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_DisableAllInputs
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_Pull
+                0x0000000000000000       0x88 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SetSlewRate
+                0x0000000000000000       0x50 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SetDriveStrength
+                0x0000000000000000       0x90 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_EnableAntSelPins
+                0x0000000000000000       0x4a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_EnableAllAntSelPins
+                0x0000000000000000       0x14 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .rodata.ant_pins.0
+                0x0000000000000000        0x8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetRegBit
+                0x0000000000000000       0x66 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_Enable
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_EnableMulti
+                0x0000000000000000       0x40 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetMask
+                0x0000000000000000       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetMode
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_HaltCtrlEnable
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_HaltCtrlCfg
+                0x0000000000000000       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetMultiDutyCycleCtrl
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetPeraThreshold
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetDiedZoneThreshold
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetHighThreshold
+                0x0000000000000000       0x38 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetupSimple
+                0x0000000000000000       0xc0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PWM_SetupSingle
+                0x0000000000000000       0x78 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_ReadStable
+                0x0000000000000000       0x36 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_Enable
+                0x0000000000000000       0x40 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_CurrentHigh
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_Current
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_CurrentFull
+                0x0000000000000000       0x3e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_SetNextIntOffset
+                0x0000000000000000       0x30 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.RTC_ClearInt
+                0x0000000000000000       0x40 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_Initialize
+                0x0000000000000000       0x26 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceParametersSet
+                0x0000000000000000       0x66 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceParametersGet
+                0x0000000000000000       0xa4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceEnable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceDisable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceReceiveEnable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceReceiveOverrunEnable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceReceiveDisable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceTransmitEnable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceTransmitDisable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceReceiveClear
+                0x0000000000000000       0x2a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_DeviceBusyGet
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_WriteFIFO
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_ReadFIFO
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_RxFifoFull
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_RxFifoNotEmpty
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_TxFifoNotFull
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_TxFifoEmpty
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_ClearInt
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apSSP_GetIntRawStatus
+                0x0000000000000000       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_SetClkGate
+                0x0000000000000000       0x30 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ClearClkGate
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_SetClkGateMulti
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_WriteClkGate
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ReadClkGate
+                0x0000000000000000       0x14 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ResetBlock
+                0x0000000000000000       0x30 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ResetAllBlocks
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ReleaseBlock
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_WriteBlockRst
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ReadBlockRst
+                0x0000000000000000       0x14 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_SetLDOOutput
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_WaitForLDO
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_ConfigBOR
+                0x0000000000000000       0x44 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_SelectMemoryBlocks
+                0x0000000000000000       0x4c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_GetLastWakeupSource
+                0x0000000000000000       0x58 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_PAEnable
+                0x0000000000000000       0x60 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_GetCNT
+                0x0000000000000000       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_Reload
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_SetCMP
+                0x0000000000000000       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_GetCMP
+                0x0000000000000000       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_Enable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_Disable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_SetOpMode
+                0x0000000000000000       0x28 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_IntEnable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_IntDisable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_WatchDogEnable
+                0x0000000000000000       0x30 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_WatchDogDisable
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_IntHappened
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR_IntClr
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR0_LOCK
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.TMR0_UNLOCK
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_BaudRateSet
+                0x0000000000000000       0x78 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_BaudRateGet
+                0x0000000000000000       0xa0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_Rece_ERROR
+                0x0000000000000000       0x60 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_RXFIFO_EMPTY
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_RXFIFO_FULL
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_TXFIFO_EMPTY
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_BUSY
+                0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Get_ITStatus
+                0x0000000000000000       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Enable_TRANSMIT_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Disable_TRANSMIT_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Enable_RECEIVE_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Disable_RECEIVE_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Clr_RECEIVE_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Clr_TX_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Get_all_raw_int_stat
+                0x0000000000000000       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Clr_NonRx_INT
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uart_disable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uart_enable
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uart_empty_fifo
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uart_enable_fifo
+                0x0000000000000000       0x1e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uart_reset
+                0x0000000000000000       0x4a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Initialize
+                0x0000000000000000       0xc8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.UART_ReceData
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .data._aTerminalId
+                0x0000000000000000       0x10 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss._ActiveTerminal
+                0x0000000000000000        0x1 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text._PostTerminalSwitch
+                0x0000000000000000       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_ReadUpBufferNoLock
+                0x0000000000000000      0x104 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_ReadNoLock
+                0x0000000000000000      0x104 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_ReadUpBuffer
+                0x0000000000000000       0x36 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_Read
+                0x0000000000000000       0x36 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WriteWithOverwriteNoLock
+                0x0000000000000000      0x118 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WriteDownBufferNoLock
+                0x0000000000000000       0xa0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WriteDownBuffer
+                0x0000000000000000       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WriteString
+                0x0000000000000000       0x26 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_PutCharSkipNoLock
+                0x0000000000000000       0x6c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_PutCharSkip
+                0x0000000000000000       0x8c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_PutChar
+                0x0000000000000000       0xa0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_GetKey
+                0x0000000000000000       0x32 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WaitKey
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_HasKey
+                0x0000000000000000       0x3c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_HasData
+                0x0000000000000000       0x38 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_HasDataUp
+                0x0000000000000000       0x38 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_AllocDownBuffer
+                0x0000000000000000       0xf4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_AllocUpBuffer
+                0x0000000000000000       0xf8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_ConfigUpBuffer
+                0x0000000000000000       0xd4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_ConfigDownBuffer
+                0x0000000000000000       0xd4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_SetNameUpBuffer
+                0x0000000000000000       0x64 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_SetNameDownBuffer
+                0x0000000000000000       0x64 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_SetFlagsUpBuffer
+                0x0000000000000000       0x64 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_SetFlagsDownBuffer
+                0x0000000000000000       0x64 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_SetTerminal
+                0x0000000000000000       0xb4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_TerminalOut
+                0x0000000000000000      0x124 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_GetBytesInBuffer
+                0x0000000000000000       0x70 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_task
+                0x0000000000000000       0x92 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_flush
+                0x0000000000000000       0x74 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_add_buffer
+                0x0000000000000000       0x68 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_trigger_output
+                0x0000000000000000       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_trace_uart
+                0x0000000000000000       0xf4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.flash_trace_aligned_append
+                0x0000000000000000       0xb8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.flash_trace_append
+                0x0000000000000000       0xd4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_trace_flash
+                0x0000000000000000       0x78 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .rodata.trace_uart_init.str1.4
+                0x0000000000000000        0x6 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_uart_init
+                0x0000000000000000       0x44 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_flash_init
+                0x0000000000000000       0x40 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_flash_enable
+                0x0000000000000000       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_flash_erase_all
+                0x0000000000000000       0x46 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_uart_isr
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_air_init
+                0x0000000000000000       0x32 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_air_send_req
+                0x0000000000000000       0x58 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_air_enable
+                0x0000000000000000       0x66 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.peek_data
+                0x0000000000000000       0x84 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_air_send
+                0x0000000000000000       0xb6 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_trace_air
+                0x0000000000000000      0x148 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.nibble_to_char
+                0x0000000000000000       0x2a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.hex_dump_line
+                0x0000000000000000       0xb8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.hex_dump
+                0x0000000000000000       0xa4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .rodata.trace_full_dump.str1.4
+                0x0000000000000000       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_full_dump
+                0x0000000000000000       0xb4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss.str.1     0x0000000000000000       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss.buf.0     0x0000000000000000       0x14 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss.ClkFreq   0x0000000000000000        0x4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.Delay10US
+                0x0000000000000000       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.DelayMS  0x0000000000000000       0x4c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EraseEFlashMas
+                0x0000000000000000       0x30 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EraseEFlashPage
+                0x0000000000000000       0x3c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashBaseTime
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashRepair
+                0x0000000000000000       0x36 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashCacheBypass
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashCacheEna
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashCacheFlush
+                0x0000000000000000       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashProgramEnable
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashProgramDisable
+                0x0000000000000000       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.EflashProgram
+                0x0000000000000000       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.init     0x0000000000000000       0x28 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.uninit   0x0000000000000000       0x10 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.program_flash0
+                0x0000000000000000       0xde /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.erase_flash_page
+                0x0000000000000000       0x44 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.erase_info_page
+                0x0000000000000000       0x40 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.program_flash
+                0x0000000000000000       0x22 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.write_flash
+                0x0000000000000000       0x22 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.program_fota_metadata
+                0x0000000000000000      0x118 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+ .comment       0x0000000000000000       0x21 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+ .data          0x0000000000000000        0x0 obj/gstartup_ing91800.o
+ .bss           0x0000000000000000        0x0 obj/gstartup_ing91800.o
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .text.exit     0x0000000000000000       0x28 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x0000000000000000       0x28 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-exit.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .data.impure_data
+                0x0000000000000000       0x60 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-impure.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .text.__libc_init_array
+                0x0000000000000000       0x48 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000000000       0x2c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-init.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .text.memset   0x0000000000000000       0x10 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000000000       0x20 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memset.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .text._sprintf_r
+                0x0000000000000000       0x38 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .text.sprintf  0x0000000000000000       0x40 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .debug_frame   0x0000000000000000       0x6c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sprintf.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+ .text          0x0000000000000000       0x10 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strlen.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strlen.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x0000000000000000       0x17 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strlen.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .text.__ssputs_r
+                0x0000000000000000       0xb6 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .text.__ssprint_r
+                0x0000000000000000       0xfa /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .rodata._svfprintf_r.str1.1
+                0x0000000000000000       0x11 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .text._svfprintf_r
+                0x0000000000000000      0x1f8 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x0000000000000000       0x90 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-svfprintf.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .text._printf_common
+                0x0000000000000000       0xe4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .rodata._printf_i.str1.1
+                0x0000000000000000       0x22 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .text._printf_i
+                0x0000000000000000      0x25c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x0000000000000000       0x60 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .text.memchr   0x0000000000000000       0x1c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .debug_frame   0x0000000000000000       0x28 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memchr-stub.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .text.memmove  0x0000000000000000       0x34 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .debug_frame   0x0000000000000000       0x28 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memmove.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .text._free_r  0x0000000000000000       0x90 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x0000000000000000       0x38 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-freer.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .text._malloc_r
+                0x0000000000000000       0xb4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .bss.__malloc_sbrk_start
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .bss.__malloc_free_list
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000000000       0x30 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-mallocr.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .text._realloc_r
+                0x0000000000000000       0x4a /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x0000000000000000       0x3c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-reallocr.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x0000000000000000       0x20 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000000000000000       0x2c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-sbrkr.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .text.__malloc_lock
+                0x0000000000000000        0xc /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .text.__malloc_unlock
+                0x0000000000000000        0xc /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .debug_frame   0x0000000000000000       0x30 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-mlock.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .text._malloc_usable_size_r
+                0x0000000000000000       0x10 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x0000000000000000       0x20 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-nano-msizer.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x0000000000000000       0x1a /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .text._reclaim_reent
+                0x0000000000000000       0xb8 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .bss.errno     0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .debug_frame   0x0000000000000000       0x5c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-reent.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_init
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_init_recursive
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_close
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_close_recursive
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_acquire
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_acquire_recursive
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_try_acquire
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_try_acquire_recursive
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_release
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text.__retarget_lock_release_recursive
+                0x0000000000000000        0x2 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___arc4random_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___dd_hash_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___tz_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___env_recursive_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___malloc_recursive_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___at_quick_exit_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___atexit_recursive_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___sfp_recursive_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .bss.__lock___sinit_recursive_mutex
+                0x0000000000000000        0x1 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .debug_frame   0x0000000000000000       0xb0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-lock.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .text._sbrk    0x0000000000000000       0x1c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .bss.heap_end.0
+                0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+ .text._exit    0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a(_exit.o)
+ .text          0x0000000000000000      0x378 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x0000000000000000       0xac /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
+ .text          0x0000000000000000      0x424 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x0000000000000000       0x50 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivdf3.o)
+ .text          0x0000000000000000       0xa0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x0000000000000000       0x24 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_truncdfsf2.o)
+ .text          0x0000000000000000      0x21c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x0000000000000000       0x4c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .text          0x0000000000000000      0x2a0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .debug_frame   0x0000000000000000       0x38 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_muldivsf3.o)
+ .text          0x0000000000000000       0x40 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+ .debug_frame   0x0000000000000000       0x24 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a(_arm_fixunssfsi.o)
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .rodata        0x0000000000000000       0x24 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .eh_frame      0x0000000000000000        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .tm_clone_table
+                0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .ARM.attributes
+                0x0000000000000000       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+ .text          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+ .data          0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+ .bss           0x0000000000000000        0x0 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+ .init          0x0000000000000000        0x8 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+ .fini          0x0000000000000000        0x8 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000024000 0x0000000000060000 xr
+RAM              0x0000000020000d28 0x000000000000f2d8 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtbegin.o
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/crt0.o
+LOAD obj/main.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+LOAD /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+LOAD obj/profile.o
+LOAD obj/peripheral_adc.o
+LOAD obj/peripheral_gpio.o
+LOAD obj/peripheral_i2c.o
+LOAD obj/peripheral_pinctrl.o
+LOAD obj/peripheral_pwm.o
+LOAD obj/peripheral_rtc.o
+LOAD obj/peripheral_ssp.o
+LOAD obj/peripheral_sysctrl.o
+LOAD obj/peripheral_timer.o
+LOAD obj/peripheral_uart.o
+LOAD obj/trace.o
+LOAD obj/eflash.o
+LOAD obj/gstartup_ing91800.o
+LOAD ./ING918XX_SDK_SOURCE/bundles/noos_typical/ING9187xx/symdefs.g
+                0x000000000000565d                att_dispatch_client_can_send_now = 0x565d
+                0x0000000000005663                att_dispatch_client_request_can_send_now_event = 0x5663
+                0x0000000000005669                att_dispatch_register_client = 0x5669
+                0x000000000000567d                att_dispatch_register_server = 0x567d
+                0x0000000000005691                att_dispatch_server_can_send_now = 0x5691
+                0x0000000000005697                att_dispatch_server_request_can_send_now_event = 0x5697
+                0x0000000000005749                att_emit_general_event = 0x5749
+                0x0000000000005e79                att_server_can_send_packet_now = 0x5e79
+                0x0000000000005e7d                att_server_deferred_read_response = 0x5e7d
+                0x0000000000005e95                att_server_get_mtu = 0x5e95
+                0x0000000000005f0d                att_server_indicate = 0x5f0d
+                0x0000000000005f91                att_server_init = 0x5f91
+                0x0000000000005fcd                att_server_notify = 0x5fcd
+                0x00000000000060e5                att_server_register_packet_handler = 0x60e5
+                0x00000000000060f1                att_server_request_can_send_now_event = 0x60f1
+                0x000000000000610d                att_set_db = 0x610d
+                0x0000000000006121                att_set_read_callback = 0x6121
+                0x000000000000612d                att_set_write_callback = 0x612d
+                0x000000000000629d                bd_addr_cmp = 0x629d
+                0x00000000000062a3                bd_addr_copy = 0x62a3
+                0x00000000000062ad                bd_addr_to_str = 0x62ad
+                0x00000000000062e5                big_endian_read_16 = 0x62e5
+                0x00000000000062ed                big_endian_read_32 = 0x62ed
+                0x0000000000006301                big_endian_store_16 = 0x6301
+                0x000000000000630d                big_endian_store_32 = 0x630d
+                0x0000000000006445                btstack_config = 0x6445
+                0x0000000000006593                btstack_memory_pool_create = 0x6593
+                0x00000000000065bd                btstack_memory_pool_free = 0x65bd
+                0x000000000000661d                btstack_memory_pool_get = 0x661d
+                0x0000000000006665                btstack_push_user_msg = 0x6665
+                0x0000000000006671                btstack_push_user_runnable = 0x6671
+                0x00000000000068e1                char_for_nibble = 0x68e1
+                0x000000000000715d                gap_add_dev_to_periodic_list = 0x715d
+                0x000000000000716d                gap_add_whitelist = 0x716d
+                0x0000000000007179                gap_aes_encrypt = 0x7179
+                0x00000000000071b1                gap_clear_white_lists = 0x71b1
+                0x00000000000071bd                gap_clr_adv_set = 0x71bd
+                0x00000000000071c9                gap_clr_periodic_adv_list = 0x71c9
+                0x00000000000071d5                gap_create_connection_cancel = 0x71d5
+                0x00000000000071e1                gap_disconnect = 0x71e1
+                0x000000000000720d                gap_disconnect_all = 0x720d
+                0x000000000000724d                gap_ext_create_connection = 0x724d
+                0x000000000000732d                gap_get_connection_parameter_range = 0x732d
+                0x0000000000007369                gap_le_read_channel_map = 0x7369
+                0x00000000000073d5                gap_periodic_adv_create_sync = 0x73d5
+                0x00000000000073f9                gap_periodic_adv_create_sync_cancel = 0x73f9
+                0x0000000000007405                gap_periodic_adv_term_sync = 0x7405
+                0x000000000000748d                gap_read_periodic_adv_list_size = 0x748d
+                0x0000000000007499                gap_read_phy = 0x7499
+                0x00000000000074a5                gap_read_remote_used_features = 0x74a5
+                0x00000000000074b1                gap_read_remote_version = 0x74b1
+                0x00000000000074bd                gap_read_rssi = 0x74bd
+                0x00000000000074c9                gap_remove_whitelist = 0x74c9
+                0x0000000000007545                gap_rmv_adv_set = 0x7545
+                0x0000000000007551                gap_rmv_dev_from_periodic_list = 0x7551
+                0x0000000000007561                gap_rx_test_v2 = 0x7561
+                0x0000000000007599                gap_set_adv_set_random_addr = 0x7599
+                0x00000000000075d5                gap_set_callback_for_next_hci = 0x75d5
+                0x00000000000075f5                gap_set_connection_parameter_range = 0x75f5
+                0x000000000000760d                gap_set_data_length = 0x760d
+                0x0000000000007625                gap_set_def_phy = 0x7625
+                0x0000000000007635                gap_set_ext_adv_data = 0x7635
+                0x000000000000764d                gap_set_ext_adv_enable = 0x764d
+                0x00000000000076c9                gap_set_ext_adv_para = 0x76c9
+                0x00000000000077a1                gap_set_ext_scan_enable = 0x77a1
+                0x00000000000077b9                gap_set_ext_scan_para = 0x77b9
+                0x0000000000007861                gap_set_ext_scan_response_data = 0x7861
+                0x0000000000007879                gap_set_host_channel_classification = 0x7879
+                0x0000000000007889                gap_set_periodic_adv_data = 0x7889
+                0x00000000000078f9                gap_set_periodic_adv_enable = 0x78f9
+                0x0000000000007909                gap_set_periodic_adv_para = 0x7909
+                0x0000000000007921                gap_set_phy = 0x7921
+                0x000000000000793d                gap_set_random_device_address = 0x793d
+                0x000000000000796d                gap_start_ccm = 0x796d
+                0x00000000000079b5                gap_test_end = 0x79b5
+                0x00000000000079c1                gap_tx_test_v2 = 0x79c1
+                0x00000000000079d9                gap_tx_test_v4 = 0x79d9
+                0x00000000000079fd                gap_update_connection_parameters = 0x79fd
+                0x0000000000007a41                gap_vendor_tx_continuous_wave = 0x7a41
+                0x0000000000007f69                gatt_client_cancel_write = 0x7f69
+                0x0000000000007f8f                gatt_client_discover_characteristic_descriptors = 0x7f8f
+                0x0000000000007fcf                gatt_client_discover_characteristics_for_handle_range_by_uuid128 = 0x7fcf
+                0x000000000000801f                gatt_client_discover_characteristics_for_handle_range_by_uuid16 = 0x801f
+                0x000000000000806f                gatt_client_discover_characteristics_for_service = 0x806f
+                0x00000000000080a5                gatt_client_discover_primary_services = 0x80a5
+                0x00000000000080d7                gatt_client_discover_primary_services_by_uuid128 = 0x80d7
+                0x000000000000811b                gatt_client_discover_primary_services_by_uuid16 = 0x811b
+                0x0000000000008157                gatt_client_execute_write = 0x8157
+                0x000000000000817d                gatt_client_find_included_services_for_service = 0x817d
+                0x00000000000081ab                gatt_client_get_mtu = 0x81ab
+                0x000000000000824d                gatt_client_is_ready = 0x824d
+                0x0000000000008263                gatt_client_listen_for_characteristic_value_updates = 0x8263
+                0x0000000000008285                gatt_client_prepare_write = 0x8285
+                0x00000000000082c1                gatt_client_read_characteristic_descriptor_using_descriptor_handle = 0x82c1
+                0x00000000000082eb                gatt_client_read_long_characteristic_descriptor_using_descriptor_handle = 0x82eb
+                0x00000000000082f1                gatt_client_read_long_characteristic_descriptor_using_descriptor_handle_with_offset = 0x82f1
+                0x000000000000831f                gatt_client_read_long_value_of_characteristic_using_value_handle = 0x831f
+                0x0000000000008325                gatt_client_read_long_value_of_characteristic_using_value_handle_with_offset = 0x8325
+                0x0000000000008353                gatt_client_read_multiple_characteristic_values = 0x8353
+                0x0000000000008383                gatt_client_read_value_of_characteristic_using_value_handle = 0x8383
+                0x00000000000083b1                gatt_client_read_value_of_characteristics_by_uuid128 = 0x83b1
+                0x00000000000083fd                gatt_client_read_value_of_characteristics_by_uuid16 = 0x83fd
+                0x0000000000008449                gatt_client_register_handler = 0x8449
+                0x0000000000008455                gatt_client_reliable_write_long_value_of_characteristic = 0x8455
+                0x0000000000008885                gatt_client_signed_write_without_response = 0x8885
+                0x0000000000008949                gatt_client_write_characteristic_descriptor_using_descriptor_handle = 0x8949
+                0x0000000000008983                gatt_client_write_client_characteristic_configuration = 0x8983
+                0x00000000000089d5                gatt_client_write_long_characteristic_descriptor_using_descriptor_handle = 0x89d5
+                0x00000000000089e5                gatt_client_write_long_characteristic_descriptor_using_descriptor_handle_with_offset = 0x89e5
+                0x0000000000008a21                gatt_client_write_long_value_of_characteristic = 0x8a21
+                0x0000000000008a31                gatt_client_write_long_value_of_characteristic_with_offset = 0x8a31
+                0x0000000000008a6d                gatt_client_write_value_of_characteristic = 0x8a6d
+                0x0000000000008aa3                gatt_client_write_value_of_characteristic_without_response = 0x8aa3
+                0x0000000000009fc9                hci_add_event_handler = 0x9fc9
+                0x000000000000a749                hci_power_control = 0xa749
+                0x000000000000a8fd                hci_register_acl_packet_handler = 0xa8fd
+                0x000000000000b079                kv_commit = 0xb079
+                0x000000000000b0d5                kv_get = 0xb0d5
+                0x000000000000b0e1                kv_init = 0xb0e1
+                0x000000000000b161                kv_init_backend = 0xb161
+                0x000000000000b175                kv_put = 0xb175
+                0x000000000000b181                kv_remove = 0xb181
+                0x000000000000b1b5                kv_remove_all = 0xb1b5
+                0x000000000000b1e5                kv_value_modified = 0xb1e5
+                0x000000000000b201                kv_value_modified_of_key = 0xb201
+                0x000000000000b20d                kv_visit = 0xb20d
+                0x000000000000b29d                l2cap_add_event_handler = 0xb29d
+                0x000000000000b2ad                l2cap_can_send_packet_now = 0xb2ad
+                0x000000000000b469                l2cap_create_le_credit_based_connection_request = 0xb469
+                0x000000000000b5ad                l2cap_credit_based_send = 0xb5ad
+                0x000000000000b5d9                l2cap_credit_based_send_continue = 0xb5d9
+                0x000000000000b655                l2cap_disconnect = 0xb655
+                0x000000000000b8a5                l2cap_get_le_credit_based_connection_credits = 0xb8a5
+                0x000000000000b8c1                l2cap_get_peer_mtu_for_local_cid = 0xb8c1
+                0x000000000000bc95                l2cap_init = 0xbc95
+                0x000000000000bd8b                l2cap_le_send_flow_control_credit = 0xbd8b
+                0x000000000000c095                l2cap_max_le_mtu = 0xc095
+                0x000000000000c1bd                l2cap_register_packet_handler = 0xc1bd
+                0x000000000000c1c9                l2cap_register_service = 0xc1c9
+                0x000000000000c2d9                l2cap_request_can_send_now_event = 0xc2d9
+                0x000000000000c2f3                l2cap_request_connection_parameter_update = 0xc2f3
+                0x000000000000c7c5                l2cap_send_echo_request = 0xc7c5
+                0x000000000000c885                l2cap_unregister_service = 0xc885
+                0x000000000000c8dd                le_device_db_add = 0xc8dd
+                0x000000000000c9b5                le_device_db_find = 0xc9b5
+                0x000000000000c9e1                le_device_db_from_key = 0xc9e1
+                0x000000000000c9e9                le_device_db_iter_cur = 0xc9e9
+                0x000000000000c9ed                le_device_db_iter_cur_key = 0xc9ed
+                0x000000000000c9f1                le_device_db_iter_init = 0xc9f1
+                0x000000000000c9f9                le_device_db_iter_next = 0xc9f9
+                0x000000000000ca1f                le_device_db_remove_key = 0xca1f
+                0x000000000000ca4d                ll_aes_encrypt = 0xca4d
+                0x000000000000cac9                ll_config = 0xcac9
+                0x000000000000caf3                ll_free = 0xcaf3
+                0x000000000000cafd                ll_get_heap_free_size = 0xcafd
+                0x000000000000cb11                ll_hint_on_ce_len = 0xcb11
+                0x000000000000cb49                ll_legacy_adv_set_interval = 0xcb49
+                0x000000000000cb59                ll_malloc = 0xcb59
+                0x000000000000cc91                ll_query_timing_info = 0xcc91
+                0x000000000000ccdd                ll_register_hci_acl_previewer = 0xccdd
+                0x000000000000cd41                ll_scan_set_fixed_channel = 0xcd41
+                0x000000000000cf59                ll_set_adv_access_address = 0xcf59
+                0x000000000000cf65                ll_set_adv_coded_scheme = 0xcf65
+                0x000000000000cf95                ll_set_conn_acl_report_latency = 0xcf95
+                0x000000000000cfc5                ll_set_conn_coded_scheme = 0xcfc5
+                0x000000000000cff1                ll_set_conn_latency = 0xcff1
+                0x000000000000d021                ll_set_conn_tx_power = 0xd021
+                0x000000000000d069                ll_set_def_antenna = 0xd069
+                0x000000000000d085                ll_set_initiating_coded_scheme = 0xd085
+                0x000000000000d091                ll_set_max_conn_number = 0xd091
+                0x000000000001d1e9                nibble_for_char = 0x1d1e9
+                0x000000000001d285                platform_32k_rc_auto_tune = 0x1d285
+                0x000000000001d301                platform_32k_rc_tune = 0x1d301
+                0x000000000001d315                platform_calibrate_32k = 0x1d315
+                0x000000000001d319                platform_config = 0x1d319
+                0x000000000001d43d                platform_controller_run = 0x1d43d
+                0x000000000001d471                platform_delete_timer = 0x1d471
+                0x000000000001d479                platform_enable_irq = 0x1d479
+                0x000000000001d4b1                platform_get_gen_os_driver = 0x1d4b1
+                0x000000000001d4bd                platform_get_task_handle = 0x1d4bd
+                0x000000000001d4d5                platform_get_timer_counter = 0x1d4d5
+                0x000000000001d4d9                platform_get_us_time = 0x1d4d9
+                0x000000000001d4dd                platform_get_version = 0x1d4dd
+                0x000000000001d4e5                platform_hrng = 0x1d4e5
+                0x000000000001d4ed                platform_init_controller = 0x1d4ed
+                0x000000000001d509                platform_os_idle_resumed_hook = 0x1d509
+                0x000000000001d50d                platform_patch_rf_init_data = 0x1d50d
+                0x000000000001d519                platform_post_sleep_processing = 0x1d519
+                0x000000000001d51f                platform_pre_sleep_processing = 0x1d51f
+                0x000000000001d525                platform_pre_suppress_ticks_and_sleep_processing = 0x1d525
+                0x000000000001d529                platform_printf = 0x1d529
+                0x000000000001d53d                platform_raise_assertion = 0x1d53d
+                0x000000000001d551                platform_rand = 0x1d551
+                0x000000000001d555                platform_read_info = 0x1d555
+                0x000000000001d585                platform_read_persistent_reg = 0x1d585
+                0x000000000001d595                platform_reset = 0x1d595
+                0x000000000001d5b9                platform_set_abs_timer = 0x1d5b9
+                0x000000000001d5bd                platform_set_evt_callback = 0x1d5bd
+                0x000000000001d5d1                platform_set_evt_callback_table = 0x1d5d1
+                0x000000000001d5dd                platform_set_irq_callback = 0x1d5dd
+                0x000000000001d5f9                platform_set_irq_callback_table = 0x1d5f9
+                0x000000000001d605                platform_set_rf_clk_source = 0x1d605
+                0x000000000001d611                platform_set_rf_init_data = 0x1d611
+                0x000000000001d61d                platform_set_rf_power_mapping = 0x1d61d
+                0x000000000001d629                platform_set_timer = 0x1d629
+                0x000000000001d62d                platform_shutdown = 0x1d62d
+                0x000000000001d631                platform_switch_app = 0x1d631
+                0x000000000001d65d                platform_trace_raw = 0x1d65d
+                0x000000000001d675                platform_write_persistent_reg = 0x1d675
+                0x000000000001d685                printf_hexdump = 0x1d685
+                0x000000000001d9c5                reverse_128 = 0x1d9c5
+                0x000000000001d9cb                reverse_24 = 0x1d9cb
+                0x000000000001d9d1                reverse_256 = 0x1d9d1
+                0x000000000001d9d7                reverse_48 = 0x1d9d7
+                0x000000000001d9dd                reverse_56 = 0x1d9dd
+                0x000000000001d9e3                reverse_64 = 0x1d9e3
+                0x000000000001d9e9                reverse_bd_addr = 0x1d9e9
+                0x000000000001d9ef                reverse_bytes = 0x1d9ef
+                0x000000000001db5d                sm_add_event_handler = 0x1db5d
+                0x000000000001dcb5                sm_address_resolution_lookup = 0x1dcb5
+                0x000000000001e031                sm_authenticated = 0x1e031
+                0x000000000001e03f                sm_authorization_decline = 0x1e03f
+                0x000000000001e05f                sm_authorization_grant = 0x1e05f
+                0x000000000001e07f                sm_authorization_state = 0x1e07f
+                0x000000000001e099                sm_bonding_decline = 0x1e099
+                0x000000000001e4f5                sm_config = 0x1e4f5
+                0x000000000001e50d                sm_config_conn = 0x1e50d
+                0x000000000001e6c3                sm_encryption_key_size = 0x1e6c3
+                0x000000000001ec41                sm_just_works_confirm = 0x1ec41
+                0x000000000001ef8d                sm_le_device_key = 0x1ef8d
+                0x000000000001f023                sm_passkey_input = 0x1f023
+                0x000000000001f3dd                sm_private_random_address_generation_get = 0x1f3dd
+                0x000000000001f3e5                sm_private_random_address_generation_get_mode = 0x1f3e5
+                0x000000000001f3f1                sm_private_random_address_generation_set_mode = 0x1f3f1
+                0x000000000001f419                sm_private_random_address_generation_set_update_period = 0x1f419
+                0x000000000001f555                sm_register_oob_data_callback = 0x1f555
+                0x000000000001f561                sm_request_pairing = 0x1f561
+                0x0000000000020037                sm_send_security_request = 0x20037
+                0x000000000002005d                sm_set_accepted_stk_generation_methods = 0x2005d
+                0x0000000000020069                sm_set_authentication_requirements = 0x20069
+                0x0000000000020075                sm_set_encryption_key_size_range = 0x20075
+                0x00000000000203d1                sscanf_bd_addr = 0x203d1
+                0x0000000000020785                sysSetPublicDeviceAddr = 0x20785
+                0x0000000000020d69                uuid128_to_str = 0x20d69
+                0x0000000000020dc1                uuid_add_bluetooth_prefix = 0x20dc1
+                0x0000000000020de1                uuid_has_bluetooth_prefix = 0x20de1
+START GROUP
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libc_nano.a
+END GROUP
+START GROUP
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libc_nano.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a
+END GROUP
+START GROUP
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/libgcc.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libc_nano.a
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libnosys.a
+END GROUP
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtend.o
+LOAD /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crtn.o
+
+.text           0x0000000000024000      0xc67
+ *(.isr_vector)
+ .isr_vector    0x0000000000024000        0x8 obj/gstartup_ing91800.o
+                0x0000000000024000                __isr_vector
+ *(.text*)
+ .text.cube_soc_init
+                0x0000000000024008       0x1a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024022        0x2 
+ .text.cube_setup_peripherals
+                0x0000000000024024       0x88 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cube_on_lle_init
+                0x00000000000240ac        0xc /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_hard_fault
+                0x00000000000240b8       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_assertion
+                0x0000000000024100       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_heap_out_of_mem
+                0x0000000000024120       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_putc  0x0000000000024138       0x34 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.setup_peripherals
+                0x000000000002416c        0xc /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.on_lle_init
+                0x0000000000024178       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.on_deep_sleep_wakeup
+                0x0000000000024190       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.query_deep_sleep_allowed
+                0x00000000000241a8       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x00000000000241be        0x2 
+ .text.app_main
+                0x00000000000241c0       0x70 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+                0x00000000000241c0                app_main
+ .text.hci_event_packet_get_type
+                0x0000000000024230       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.hci_event_packet_get_user_msg
+                0x0000000000024246       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.hci_event_le_meta_get_subevent_code
+                0x000000000002425c       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.hci_event_command_complete_get_command_opcode
+                0x0000000000024274       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.btstack_event_state_get_state
+                0x000000000002428c       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.att_read_callback
+                0x00000000000242a4       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.att_write_callback
+                0x00000000000242c4       0x2a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.user_msg_handler
+                0x00000000000242ee       0x18 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024306        0x2 
+ .text.setup_adv
+                0x0000000000024308       0x70 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.user_packet_handler
+                0x0000000000024378       0xe4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.setup_profile
+                0x000000000002445c       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_MaskedWrite
+                0x00000000000244a4       0x3c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_SetDirection
+                0x00000000000244e0       0x70 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.GIO_WriteValue
+                0x0000000000024550       0x28 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SetPadMux
+                0x0000000000024578       0x58 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelIn
+                0x00000000000245d0       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.PINCTRL_SelUartRxdIn
+                0x0000000000024618       0x2e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024646        0x2 
+ .text.SYSCTRL_ClearClkGateMulti
+                0x0000000000024648       0x24 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SYSCTRL_Init
+                0x000000000002466c        0xe /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.apUART_Check_TXFIFO_FULL
+                0x000000000002467a       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.UART_SendData
+                0x000000000002469a       0x1c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x00000000000246b6        0x2 
+ .text._DoInit  0x00000000000246b8       0x9c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text._WriteBlocking
+                0x0000000000024754       0xb4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text._WriteNoCheck
+                0x0000000000024808       0x80 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text._GetAvailWriteSpace
+                0x0000000000024888       0x44 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_WriteNoLock
+                0x00000000000248cc       0xa0 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_Write
+                0x000000000002496c       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_Init
+                0x00000000000249b4        0xc /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.SEGGER_RTT_GetAvailWriteSpace
+                0x00000000000249c0       0x2c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.cb_trace_rtt
+                0x00000000000249ec       0x88 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text.trace_rtt_init
+                0x0000000000024a74       0x14 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .text          0x0000000000024a88       0x44 obj/gstartup_ing91800.o
+                0x0000000000024a88                Reset_Handler
+ .text.memcpy   0x0000000000024acc       0x1c /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+                0x0000000000024acc                memcpy
+ .text.strcpy   0x0000000000024ae8       0x10 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+                0x0000000000024ae8                strcpy
+ *(.init)
+ .init          0x0000000000024af8        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+                0x0000000000024af8                _init
+ *(.fini)
+ .fini          0x0000000000024afc        0x4 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+                0x0000000000024afc                _fini
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ .rodata.cb_hard_fault.str1.4
+                0x0000000000024b00       0x75 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024b75        0x3 
+ .rodata.cb_assertion.str1.4
+                0x0000000000024b78       0x16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024b8e        0x2 
+ .rodata.cb_heap_out_of_mem.str1.4
+                0x0000000000024b90        0xd /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024b9d        0x3 
+ .rodata.evt_cb_table
+                0x0000000000024ba0       0x50 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .rodata.app_main.str1.4
+                0x0000000000024bf0       0x32 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c22        0x2 
+ .rodata.adv_data
+                0x0000000000024c24        0x1 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c25        0x3 
+ .rodata.scan_data
+                0x0000000000024c28        0x1 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c29        0x3 
+ .rodata.profile_data
+                0x0000000000024c2c        0x2 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c2e        0x2 
+ .rodata.adv_sets_en
+                0x0000000000024c30        0x6 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c36        0x2 
+ .rodata.setup_profile.str1.4
+                0x0000000000024c38        0xf /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c47        0x1 
+ .rodata.rand_addr.0
+                0x0000000000024c48        0x6 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000000024c4e        0x2 
+ .rodata._DoInit.str1.4
+                0x0000000000024c50       0x17 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *(.eh_frame*)
+
+.glue_7         0x0000000000024c68        0x0
+ .glue_7        0x0000000000024c68        0x0 linker stubs
+
+.glue_7t        0x0000000000024c68        0x0
+ .glue_7t       0x0000000000024c68        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000024c68        0x0
+ .vfp11_veneer  0x0000000000024c68        0x0 linker stubs
+
+.v4_bx          0x0000000000024c68        0x0
+ .v4_bx         0x0000000000024c68        0x0 linker stubs
+
+.iplt           0x0000000000024c68        0x0
+ .iplt          0x0000000000024c68        0x0 obj/gstartup_ing91800.o
+
+.rel.dyn        0x0000000000024c68        0x0
+ .rel.iplt      0x0000000000024c68        0x0 obj/gstartup_ing91800.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x0000000000024c67                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000000000024c67                __exidx_end = .
+                0x0000000000024c68                __etext = ALIGN (0x4)
+
+.data           0x0000000020000d28        0x0 load address 0x0000000000024c68
+                0x0000000020000d28                __data_start__ = .
+ *(vtable)
+ *(.data*)
+                0x0000000020000d28                . = ALIGN (0x4)
+                0x0000000020000d28                PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                0x0000000020000d28                PROVIDE (__preinit_array_end = .)
+                0x0000000020000d28                . = ALIGN (0x4)
+                0x0000000020000d28                PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                0x0000000020000d28                PROVIDE (__init_array_end = .)
+                0x0000000020000d28                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+ *(.jcr)
+                0x0000000020000d28                . = ALIGN (0x4)
+                0x0000000020000d28                __data_end__ = .
+
+.igot.plt       0x0000000020000d28        0x0
+ .igot.plt      0x0000000020000d28        0x0 obj/gstartup_ing91800.o
+
+.bss            0x0000000020000d28      0x258
+                0x0000000020000d28                . = ALIGN (0x4)
+                0x0000000020000d28                __bss_start__ = .
+ *(.bss*)
+ .bss.trace_ctx
+                0x0000000020000d28        0x1 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *fill*         0x0000000020000d29        0x3 
+ .bss.hci_event_callback_registration
+                0x0000000020000d2c        0x8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss._SEGGER_RTT
+                0x0000000020000d34       0x48 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss._acUpBuffer
+                0x0000000020000d7c      0x1f4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .bss._acDownBuffer
+                0x0000000020000f70       0x10 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ *(COMMON)
+                0x0000000020000f80                . = ALIGN (0x4)
+                0x0000000020000f80                __bss_end__ = .
+
+.heap           0x0000000020000f80        0x0
+                0x0000000020000f80                __end__ = .
+                0x0000000020000f80                PROVIDE (end = .)
+ *(.heap*)
+ .heap          0x0000000020000f80        0x0 obj/gstartup_ing91800.o
+                0x0000000020000f80                __HeapLimit = .
+
+.stack_dummy    0x0000000020000f80      0x400
+ *(.stack*)
+ .stack         0x0000000020000f80      0x400 obj/gstartup_ing91800.o
+                0x0000000020010000                __StackTop = (ORIGIN (RAM) + LENGTH (RAM))
+                0x000000002000fc00                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
+                0x0000000020010000                PROVIDE (__stack = __StackTop)
+                0x0000000000000001                ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
+OUTPUT(my_project_noos.elf elf32-littlearm)
+LOAD linker stubs
+
+.ARM.attributes
+                0x0000000000000000       0x29
+ .ARM.attributes
+                0x0000000000000000       0x1d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v7-m/nofp/crti.o
+ .ARM.attributes
+                0x000000000000001d       0x2b /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .ARM.attributes
+                0x0000000000000048       0x1b obj/gstartup_ing91800.o
+ .ARM.attributes
+                0x0000000000000063       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x0000000000000090       0x2d /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
+
+.comment        0x0000000000000000       0x20
+ .comment       0x0000000000000000       0x20 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+                                         0x21 (size before relaxing)
+
+.debug_info     0x0000000000000000     0x8f30
+ .debug_info    0x0000000000000000     0x2bac /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .debug_info    0x0000000000002bac      0xae3 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+                0x0000000000002bac                main.c.c9ca9795
+ .debug_info    0x000000000000368f      0x977 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+                0x000000000000368f                profile.c.b724c3ac
+ .debug_info    0x0000000000004006      0x295 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+                0x0000000000004006                peripheral_adc.c.70d1a654
+ .debug_info    0x000000000000429b      0x35e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+                0x000000000000429b                peripheral_gpio.c.6a586e20
+ .debug_info    0x00000000000045f9      0x549 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+                0x00000000000045f9                peripheral_i2c.c.f877dbc3
+ .debug_info    0x0000000000004b42      0x5e8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+                0x0000000000004b42                peripheral_pinctrl.c.33ffe74c
+ .debug_info    0x000000000000512a      0x3c8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+                0x000000000000512a                peripheral_pwm.c.d8495b45
+ .debug_info    0x00000000000054f2      0x239 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+                0x00000000000054f2                peripheral_rtc.c.f7cbc87c
+ .debug_info    0x000000000000572b      0x621 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+                0x000000000000572b                peripheral_ssp.c.993a9c97
+ .debug_info    0x0000000000005d4c      0x499 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+                0x0000000000005d4c                peripheral_sysctrl.c.53fca9a6
+ .debug_info    0x00000000000061e5      0x28f /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+                0x00000000000061e5                peripheral_timer.c.f3e4f690
+ .debug_info    0x0000000000006474      0x6bc /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+                0x0000000000006474                peripheral_uart.c.6a6033b8
+ .debug_info    0x0000000000006b30     0x1fd2 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+                0x0000000000006b30                trace.c.48c60eff
+ .debug_info    0x0000000000008b02      0x408 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+                0x0000000000008b02                eflash.c.58a97486
+ .debug_info    0x0000000000008f0a       0x26 obj/gstartup_ing91800.o
+
+.debug_abbrev   0x0000000000000000     0x130d
+ .debug_abbrev  0x0000000000000000       0xb9 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .debug_abbrev  0x00000000000000b9      0x21a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+ .debug_abbrev  0x00000000000002d3      0x1ef /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+ .debug_abbrev  0x00000000000004c2       0xde /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+ .debug_abbrev  0x00000000000005a0       0xce /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+ .debug_abbrev  0x000000000000066e       0xbe /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+ .debug_abbrev  0x000000000000072c      0x10e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+ .debug_abbrev  0x000000000000083a       0xc6 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+ .debug_abbrev  0x0000000000000900      0x11f /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+ .debug_abbrev  0x0000000000000a1f      0x122 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+ .debug_abbrev  0x0000000000000b41      0x10b /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+ .debug_abbrev  0x0000000000000c4c       0xd1 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+ .debug_abbrev  0x0000000000000d1d      0x16d /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+ .debug_abbrev  0x0000000000000e8a      0x338 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+ .debug_abbrev  0x00000000000011c2      0x137 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+ .debug_abbrev  0x00000000000012f9       0x14 obj/gstartup_ing91800.o
+
+.debug_loc      0x0000000000000000     0x5335
+ .debug_loc     0x0000000000000000     0x5335 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+
+.debug_aranges  0x0000000000000000      0x830
+ .debug_aranges
+                0x0000000000000000      0x810 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .debug_aranges
+                0x0000000000000810       0x20 obj/gstartup_ing91800.o
+
+.debug_ranges   0x0000000000000000      0x830
+ .debug_ranges  0x0000000000000000      0x830 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+
+.debug_line     0x0000000000000000     0x48d3
+ .debug_line    0x0000000000000000     0x32a7 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .debug_line    0x00000000000032a7      0x234 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+ .debug_line    0x00000000000034db      0x1c9 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+ .debug_line    0x00000000000036a4      0x12e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+ .debug_line    0x00000000000037d2      0x130 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+ .debug_line    0x0000000000003902      0x14d /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+ .debug_line    0x0000000000003a4f      0x136 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+ .debug_line    0x0000000000003b85      0x12e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+ .debug_line    0x0000000000003cb3      0x11a /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+ .debug_line    0x0000000000003dcd      0x161 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+ .debug_line    0x0000000000003f2e      0x169 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+ .debug_line    0x0000000000004097      0x14f /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+ .debug_line    0x00000000000041e6      0x163 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+ .debug_line    0x0000000000004349      0x336 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+ .debug_line    0x000000000000467f      0x1eb /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+ .debug_line    0x000000000000486a       0x69 obj/gstartup_ing91800.o
+
+.debug_str      0x0000000000000000     0x3cc6
+ .debug_str     0x0000000000000000       0xec /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+                                        0x14a (size before relaxing)
+ .debug_str     0x00000000000000ec      0xe16 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccsKjnFk.debug.temp.o
+                                        0xefb (size before relaxing)
+ .debug_str     0x0000000000000f02      0x6b7 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccNvxGLa.debug.temp.o
+                                        0xb23 (size before relaxing)
+ .debug_str     0x00000000000015b9      0x13f /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUvnhCi.debug.temp.o
+                                        0x311 (size before relaxing)
+ .debug_str     0x00000000000016f8       0xe4 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccv1toCO.debug.temp.o
+                                        0x4ad (size before relaxing)
+ .debug_str     0x00000000000017dc      0x274 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccAoV2A4.debug.temp.o
+                                        0x45a (size before relaxing)
+ .debug_str     0x0000000000001a50      0x32f /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbWVm14.debug.temp.o
+                                        0x68c (size before relaxing)
+ .debug_str     0x0000000000001d7f      0x26b /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUzPPfQ.debug.temp.o
+                                        0x449 (size before relaxing)
+ .debug_str     0x0000000000001fea       0xa8 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cc0YKaY7.debug.temp.o
+                                        0x280 (size before relaxing)
+ .debug_str     0x0000000000002092      0x636 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//cczlRBfz.debug.temp.o
+                                        0x87e (size before relaxing)
+ .debug_str     0x00000000000026c8      0x4cd /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccrJCA4C.debug.temp.o
+                                        0x809 (size before relaxing)
+ .debug_str     0x0000000000002b95      0x10e /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccUZdQWP.debug.temp.o
+                                        0x2d9 (size before relaxing)
+ .debug_str     0x0000000000002ca3      0x370 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccgpz6si.debug.temp.o
+                                        0x698 (size before relaxing)
+ .debug_str     0x0000000000003013      0xa94 /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccbNkwus.debug.temp.o
+                                       0x1083 (size before relaxing)
+ .debug_str     0x0000000000003aa7      0x19d /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccTaXgPO.debug.temp.o
+                                        0x3a9 (size before relaxing)
+ .debug_str     0x0000000000003c44       0x82 obj/gstartup_ing91800.o
+
+.debug_frame    0x0000000000000000     0x25b4
+ .debug_frame   0x0000000000000000     0x256c /var/folders/dm/w1b9_gp97jsc9v_jlrgtkyq80000gn/T//ccf7nNDQ.ltrans0.ltrans.o
+ .debug_frame   0x000000000000256c       0x28 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000002594       0x20 /Users/zhangyuxi/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/lib/thumb/v7-m/nofp/libg_nano.a(lib_a-strcpy.o)
