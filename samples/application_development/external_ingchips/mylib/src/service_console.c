@@ -122,7 +122,7 @@ __attribute((weak)) void show_stack_mem(char *buffer)
 void cmd_mem(const char *param)
 {
     platform_heap_status_t status;
-    platform_get_heap_status(&status);
+    // platform_get_heap_status(&status);
     sprintf(buffer, "heap:\nfree: %dB\nmin free:%dB", status.bytes_free, status.bytes_minimum_ever_free);
     tx_data(buffer, strlen(buffer) + 1);
     buffer[0] = '\0';

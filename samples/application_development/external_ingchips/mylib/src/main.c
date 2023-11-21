@@ -1,8 +1,8 @@
-// #include <stdio.h>
-// #include <string.h>
-// #include "ingsoc.h"
-// #include "platform_api.h"
-// #include "profile.h"
+#include <stdio.h>
+#include <string.h>
+#include "ingsoc.h"
+#include "platform_api.h"
+#include "profile.h"
 // #include <zephyr/kernel.h>
 // #include <zephyr/types.h>
 // #include <stddef.h>
@@ -21,20 +21,22 @@
 // }
 // extern const void *os_impl_get_driver(void);
 
-// #include "main_shared.c"
+#include "main_shared.c"
 
 int app_main()
 {
-//     _app_main();
+    platform_printf("I am in main\r\n");
+    _app_main();
 
-// #if (INGCHIPS_FAMILY == INGCHIPS_FAMILY_918)
-// #elif (INGCHIPS_FAMILY == INGCHIPS_FAMILY_916)
-//     platform_config(PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION, 4500);
-// #endif
-
-//     return (uintptr_t)os_impl_get_driver();
-// }
-// void main() {
+#if (INGCHIPS_FAMILY == INGCHIPS_FAMILY_918)
+#elif (INGCHIPS_FAMILY == INGCHIPS_FAMILY_916)
+    platform_config(PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION, 4500);
+#endif
+    // return NULL;
+    return (uintptr_t)os_impl_get_driver();
+}
+void main() {
+    platform_printf("I am in main\r\n");
 //     // k_tid_t tid = k_thread_create(&test_thread,          // 线程对象
 //     //                              test_thread_stack,
 //     //                               1024,  // 栈大小
@@ -89,4 +91,4 @@ int app_main()
 }
 // K_THREAD_DEFINE(blink0_id, 1024, thread_test, NULL, NULL, NULL, 1, 0, 0);//it works
 
-// const char welcome_msg[] = "Built with FreeRTOS (10.2.1)";
+const char welcome_msg[] = "Built with zephyr";

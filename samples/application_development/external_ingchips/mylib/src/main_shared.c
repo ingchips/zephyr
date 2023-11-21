@@ -206,12 +206,12 @@ const platform_evt_cb_table_t evt_cb_table =
         [PLATFORM_CB_EVT_QUERY_DEEP_SLEEP_ALLOWED] = {
             .f = query_deep_sleep_allowed
         },
-        // [PLATFORM_CB_EVT_PROFILE_INIT] = {
-        //     .f = setup_profile
-        // },
-        [PLATFORM_CB_EVT_HCI_RECV] = {
-            .f = (f_platform_evt_cb)cb_hci_recv,
+        [PLATFORM_CB_EVT_PROFILE_INIT] = {
+            .f = setup_profile
         },
+        // [PLATFORM_CB_EVT_HCI_RECV] = {
+        //     .f = (f_platform_evt_cb)cb_hci_recv,
+        // },
 #ifdef USE_TRACE
         [PLATFORM_CB_EVT_TRACE] = {
             .f = (f_platform_evt_cb)cb_trace_rtt,
