@@ -28,6 +28,9 @@ static int stm32f1_init(void)
 	/* At reset, system core clock is set to 8 MHz from HSI */
 	SystemCoreClock = 8000000;
 
+	#ifdef CONFIG_INGCHIP_918
+	SystemCoreClock = 48000000;
+	#endif
 	return 0;
 }
 

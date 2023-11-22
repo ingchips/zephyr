@@ -25,6 +25,9 @@
  */
 static int st_stm32_common_config(void)
 {
+#ifdef CONFIG_INGCHIP_918
+	return 0;
+#endif
 #ifdef CONFIG_LOG_BACKEND_SWO
 	/* Enable SWO trace asynchronous mode */
 #if defined(CONFIG_SOC_SERIES_STM32WBX) || defined(CONFIG_SOC_SERIES_STM32H5X)
