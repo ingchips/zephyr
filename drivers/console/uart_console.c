@@ -77,6 +77,11 @@ void uart_console_out_debug_hook_install(uart_console_out_debug_hook_t *hook)
 
 static int console_out(int c)
 {
+#ifdef CONFIG_INGCHIP_918
+	extern uint32_t cb_putc(char *c, void *dummy);
+	cb_putc(&c, NULL);
+	return c;
+#endif
 #ifdef CONFIG_UART_CONSOLE_DEBUG_SERVER_HOOKS
 
 	int handled_by_debug_server = HANDLE_DEBUG_HOOK_OUT(c);
