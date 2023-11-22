@@ -719,6 +719,9 @@ static void set_up_fixed_clock_sources(void)
 int stm32_clock_control_init(const struct device *dev)
 {
 	ARG_UNUSED(dev);
+	#ifdef CONFIG_INGCHIP_918
+	return 0;
+	#endif
 
 	/* Some clocks would be activated by default */
 	config_enable_default_clocks();
@@ -821,6 +824,7 @@ int stm32_clock_control_init(const struct device *dev)
  * @brief RCC device, note that priority is intentionally set to 1 so
  * that the device init runs just after SOC init
  */
+
 DEVICE_DT_DEFINE(DT_NODELABEL(rcc),
 		    &stm32_clock_control_init,
 		    NULL,

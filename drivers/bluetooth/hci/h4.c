@@ -71,7 +71,7 @@ static struct {
 	.fifo = Z_FIFO_INITIALIZER(tx.fifo),
 };
 
-static const struct device *const h4_dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_bt_uart));
+static const struct device *const h4_dev = NULL;//DEVICE_DT_GET(DT_CHOSEN(zephyr_bt_uart));zyx20231122
 
 static inline void h4_get_type(void)
 {

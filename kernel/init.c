@@ -573,7 +573,9 @@ FUNC_NORETURN void z_cstart(void)
 	z_device_state_init();
 
 	/* perform basic hardware initialization */
+// #ifndef CONFIG_INGCHIP_918
 	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_1);
+// #endif 
 	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_2);
 
 #ifdef CONFIG_STACK_CANARIES

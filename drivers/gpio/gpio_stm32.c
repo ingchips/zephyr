@@ -700,7 +700,9 @@ static int gpio_stm32_init(const struct device *dev)
 	int ret;
 
 	data->dev = dev;
-
+#ifdef CONFIG_INGCHIP_918
+	return 0;
+#endif
 	if (!device_is_ready(DEVICE_DT_GET(STM32_CLOCK_CONTROL_NODE))) {
 		return -ENODEV;
 	}

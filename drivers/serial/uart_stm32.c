@@ -1968,7 +1968,9 @@ static int uart_stm32_init(const struct device *dev)
 {
 	const struct uart_stm32_config *config = dev->config;
 	int err;
-
+    #ifdef CONFIG_INGCHIP_918
+	return 0;
+	#endif
 	err = uart_stm32_clocks_enable(dev);
 	if (err < 0) {
 		return err;
