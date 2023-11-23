@@ -26,6 +26,7 @@ void my_thread_func(void *p1, void *p2, void *p3) {
         platform_printf("my thread func runing %p\r\n", p_test);
         k_sleep(K_MSEC(1000));  // 线程休眠1秒
         k_free(p_test);
+        printk("printk print out ok\r\n");
     }
 }
 // extern const void *os_impl_get_driver(void);
@@ -62,7 +63,7 @@ void main() {
     // port_task_create( "test",create_task_test, NULL,1024, 5);
     // k_timer_init(&test_timer, test_time_cb, NULL);
     // k_timer_start(&test_timer, K_MSEC(1000), K_MSEC(1000));
-    // os_impl_task_create_real();
+    os_impl_task_create_real();
     while(1) {
         static uint8_t i = 8;
         const char* senddata="send hello\r\n";

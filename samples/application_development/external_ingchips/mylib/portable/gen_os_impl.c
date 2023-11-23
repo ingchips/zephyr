@@ -4,6 +4,19 @@
 #include "ingsoc.h"
 #include <zephyr/kernel.h>
 // #include <zephyr.h>
+/* Exported macro ------------------------------------------------------------*/
+#define USER_FULL_ASSERT
+#ifdef  USER_FULL_ASSERT
+  #define assert_user(expr) ((expr) ? (void)0U : assert_failed((uint8_t *)__FILE__, __LINE__))
+/* Exported functions ------------------------------------------------------- */
+  void assert_failed(uint8_t* file, uint32_t line);
+#else
+  #define assert_user(expr) ((void)0U)
+#endif /* USE_FULL_ASSERT */
+void assert_failed (uint8_t* file,uint32_t line) {
+    platform_printf("assert failed@%s,%d\r\n", file, line);
+    while(1);
+}
 #define _SYSTICK_PRI    (*(uint8_t  *)(0xE000ED23UL))
 typedef struct {
     const char* task_name;
@@ -50,15 +63,16 @@ struct timer_user_data
 {
     void *user_data;
     void (* timer_cb)(void *);
+    uint32_t timeout_in_ms;
 };
 
 static void os_timer_cb(struct k_timer *xTimer)
 {
+    platform_printf("I am in os timer cb %d\r\n", __LINE__);
     struct timer_user_data *data = (struct timer_user_data *)xTimer->user_data;
     data->timer_cb(data->user_data);
 }
 // #define OPEN_DEBUG 1
-static struct k_timer my_timer;
 k_timeout_t g_time_set;
 void os_open_psp_control(void);
 
@@ -72,21 +86,29 @@ gen_handle_t port_timer_create(
     platform_printf("port timer create %d,%p,%p\r\n", timeout_in_ms, user_data, timer_cb);
     platform_printf("%.10s%d%s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    struct timer_user_data *data = (struct timer_user_data *)k_malloc(sizeof(struct timer_user_data));
-    data->user_data = user_data;
-    data->timer_cb = timer_cb; 
-	k_timer_init(&my_timer, os_timer_cb, data);
-    g_time_set.ticks = timeout_in_ms;
-    return &my_timer;
+    struct k_timer *timer =(struct k_timer *)k_malloc(sizeof(struct k_timer));
+    assert_user(timer);
+    struct timer_user_data *timer_data = (struct timer_user_data *)k_malloc(sizeof(struct timer_user_data));
+    assert_user(timer_data);
+	k_timer_init(timer, os_timer_cb, NULL);
+    timer_data->timeout_in_ms = timeout_in_ms; 
+    timer_data->timer_cb = timer_cb;
+    timer_data->user_data = user_data;
+    timer->user_data = timer_data;
+    // timer->period.ticks = K_MSEC(timeout_in_ms);
+    platform_printf("timer is%p\r\n", timer);
+    return timer;
 }
 
 void port_timer_start(gen_handle_t timer)
 {
-
+    platform_printf("timer is%p\r\n", timer);
+    struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    k_timer_start(timer, K_MSEC(g_time_set.ticks), K_NO_WAIT);
+    if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
+    k_timer_start(timer, K_MSEC(ptr->timeout_in_ms), K_NO_WAIT);
 }
 
 void port_timer_stop(gen_handle_t timer)
@@ -94,6 +116,7 @@ void port_timer_stop(gen_handle_t timer)
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
+    if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
     k_timer_stop(timer);
 }
 
@@ -102,8 +125,11 @@ void port_timer_delete(gen_handle_t timer)
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    //todo free timer
+    //todo free timer will crash
+    // struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
+    // k_free(ptr); 
     // k_free(timer);
+    if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
     return;
 
 }
@@ -120,34 +146,45 @@ struct k_thread user_thread[TASK_NUMBERS];
 port_task_entry_def port_task_entry[TASK_NUMBERS];
 static uint8_t g_creat_task_index = 0;
 int g_ret_task = 123;
-// void task_test1 () {
-//     while(1) {
-//         platform_printf("test1 thread\r\n");
-//         k_sleep(K_MSEC(1000));
-//         // port_event_set(NULL);
-//         const char* senddata="send hello\r\n";
-//         k_msgq_put(&my_msgq1 ,senddata, K_NO_WAIT);
-//     }
-// }
-// void task_test2 () {
-//     while(1) {
-//         platform_printf("test2 thread\r\n");
-//         // port_event_wait(NULL);
-//         char buf[20] = {0};
-//         int ret = k_msgq_get(&my_msgq1, buf, K_FOREVER);
-//         if (ret == 0) {
-//             platform_printf("received %s\r\n",buf);
-//         }
-//         // k_sleep(K_MSEC(1000));
-//     }
-// }
+void my_timer_out_test() {
+    platform_printf("time out over**********************************************************************************************************************************************************************************************************\r\n");
+}
+void thread_test1 () {
+    void *my_timer = port_timer_create(1000, NULL, my_timer_out_test);
+    port_timer_start(my_timer);
+    // static struct k_timer my_timer;
+    // k_timer_init(&my_timer, my_timer_out_test, NULL);
+    // k_timer_start(&my_timer, K_MSEC(10000), K_NO_WAIT);
+    // k_sleep(K_MSEC(5000));
+    // port_timer_stop(my_timer);
+    // port_timer_delete(my_timer);
+    while(1) {
+        platform_printf("test1 thread\r\n");
+        k_sleep(K_MSEC(2000));
+        // port_event_set(NULL);
+        const char* senddata="thread1 send hello\r\n";
+        k_msgq_put(&my_msgq1 ,senddata, K_NO_WAIT);
+    }
+}
+void thread_test2 () {
+    while(1) {
+        platform_printf("test2 thread\r\n");
+        // port_event_wait(NULL);
+        char buf[20] = {0};
+        int ret = k_msgq_get(&my_msgq1, buf, K_FOREVER);
+        if (ret == 0) {
+            platform_printf("thread2 received %s\r\n",buf);
+        }
+        // k_sleep(K_MSEC(1000));
+    }
+}
 gen_handle_t os_impl_task_create_real()
 {
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    // port_task_entry[0].entry = task_test1;
-    // port_task_entry[1].entry = task_test2;
+    // port_task_entry[0].entry = thread_test1;
+    // port_task_entry[1].entry = thread_test2;
     for (uint8_t i = 0; i < g_creat_task_index; i++) {
         k_tid_t tid = k_thread_create(&user_thread[i], 
                         &user_stack[i], 
@@ -281,7 +318,7 @@ void svc_isr_wraper(void) {
 extern void z_arm_exc_exit(void);
 void pendsv_isr_wraper(void) {
     #ifdef OPEN_DEBUG
-    platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
+    // platform_printf("%d %s\r\n", __LINE__, __func__);
     #endif
     z_arm_pendsv();
 }

@@ -127,7 +127,7 @@ void setup_peripherals(void)
 
 #ifdef USE_WATCHDOG
     // Watchdog will timeout after 10sec
-    TMR_WatchDogEnable(TMR_CLK_FREQ * 5);
+    TMR_WatchDogEnable(TMR_CLK_FREQ * 5); 
 #endif
 //GPIO
 SYSCTRL_ClearClkGateMulti(1 << SYSCTRL_ClkGate_APB_GPIO0);
