@@ -67,7 +67,6 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,z_arm_reset)
  * search for a __start symbol instead, so create that alias here.
  */
 SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
-#if 0
 #if defined(CONFIG_DEBUG_THREAD_INFO)
     /* Clear z_sys_post_kernel flag for RTOS aware debuggers */
     movs.n r0, #0
@@ -170,7 +169,6 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
      * supported on all platforms. So it is used when jumping to z_arm_prep_c
      * (even though we do not intend to return).
      */
-#endif
 
 #ifndef CONFIG_INGCHIP_918
     bl z_arm_prep_c
