@@ -172,6 +172,11 @@ void sys_clock_isr(void *arg)
 	uint32_t dticks;
 
 	/* Update overflow_cyc and clear COUNTFLAG by invoking elapsed() */
+	#ifdef CONFIG_INGCHIP_918
+	static uint8_t mark=0;
+    mark++;
+    GIO_WriteValue(9,mark&0x1);
+	#endif 
 	elapsed();
 
 	/* Increment the amount of HW cycles elapsed (complete counter
