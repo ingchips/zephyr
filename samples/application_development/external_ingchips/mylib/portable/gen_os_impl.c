@@ -156,7 +156,14 @@ void my_timer_out_test() {
 void thread_test1 () {
     //test timer
     while(1) {
-        void *my_timer = port_timer_create(1000, NULL, my_timer_out_test);
+        static uint8_t mark=0;
+        mark++;
+        GIO_WriteValue(11,mark&0x1);
+        // GIO_ToggleBits(11);
+        k_sleep(K_MSEC(1000));
+    }
+    while(1) {
+        void *my_timer = port_timer_create(5000, NULL, my_timer_out_test);
         port_timer_start(my_timer);
         // static struct k_timer my_timer1;
         // k_timer_init(my_timer1, my_timer_out_test, NULL);
@@ -326,12 +333,14 @@ void port_os_start(void) {
     z_cstart();
     
 }
+
 void svc_isr_wraper(void) {
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
     z_arm_exc_exit();
 }
+
 extern void z_arm_exc_exit(void);
 void pendsv_isr_wraper(void) {
     #ifdef OPEN_DEBUG
@@ -339,6 +348,24 @@ void pendsv_isr_wraper(void) {
     #endif
     z_arm_pendsv();
 }
+
+#define CS_MAX_NEST_DEPTH 20
+static uint32_t interrupt_states[CS_MAX_NEST_DEPTH] = {0};
+static int nest_level = 0;
+void port_enter_critical() {
+    if (nest_level >= sizeof(interrupt_states) / sizeof(interrupt_states[0]))
+        platform_raise_assertion(__FILE__, __LINE__);
+    interrupt_states[nest_level] = irq_lock();
+    nest_level++;
+}
+
+void port_leave_critical() {
+    nest_level--;
+    if (nest_level < 0)
+        platform_raise_assertion(__FILE__, __LINE__);
+    irq_unlock(interrupt_states[nest_level]);
+}
+
 const gen_os_driver_t gen_os_driver =
 {
     .timer_create = port_timer_create,
@@ -358,8 +385,10 @@ const gen_os_driver_t gen_os_driver =
 
     .malloc =  k_malloc,
     .free = k_free,
-    .enter_critical = k_sched_lock,
-    .leave_critical = k_sched_unlock,
+    // .enter_critical = k_sched_lock,
+    // .leave_critical = k_sched_unlock,
+    .enter_critical = port_enter_critical,
+    .leave_critical = port_leave_critical,
     .os_start = port_os_start,
     .tick_isr = sys_clock_isr,
     .svc_isr = svc_isr_wraper,
