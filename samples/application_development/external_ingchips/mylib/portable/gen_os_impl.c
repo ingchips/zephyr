@@ -313,11 +313,16 @@ void port_os_start(void) {
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
- 	z_arm_interrupt_init();
-    sys_clock_driver_init();//打开systick的中断
+ 	// z_arm_interrupt_init();
+    // sys_cloYC_PER_TICK
     // _SysTick_Config(RTC_CLK_FREQ / 1000);//如果打开，中断不来，且不会
+    // platform_printf("port os start");
+
+    // relocate_vector_table();
+	// z_bss_zero();
+	// z_data_copy();
+	// z_arm_interrupt_init();
     os_open_psp_control();
-    platform_printf("port os start");
     z_cstart();
     
 }
