@@ -72,7 +72,7 @@ static void os_timer_cb(struct k_timer *xTimer)
     struct timer_user_data *data = (struct timer_user_data *)xTimer->user_data;
     data->timer_cb(data->user_data);
 }
-#define OPEN_DEBUG 1
+// #define OPEN_DEBUG 1
 k_timeout_t g_time_set;
 void os_open_psp_control(void);
 
@@ -102,10 +102,10 @@ gen_handle_t port_timer_create(
 
 void port_timer_start(gen_handle_t timer)
 {
-    platform_printf("start timer is%p\r\n", timer);
     struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
+    platform_printf("start timer is%p timeout %d ms\r\n", timer, ptr->timeout_in_ms);
     #endif
     if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
     k_timer_start(timer, K_MSEC(ptr->timeout_in_ms), K_NO_WAIT);
@@ -125,15 +125,16 @@ void port_timer_delete(gen_handle_t timer)
 {
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
+    platform_printf("###delete timer is%p\r\n", timer); 
     #endif
+    k_timer_stop(timer);
     platform_printf("delete timer is%p\r\n", timer); 
-    //todo free timer will crash
     struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
-    // k_free(ptr); 
+    k_free(ptr); 
     if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
     // k_timer_user_data_set(timer, NULL);
-    // k_free(timer);
-    platform_printf("###delete timer is%p\r\n", timer); 
+    k_free(timer);
+
     return;
 
 }
@@ -443,10 +444,14 @@ void vApplicationMallocFailedHook(void)
 
 void platform_get_heap_status(platform_heap_status_t *status)
 {
-    extern size_t xFreeBytesRemaining;
-    extern size_t xMinimumEverFreeBytesRemaining;
-    status->bytes_free = xFreeBytesRemaining;
-    status->bytes_minimum_ever_free = xMinimumEverFreeBytesRemaining;
+    #ifdef OPEN_DEBUG
+    platform_printf("%s%d%s\r\n", __FILE__, __LINE__, __func__);
+    #endif
+    // struct k_mem_pool_info info;
+    // // 获取内存池信息
+    // k_mem_pool_malloc_info(&info);
+    // status->bytes_free = info.freebytes;
+    // status->bytes_minimum_ever_free = xMinimumEverFreeBytesRemaining;
 }
 
 TickType_t sysPreSuppressTicksAndSleepProcessing(TickType_t expectedTicks)
