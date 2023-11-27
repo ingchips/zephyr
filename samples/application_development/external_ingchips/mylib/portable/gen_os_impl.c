@@ -72,7 +72,7 @@ static void os_timer_cb(struct k_timer *xTimer)
     struct timer_user_data *data = (struct timer_user_data *)xTimer->user_data;
     data->timer_cb(data->user_data);
 }
-// #define OPEN_DEBUG 1
+#define OPEN_DEBUG 1
 k_timeout_t g_time_set;
 void os_open_psp_control(void);
 
@@ -96,13 +96,13 @@ gen_handle_t port_timer_create(
     timer_data->user_data = user_data;
     timer->user_data = timer_data;
     // timer->period.ticks = K_MSEC(timeout_in_ms);
-    platform_printf("timer is%p\r\n", timer);
+    platform_printf("create timer is%p\r\n", timer);
     return timer;
 }
 
 void port_timer_start(gen_handle_t timer)
 {
-    platform_printf("timer is%p\r\n", timer);
+    platform_printf("start timer is%p\r\n", timer);
     struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
@@ -118,6 +118,7 @@ void port_timer_stop(gen_handle_t timer)
     #endif
     if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
     k_timer_stop(timer);
+    platform_printf("stop timer is%p\r\n", timer); 
 }
 
 void port_timer_delete(gen_handle_t timer)
@@ -125,11 +126,14 @@ void port_timer_delete(gen_handle_t timer)
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
+    platform_printf("delete timer is%p\r\n", timer); 
     //todo free timer will crash
-    // struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
+    struct timer_user_data* ptr = ((struct k_timer *)timer)->user_data; 
     // k_free(ptr); 
-    // k_free(timer);
     if(k_is_in_isr()) platform_printf("I am in IRQ@%d\r\n", __LINE__);
+    // k_timer_user_data_set(timer, NULL);
+    // k_free(timer);
+    platform_printf("###delete timer is%p\r\n", timer); 
     return;
 
 }
@@ -150,14 +154,20 @@ void my_timer_out_test() {
     platform_printf("time out over**********************************************************************************************************************************************************************************************************\r\n");
 }
 void thread_test1 () {
-    void *my_timer = port_timer_create(1000, NULL, my_timer_out_test);
-    port_timer_start(my_timer);
-    // static struct k_timer my_timer;
-    // k_timer_init(&my_timer, my_timer_out_test, NULL);
-    // k_timer_start(&my_timer, K_MSEC(10000), K_NO_WAIT);
-    // k_sleep(K_MSEC(5000));
-    // port_timer_stop(my_timer);
-    // port_timer_delete(my_timer);
+    //test timer
+    while(1) {
+        void *my_timer = port_timer_create(1000, NULL, my_timer_out_test);
+        port_timer_start(my_timer);
+        // static struct k_timer my_timer1;
+        // k_timer_init(my_timer1, my_timer_out_test, NULL);
+        // k_timer_start(my_timer1, K_MSEC(1000), K_NO_WAIT);
+        k_sleep(K_MSEC(2000));
+        port_timer_stop(my_timer);
+        port_timer_delete(my_timer);
+        static int i = 0;
+        platform_printf("creat time test%d\r\n", i++);
+    }
+    //test queue
     while(1) {
         platform_printf("test1 thread\r\n");
         k_sleep(K_MSEC(2000));
@@ -282,7 +292,8 @@ void port_event_set(gen_handle_t event)
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
     // if (k_is_in_isr()) {
-    //     platform_printf("I am in ISR %d\r\n", __LINE__);
+    // if (IS_IN_INTERRUPT()) {
+    //     platform_printf("I am in ISR 111%d\r\n", __LINE__);
     // }
     k_sem_give(&my_binary_semaphore);
     return;
@@ -306,6 +317,7 @@ void port_os_start(void) {
     sys_clock_driver_init();//打开systick的中断
     // _SysTick_Config(RTC_CLK_FREQ / 1000);//如果打开，中断不来，且不会
     os_open_psp_control();
+    platform_printf("port os start");
     z_cstart();
     
 }
