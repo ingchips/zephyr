@@ -144,11 +144,16 @@ void port_timer_delete(gen_handle_t timer)
 #define APP_PRIO_LOW               2
 #define APP_PRIO_HIGH             (configMAX_PRIORITIES - 1)
 #define USER_STACKSIZE	2048
-#define TASK_NUMBERS 2
+#define TASK_NUMBERS 3
 K_THREAD_STACK_DEFINE(user_stack[TASK_NUMBERS], USER_STACKSIZE);
-K_SEM_DEFINE(my_binary_semaphore, 0, 1);
+#define SEM_NUMBERS 3
+K_SEM_DEFINE(my_binary_semaphore0, 0, 1);
+K_SEM_DEFINE(my_binary_semaphore1, 0, 1);
+K_SEM_DEFINE(my_binary_semaphore2, 0, 1);
+// K_SEM_ARRAY_DEFINE(my_binary_semaphore, SEM_NUMBERS, 1);
 struct k_thread user_thread[TASK_NUMBERS];
 port_task_entry_def port_task_entry[TASK_NUMBERS];
+static uint8_t g_creat_sem_index = 0;
 static uint8_t g_creat_task_index = 0;
 int g_ret_task = 123;
 void my_timer_out_test() {
@@ -232,6 +237,7 @@ gen_handle_t port_task_create(
     #endif
     if (g_creat_task_index >= TASK_NUMBERS) {
         platform_printf("port task create too many task\r\n");
+        assert_user(0);
         return 0;
     }
     port_task_entry[g_creat_task_index].entry = entry;
@@ -281,7 +287,13 @@ gen_handle_t port_event_create()
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    return (gen_handle_t)&my_binary_semaphore;
+    gen_handle_t ret = NULL;
+    if (g_creat_sem_index == 0) ret = &my_binary_semaphore0;
+    else if(g_creat_sem_index == 1) ret = &my_binary_semaphore1;
+    else if(g_creat_sem_index == 2) ret = &my_binary_semaphore2;
+    g_creat_sem_index++;
+    assert_user (ret != NULL);
+    return ret;
 }
 
 // return 0 if msg received; otherwise failed (timeout)
@@ -290,7 +302,7 @@ int port_event_wait(gen_handle_t event)
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
-    return k_sem_take(&my_binary_semaphore, K_FOREVER) == 0 ? 0 : 1;
+    return k_sem_take(event, K_FOREVER) == 0 ? 0 : 1;
 }
 
 // event_set(event) will release the task in waiting.
@@ -303,7 +315,7 @@ void port_event_set(gen_handle_t event)
     // if (IS_IN_INTERRUPT()) {
     //     platform_printf("I am in ISR 111%d\r\n", __LINE__);
     // }
-    k_sem_give(&my_binary_semaphore);
+    k_sem_give(event);
     return;
 }
 
