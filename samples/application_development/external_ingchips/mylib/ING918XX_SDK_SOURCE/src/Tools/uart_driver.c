@@ -5,7 +5,7 @@
 #include "port_gen_os_driver.h"
 #include "platform_api.h"
 
-#define GEN_OS          ((const gen_os_driver_t *)platform_get_gen_os_driver())
+#define GEN_OS  ((const gen_os_driver_t *)os_impl_get_driver())       
 
 #ifndef UART_BUFF_SIZE
 #define UART_BUFF_SIZE         (1024)  // must be 2^n
