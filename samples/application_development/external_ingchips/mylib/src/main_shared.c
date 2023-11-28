@@ -2,9 +2,9 @@
 
 static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
 {
-    platform_printf("HARDFAULT:\nPC : 0x%08X\nLR : 0x%08X\nPSR: 0x%08X\n"
-                    "R0 : 0x%08X\nR1 : 0x%08X\nR2 : 0x%08X\nP3 : 0x%08X\n"
-                    "R12: 0x%08X\n",
+    platform_printf("HARDFAULT:\r\nPC : 0x%08X\r\nLR : 0x%08X\r\nPSR: 0x%08X\r\n"
+                    "R0 : 0x%08X\r\nR1 : 0x%08X\r\nR2 : 0x%08X\r\nP3 : 0x%08X\r\n"
+                    "R12: 0x%08X\r\n",
                     info->pc, info->lr, info->psr,
                     info->r0, info->r1, info->r2, info->r3, info->r12);
     for (;;);
@@ -12,7 +12,7 @@ static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
 
 static uint32_t cb_assertion(assertion_info_t *info, void *_)
 {
-    platform_printf("[ASSERTION] @ %s:%d\n",
+    platform_printf("[ASSERTION] @ %s:%d\r\n",
                     info->file_name,
                     info->line_no);
     for (;;);
@@ -20,7 +20,7 @@ static uint32_t cb_assertion(assertion_info_t *info, void *_)
 
 static uint32_t cb_heap_out_of_mem(uint32_t tag, void *_)
 {
-    platform_printf("[OOM] @ %d\n", tag);
+    platform_printf("[OOM] @ %d\r\n", tag);
     for (;;);
 }
 
