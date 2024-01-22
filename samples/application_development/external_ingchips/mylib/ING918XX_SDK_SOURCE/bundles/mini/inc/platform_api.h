@@ -113,7 +113,7 @@ typedef enum
     PLATFORM_CB_EVT_LLE_INIT,
 
     // when allocation on heap fails (heap out of memory)
-    // NOTE: param (void *data) is cased from an integer identifying which heap is OOM:
+    // NOTE: param (void *data) is casted from an integer identifying which heap is OOM:
     //      * 0: FreeRTOS's heap;
     //      * 1: Link Layer's heap;
     //      * 2: Link Layer's task pool.
@@ -405,7 +405,7 @@ uint8_t platform_read_persistent_reg(void);
  *      ING918: starting from 0x20000000, 64KiB
  *      ING916: starting from 0x20000000, 16KiB
  *
- * @param[in] duration_cycles       Duration before power on again (measured in cycles of 32k clock)
+ * @param[in] duration_cycles       Duration before power on again (measured in cycles of real time clock)
  *                                  Minimum value: 825 cycles (about 25.18ms)
  *                                  When = 0: only power on when external wake up source is asserted
  * @param[in] p_retention_data      Pointer to the start of data to be retained
@@ -426,13 +426,18 @@ typedef enum
     PLATFORM_CFG_LOG_HCI,       // flag is ENABLE or DISABLE. default: DISABLE
     PLATFORM_CFG_POWER_SAVING,  // flag is ENABLE or DISABLE. default: DISABLE
     PLATFORM_CFG_TRACE_MASK,    // flag is bitmap of platform_trace_item_t. default: 0
-    PLATFORM_CFG_RC32K_EN,      // Enable/Disable RC 32k clock. Default: Enable
-    PLATFORM_CFG_OSC32K_EN,     // Enable/Disable 32k crystal oscillator. Default: Enable
-    PLATFORM_CFG_32K_CLK,       // 32k clock selection. flag is platform_32k_clk_src_t. default: PLATFORM_32K_RC
-                                // Note 1: When modifying this configuration, both RC32K and OSC32K should be ENABLED.
+    PLATFORM_CFG_RT_RC_EN,         // Enable/Disable internal real time RC clock. Default: Enable
+    PLATFORM_CFG_RC32K_EN = PLATFORM_CFG_RT_RC_EN,
+    PLATFORM_CFG_RT_OSC_EN,     // Enable/Disable external real time crystal oscillator. Default: Enable
+    PLATFORM_CFG_OSC32K_EN = PLATFORM_CFG_RT_OSC_EN,
+    PLATFORM_CFG_RT_CLK,        // real time clock selection. flag is platform_rt_clk_src_t. default: PLATFORM_RT_RC
+                                // Note 1: When modifying this configuration, both RT_RC and RT_OSC should be ENABLED.
                                 // Note 2: Unused clock can be disabled.
-    PLATFORM_CFG_32K_CLK_ACC,   // Configure 32k clock accuracy in ppm.
-    PLATFORM_CFG_32K_CALI_PERIOD, // 32K clock auto-calibration period in seconds. Default: 3600 * 2
+    PLATFORM_CFG_32K_CLK = PLATFORM_CFG_RT_CLK,
+    PLATFORM_CFG_RT_CLK_ACC,    // Configure real time clock accuracy in ppm.
+    PLATFORM_CFG_32K_CLK_ACC = PLATFORM_CFG_RT_CLK_ACC,
+    PLATFORM_CFG_RT_CLK_CALI_PERIOD, // real time clock auto-calibration period in seconds. Default: 3600 * 2
+    PLATFORM_CFG_32K_CALI_PERIOD = PLATFORM_CFG_RT_CLK_CALI_PERIOD,
     PLATFORM_CFG_PS_DBG_0,      // debugging parameter
     PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION, // sleep time reduction (deep sleep mode) in us. (default: ~550us)
     PLATFORM_CFG_PS_DBG_1 = PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION, // obsoleted
@@ -458,13 +463,25 @@ typedef enum
     PLATFORM_CFG_PS_DBG_3,
     PLATFORM_CFG_PS_DBG_4,                  // Debugging parameters for ING916. Default (0)
                                             // Bit [0]: `platform_shutdown` uses DEEPER SLEEP (1) or SLEEP (0)
+    PLATFORM_CFG_FAST_DEEP_SLEEP_TIME_REDUCTION, // sleep time reduction (fast deep sleep mode) in us.
+                                                 // Requirement: <= PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION
+                                                 // When equal to PLATFORM_CFG_DEEP_SLEEP_TIME_REDUCTION, fast deep sleep mode is not used
+                                                 // Only available for ING916 (default: ~2000us)
+    PLATFORM_CFG_AUTO_REDUCE_CLOCK_FREQ,    // automatic reduce CPU clock frequency in these circumstances:
+                                            // * the default IDLE procedure
+                                            // * when entering sleep modes
+                                            // Only available for ING916 (default: Enabled)
 } platform_cfg_item_t;
 
 typedef enum
 {
-    PLATFORM_32K_OSC,           // external 32k crystal oscillator
-    PLATFORM_32K_RC             // internal RC 32k clock
-} platform_32k_clk_src_t;
+    PLATFORM_RT_OSC,           // external crystal oscillator
+    PLATFORM_32K_OSC = PLATFORM_RT_OSC,
+    PLATFORM_RT_RC,            // internal RC clock
+    PLATFORM_32K_RC = PLATFORM_RT_RC,
+} platform_rt_clk_src_t;
+
+#define platform_32k_clk_src_t platform_rt_clk_src_t
 
 #define PLATFORM_CFG_ENABLE     1
 #define PLATFORM_CFG_DISABLE    0
@@ -481,11 +498,13 @@ void platform_config(const platform_cfg_item_t item, const uint32_t flag);
 
 typedef enum
 {
-    PLATFORM_INFO_OSC32K_STATUS,        // Read status of 32k crystal oscillator. (0: not OK; Non-0: OK)
+    PLATFORM_INFO_RT_OSC_STATUS,        // Read status of real time crystal oscillator. (0: not OK; Non-0: OK)
                                         // "OK" means running.
-                                        // For ING916: this clock become running **after** selected as 32k
+                                        // For ING916: this clock become running **after** selected as real time clock
                                         //             clock source.
-    PLATFORM_INFO_32K_CALI_VALUE,       // Read current 32k clock calibration result.
+    PLATFORM_INFO_OSC32K_STATUS = PLATFORM_INFO_RT_OSC_STATUS,
+    PLATFORM_INFO_RT_CLK_CALI_VALUE,    // Read current real time clock calibration result.
+    PLATFORM_INFO_32K_CALI_VALUE = PLATFORM_INFO_RT_CLK_CALI_VALUE,
     PLATFOFM_INFO_IRQ_NUMBER = 50,      // Get the underline IRQ number of a platform IRQ
                                         // for example, platform_read_info(PLATFOFM_INFO_IRQ_NUMBER + PLATFORM_CB_IRQ_UART0)
     PLATFOFM_INFO_NUMBER = 255,
@@ -503,36 +522,52 @@ uint32_t platform_read_info(const platform_info_item_t item);
 
 /**
  ****************************************************************************************
- * @brief Do 32k clock calibration and get the calibration value.
+ * @brief Calibrate real-time RC clock and get the calibration value.
  *
- * 32K clock auto-calibration timer is also reset, which means that next auto-calibration
- * is supposed to be carried out after `PLATFORM_CFG_32K_CALI_PERIOD` seconds.
+ * Real time clock auto-calibration timer is also reset, which means that next auto-calibration
+ * is supposed to be carried out after `PLATFORM_CFG_RT_CLK_CALI_PERIOD` seconds.
  *
  * @return                  Calibration value.
  ****************************************************************************************
  */
-uint32_t platform_calibrate_32k(void);
+uint32_t platform_calibrate_rt_clk(void);
 
 /**
  ****************************************************************************************
- * @brief Tune internal the 32k RC clock with `value`.
+ * @brief Tune internal the real-time RC clock with `value`.
  *
- * @param[in] value          Value used to tune the clock (returned by `platform_32k_rc_auto_tune`)
+ * @param[in] value          Value used to tune the clock (returned by `platform_rt_rc_auto_tune`)
  ****************************************************************************************
  */
-void platform_32k_rc_tune(uint16_t value);
+void platform_rt_rc_tune(uint16_t value);
 
 /**
  ****************************************************************************************
- * @brief Automatically tune the internal 32k RC clock, and get the tuning value.
+ * @brief Automatically tune the internal real time RC clock, and get the tuning value.
  *
- * Note: This operation costs ~250ms. It is recommended to call this once and store the
- *       returned value into NVM for later usage.
+ * This is equivalent to `platform_rt_rc_auto_tune2(65536000000 / frequency)`.
  *
  * @return                  Value used to tune the clock
  ****************************************************************************************
  */
-uint16_t platform_32k_rc_auto_tune(void);
+uint16_t platform_rt_rc_auto_tune(void);
+
+#define platform_calibrate_32k      platform_calibrate_rt_clk
+#define platform_32k_rc_tune        platform_rt_rc_tune
+#define platform_32k_rc_auto_tune   platform_rt_rc_auto_tune
+
+/**
+ ****************************************************************************************
+ * @brief Automatically tune the internal real-time RC clock to a target frequency, and
+ * get the tuning value.
+ *
+ * Note: This operation costs ~250ms.
+ *
+ * @param[in]   target_frequency    target frequency of tuning (Hz)
+ * @return                          Value used to tune the clock
+ ****************************************************************************************
+ */
+uint16_t platform_rt_rc_auto_tune2(uint32_t target_frequency);
 
 /**
  ****************************************************************************************
@@ -753,6 +788,55 @@ void platform_set_abs_timer(f_platform_timer_callback callback, uint32_t abs_tim
  */
 void platform_delete_timer(f_platform_timer_callback callback);
 
+typedef void * platform_us_timer_handle_t;
+
+/**
+ ****************************************************************************************
+ * @brief Callback function of microsecond (us) resolution timer
+ *
+ * @param[in]   timer_handle    handle of this timer
+ * @param[in]   time_us         internal timer counter when invoke this callback
+ * @param[in]   param           user parameter
+ * @return                      (must be NULL)
+ ****************************************************************************************
+ */
+typedef void * (* f_platform_us_timer_callback)(platform_us_timer_handle_t timer_handle,
+    uint64_t time_us, void *param);
+
+/**
+ ****************************************************************************************
+ * @brief Setup a single-shot platform timer with microsecond (us) resolution
+ *
+ * Although `abs_time` is in microsecond (us), callback is **not guaranteed**
+ * to be invoked with such resolution.
+ *
+ * This type of timers are much like `platform_set_timer`, except that:
+ * 1. resolution is higher;
+ * 2. callback is invoked in the context of an ISR.
+ *
+ * @param[in]  abs_time         when `platform_get_us_timer() == abs_time`, callback is invoked.
+ * @param[in]  callback         the callback function
+ * @param[in]  param            user parameter
+ * @return                      a non-NULL value when succeeded. Otherwise, NULL.
+ ****************************************************************************************
+ */
+platform_us_timer_handle_t platform_create_us_timer(uint64_t abs_time,
+    f_platform_us_timer_callback callback, void *param);
+
+/**
+ ****************************************************************************************
+ * @brief Cancel a platform timer previously created by `platform_create_us_timer`
+ *
+ * When a timer not needed any more, use this API to cancel it.
+ *
+ * @param[in]  timer_handle     handle of the timer
+ * @return                      0 if succeeded else non-0
+ *                              Note: non-0 means the callback function of the timer
+ *                                    is executing.
+ ****************************************************************************************
+ */
+int platform_cancel_us_timer(platform_us_timer_handle_t timer_handle);
+
 /**
  ****************************************************************************************
  * @brief Install a new RTOS stack for a specific platform task
@@ -761,7 +845,7 @@ void platform_delete_timer(f_platform_timer_callback callback);
  * the generic OS interface.
  *
  * @param[in]   id              task identifier
- * @param[in]   start           start address of the new stack
+ * @param[in]   start           start (lowest) address of the new stack
  * @param[in]   size            size of the new stack in bytes
  ****************************************************************************************
  */
@@ -844,6 +928,21 @@ typedef struct platform_hci_link_layer_interf
  ****************************************************************************************
  */
 const platform_hci_link_layer_interf_t *platform_get_link_layer_interf(void);
+
+typedef void (*f_platform_function)(void *user_data);
+
+/**
+ ****************************************************************************************
+ * @brief Call a function on a separate dedicated stack
+ *
+ * @param[in]   f               the function to be called
+ * @param[in]   user_data       user data passed to `f`
+ * @param[in]   start           start (lowest) address of the dedicated stack
+ * @param[in]   size            size of the dedicated stack in bytes
+ ****************************************************************************************
+ */
+void platform_call_on_stack(f_platform_function f, void *user_data,
+                            void *stack_start, uint32_t stack_size);
 
 #ifdef __cplusplus
 }
