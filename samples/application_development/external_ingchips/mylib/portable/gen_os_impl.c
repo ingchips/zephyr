@@ -253,6 +253,7 @@ gen_handle_t port_task_create(
 
 gen_handle_t port_queue_create(int len, int item_size)
 {
+    // return NULL;
     if(len > QUEUE_SIZE || item_size > MSG_SIZE) {
         platform_printf("port queue not enough len[%d] item_size[%d]\r\n", len, item_size);
         return NULL;
@@ -284,6 +285,7 @@ int port_queue_recv_msg(gen_handle_t queue, void *msg)
 
 gen_handle_t port_event_create()
 {
+    // return NULL;
     #ifdef OPEN_DEBUG
     platform_printf("%.10s %d %s\r\n", __FILE__, __LINE__, __func__);
     #endif
@@ -378,7 +380,20 @@ void port_leave_critical() {
         platform_raise_assertion(__FILE__, __LINE__);
     irq_unlock(interrupt_states[nest_level]);
 }
+//when before os start ,it will call malloc malloc zero address,I will finish it
+uint8_t demo_buf[88*4];
+void *port_malloc(size_t size) {
+    static int bugfix_cnt = 0;
+    if (bugfix_cnt == 0) {
+        bugfix_cnt++;
+        return demo_buf;
+    }
+    void *ptr  = k_malloc (size);
+    USER_FULL_ASSERT(ptr);
+    platform_printf("malloc size[%d][%p]\r\n", size, ptr);
+    return ptr;
 
+}
 const gen_os_driver_t gen_os_driver =
 {
     .timer_create = port_timer_create,
@@ -396,7 +411,7 @@ const gen_os_driver_t gen_os_driver =
     .event_set = port_event_set,
     .event_wait = port_event_wait,
 
-    .malloc =  k_malloc,
+    .malloc =  port_malloc,
     .free = k_free,
     // .enter_critical = k_sched_lock,
     // .leave_critical = k_sched_unlock,
