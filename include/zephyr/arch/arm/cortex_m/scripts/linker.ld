@@ -88,11 +88,7 @@ MEMORY
     /* Used by and documented in include/linker/intlist.ld */
     IDT_LIST (wx) : ORIGIN = 0xFFFFF7FF, LENGTH = 2K
     }
-#ifdef CONFIG_INGCHIP_918
-ENTRY(Reset_Handler)
-#else
-ENTRY(CONFIG_KERNEL_ENTRY)
-#endif 
+ENTRY(CONFIG_KERNEL_ENTRY) 
 SECTIONS
     {
 
