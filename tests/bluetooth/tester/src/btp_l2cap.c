@@ -15,6 +15,9 @@
 
 #include <zephyr/logging/log.h>
 #define LOG_MODULE_NAME bttester_l2cap
+#ifndef CONFIG_BTTESTER_LOG_LEVEL
+#define CONFIG_BTTESTER_LOG_LEVEL 3
+#endif
 LOG_MODULE_REGISTER(LOG_MODULE_NAME, CONFIG_BTTESTER_LOG_LEVEL);
 
 #include "btp/btp.h"

@@ -88,3 +88,4 @@ struct btp_hdr {
 struct btp_status {
 	uint8_t code;
 } __packed;
+
