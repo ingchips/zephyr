@@ -925,7 +925,7 @@ menu "Compatibility"
 
 config INGCHIP_918
 	bool "Suppress warnings when using header shims"
-	default y
+	default n
 	help
 	  Suppress any warnings from the pre-processor when including
 	  deprecated header files.
