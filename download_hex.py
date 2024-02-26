@@ -24,6 +24,7 @@ else:
 	jlink.close()
 
 file_path = './build/zephyr/zephyr.hex'
+# file_path = '~/zephyrproject/zephyr/samples/application_development/external_ingchips/mylib/ING918XX_SDK_SOURCE/bundles/noos_typical/ING9187xx/platform.hex'
 
 jlink.flash_file(file_path, 0x24000)
 jlink.reset()
