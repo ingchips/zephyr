@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2020 WuhanStudio
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+/ {
+	model = "ing918_mini board";
+	compatible = "ing918";
+};

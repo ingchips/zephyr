@@ -1,0 +1,13 @@
+identifier: ing918_mini
+name: ing918 Mini Board
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 64
+flash: 512
+supported:
+  - gpio
+vendor: ingchips
