@@ -1,0 +1,13 @@
+# ST Microelectronics STM32F4 MCU line
+
+# Copyright (c) 2016 Linaro Limited.
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+	prompt "STM32F4x MCU Selection"
+	depends on SOC_SERIES_STM32F4X
+
+config SOC_INGCHIP916
+	bool "STM32F401XC"
+
+endchoice
