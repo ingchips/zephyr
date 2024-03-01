@@ -30,30 +30,45 @@ typedef void (*f_cmd_handler)(const char *param);
 // static char buffer[100] = {0};
 // static void tx_data(const char *d, const uint16_t len);
 
-static uint32_t uart_isr(void *user_data)
+uint32_t uart_isr0(void *user_data)
 {
-    // while(1);
-    // __disable_irq();
-    // while(1);
-    platform_printf("1");
-    // uint32_t status;
+    uint32_t status;
 
-    // while(1)
-    // {
-    //     status = apUART_Get_all_raw_int_stat(APB_UART0);
-    //     if (status == 0)
-    //         break;
+    while(1)
+    {
+        status = apUART_Get_all_raw_int_stat(APB_UART0);
+        if (status == 0)
+            break;
 
-    //     APB_UART0->IntClear = status;
+        APB_UART0->IntClear = status;
 
-    //     while (apUART_Check_RXFIFO_EMPTY(APB_UART0) != 1)
-    //     {
-    //         char c = APB_UART0->DataRead;
-    //         platform_printf("%c", c);
-    //         // console_rx_data(&c, 1);
-    //     }
-    // }
-    // return 0;
+        while (apUART_Check_RXFIFO_EMPTY(APB_UART0) != 1)
+        {
+            char c = APB_UART0->DataRead;
+            platform_printf("%c", c);
+            // console_rx_data(&c, 1);
+        }
+    }
+    return 0;
+}
+uint32_t uart_isr1(void *user_data) {
+    uint32_t status;
+    while(1)
+    {
+        status = apUART_Get_all_raw_int_stat(APB_UART1);
+        if (status == 0)
+            break;
+
+        APB_UART0->IntClear = status;
+
+        while (apUART_Check_RXFIFO_EMPTY(APB_UART1) != 1)
+        {
+            char c = APB_UART0->DataRead;
+            platform_printf("%c", c);
+            // console_rx_data(&c, 1);
+        }
+    }
+    return 0;
 }
 #if 0
 static const char help[] =  "commands:\n"
@@ -706,7 +721,7 @@ void handle_command()
 //     }
 // }
 
-void config_uart0(uint32_t freq, uint32_t baud)
+void config_user_uart0(uint32_t freq, uint32_t baud)
 {
     UART_sStateStruct config;
 
@@ -725,6 +740,7 @@ void config_uart0(uint32_t freq, uint32_t baud)
     config.BaudRate          = baud;
 
     apUART_Initialize(APB_UART0, &config, (1 << bsUART_RECEIVE_INTENAB) | (1 << bsUART_TIMEOUT_INTENAB));
+    apUART_Initialize(APB_UART1, &config, (1 << bsUART_RECEIVE_INTENAB) | (1 << bsUART_TIMEOUT_INTENAB));
 
 #ifdef TRACE_TO_UART
     //config.BaudRate          = 921600;
@@ -733,8 +749,9 @@ void config_uart0(uint32_t freq, uint32_t baud)
 }
 void uart_console_start(void)
 {
-    config_uart0(OSC_CLK_FREQ, 115200);
-    platform_set_irq_callback(PLATFORM_CB_IRQ_UART0, uart_isr, NULL); //
+    config_user_uart0(OSC_CLK_FREQ, 115200);
+    platform_set_irq_callback(PLATFORM_CB_IRQ_UART0, uart_isr0, NULL); //
+    platform_set_irq_callback(PLATFORM_CB_IRQ_UART1, uart_isr1, NULL); //
     // cmd_event = GEN_OS->event_create();
     // GEN_OS->task_create("console",
     //     console_task_entry,

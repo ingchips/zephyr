@@ -64,6 +64,74 @@ target_sources(app PRIVATE ${ING_REL}/src/FWlib/peripheral_timer.c)
 target_sources(app PRIVATE ${ING_REL}/src/FWlib/peripheral_uart.c)
 target_sources(app PRIVATE ${ING_REL}/src/Tools/trace.c)
 target_sources(app PRIVATE ${ING_REL}/src/BSP/eflash.c)
+
+
+
+# zephyr_library_include_directories(${ZEPHYR_BASE}/samples/bluetooth)
+# zephyr_library_include_directories(${ZEPHYR_BASE}/subsys/bluetooth/mesh)
+# zephyr_library_include_directories(${ZEPHYR_BASE}/subsys/bluetooth/audio)
+# zephyr_library_include_directories(${ZEPHYR_BASE}/subsys/bluetooth/host)
+# zephyr_library_include_directories(${ZEPHYR_BASE}/tests/bluetooth/tester/src)
+# target_sources(app PRIVATE
+#     # ${ZEPHYR_BASE}/tests/bluetooth/tester/src/main.c
+#     ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp.c
+#     ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_core.c
+#     ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_gap.c
+#     # ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_gatt.c
+#     )
+# if(CONFIG_BT_L2CAP_DYNAMIC_CHANNEL)
+# target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_l2cap.c)
+# endif()
+
+# if(CONFIG_BT_MESH)
+# target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_mesh.c)
+# endif()
+
+# target_sources_ifdef(CONFIG_BT_VCP_VOL_REND app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_vcp.c)
+
+# if(CONFIG_BT_IAS OR CONFIG_BT_IAS_CLIENT)
+# target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_ias.c)
+# endif()
+
+# if(CONFIG_BT_BAP_UNICAST)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_bap.c)
+# endif()
+
+# if(CONFIG_BT_HAS)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_has.c)
+# endif()
+
+# if (CONFIG_BT_CSIP_SET_MEMBER)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_csis.c)
+# endif()
+
+# if(CONFIG_BT_MICP_MIC_DEV)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_micp.c)
+# endif()
+
+# if(CONFIG_BT_AICS)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_aics.c)
+# endif()
+
+# if (CONFIG_BT_TBS_CLIENT)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_ccp.c)
+# endif()
+
+# if (CONFIG_BT_CAP_ACCEPTOR)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_cas.c)
+# endif()
+
+# if(CONFIG_BT_MCC)
+#     target_sources(app PRIVATE ${ZEPHYR_BASE}/tests/bluetooth/tester/src/btp_mcp.c)
+# endif()
+
+
+
+
+
+
+
+
 add_definitions(-DUSE_STDPERIPH_DRIVER)
 add_definitions(-DPOWER_SAVING)
 # add_definitions(-DLISTEN_TO_POWER_SAVING)

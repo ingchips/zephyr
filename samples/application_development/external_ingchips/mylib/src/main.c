@@ -7,6 +7,7 @@
 #include "trace.h"
 #include "../data/setup_soc.cgen"
 #include <zephyr/kernel.h>
+// #include "btp/btp.h"
 static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
 {
     platform_printf("HARDFAULT:\nPC : 0x%08X\nLR : 0x%08X\nPSR: 0x%08X\n"
@@ -236,7 +237,7 @@ void main() {
                                   5,               // 优先级
                                   0,              // 抢占选项
                                   K_NO_WAIT);             // 退出选项
-
+    // tester_init();
     if (tid == 0) {
         printk("无法创建线程\n");
     } else { 

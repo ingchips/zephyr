@@ -28,6 +28,8 @@ uint32_t cb_putc(char *c, void *dummy)
 {
     while (apUART_Check_TXFIFO_FULL(PRINT_PORT) == 1);
     UART_SendData(PRINT_PORT, (uint8_t)*c);
+    while (apUART_Check_TXFIFO_FULL(APB_UART1) == 1);
+    UART_SendData(APB_UART1, (uint8_t)*c);
     return 0;
 }
 #ifndef __GNUC__
@@ -102,7 +104,7 @@ void setup_peripherals(void)
     GIO_ConfigIntSource(KEY_PIN, GIO_INT_EN_LOGIC_HIGH_OR_RISING_EDGE, GIO_INT_EDGE);
     platform_set_irq_callback(PLATFORM_CB_IRQ_GPIO, gpio_isr, NULL);
 #endif
-
+    
 #if (INGCHIPS_FAMILY == INGCHIPS_FAMILY_918)
     config_uart(OSC_CLK_FREQ, 115200);
 #elif (INGCHIPS_FAMILY == INGCHIPS_FAMILY_916)
@@ -130,6 +132,7 @@ void setup_peripherals(void)
     TMR_WatchDogEnable(TMR_CLK_FREQ * 5); 
 #endif
 //GPIO
+uart_console_start();
 SYSCTRL_ClearClkGateMulti(1 << SYSCTRL_ClkGate_APB_GPIO0);
 PINCTRL_SetPadMux(GIO_GPIO_9, IO_SOURCE_GPIO);
 GIO_SetDirection(GIO_GPIO_9, GIO_DIR_OUTPUT);
