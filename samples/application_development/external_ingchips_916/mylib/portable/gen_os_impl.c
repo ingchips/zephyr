@@ -398,7 +398,12 @@ void port_sys_clock_isr(void) {
     static int i = 0;
     i++;
     // if(i%100 == 0)
-    platform_printf("I am in %s %d times\r\n", "sys clock isr", i);
+    // platform_printf("I am in %s %d times\r\n", "sys clock isr", i);
+    if(i%2) {
+        GIO_WriteValue(36, 1);
+    } else {
+        GIO_WriteValue(36, 0);
+    }
     sys_clock_isr(NULL);
 }
 const gen_os_driver_t gen_os_driver =
