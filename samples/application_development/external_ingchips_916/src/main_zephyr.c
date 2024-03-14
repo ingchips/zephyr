@@ -15,6 +15,6 @@
 void main(void)
 {
 	printf("Hello World!\n");
-	app_main();
+	// app_main();
 	// mylib_hello_world();
 }

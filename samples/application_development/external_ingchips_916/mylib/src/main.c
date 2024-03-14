@@ -7,8 +7,10 @@
 #include "trace.h"
 #include "../data/setup_soc.cgen"
 #include <zephyr/kernel.h>
+#include <zephyr/bluetooth/bluetooth.h>
+
 static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
-{
+{ 
     platform_printf("HARDFAULT:\r\nPC : 0x%08X\r\nLR : 0x%08X\r\nPSR: 0x%08X\r\n"
                     "R0 : 0x%08X\r\nR1 : 0x%08X\r\nR2 : 0x%08X\r\nP3 : 0x%08X\r\n"
                     "R12: 0x%08X\r\n",
@@ -81,7 +83,9 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
 }
 
 trace_uart_t trace_ctx = {.port = TRACE_PORT};
-
+#ifdef CONFIG_BT_H4_INGCHIPS
+extern uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_);
+#endif
 static const platform_evt_cb_table_t evt_cb_table =
 {
     .callbacks = {
@@ -113,6 +117,11 @@ static const platform_evt_cb_table_t evt_cb_table =
             .f = (f_platform_evt_cb)cb_trace_uart,
             .user_data = &trace_ctx,
         },
+        #ifdef CONFIG_BT_H4_INGCHIPS
+        [PLATFORM_CB_EVT_HCI_RECV] = {
+            .f = (f_platform_evt_cb)cb_hci_recv,
+        },
+        #endif 
     }
 };
 
@@ -121,14 +130,10 @@ extern const gen_os_driver_t *os_impl_get_driver(void);
 uintptr_t app_main()
 {
     cube_soc_init();
-
     // setup event handlers
     platform_set_evt_callback_table(&evt_cb_table);
     setup_peripherals();
     printf("build@%s\r\n",__TIME__);
-
-    printf("build@%d\r\n",__LINE__);
-
     // trace_uart_init(&trace_ctx);
     // platform_set_irq_callback(PLATFORM_CB_IRQ_UART1, (f_platform_irq_cb)trace_uart_isr, &trace_ctx);
     // TODO: config trace mask
@@ -146,29 +151,34 @@ void my_thread_func(void *p1, void *p2, void *p3) {
         char *p_test = k_malloc(100);
         memset(p_test, 0, 100);
         snprintf(p_test,"test string %d", 1,100);
-        platform_printf("my thread func runing %p\r\n", p_test);
+        // platform_printf("my thread func runing %p\r\n", p_test);
         k_sleep(K_MSEC(1000));  // 线程休眠1秒
         k_free(p_test);
-        printk("printk print out ok\r\n");
+        // printk("printk print out ok\r\n");
     }
 }
+void func_callback(void) {
+    printk("I am OK@%s, %d\r\n", __FILE__, __LINE__);
+}
 void main() {
-    printk("I am in main\r\n");
-    k_tid_t tid = k_thread_create(&test_thread,          // 线程对象
+    char *bt_name = bt_get_name();
+    bt_enable(func_callback);
+    printk("I am in main %s\r\n", bt_name);
+    k_tid_t tid = k_thread_create(&test_thread,             // 线程对象
                                  test_thread_stack,
-                                  1024,  // 栈大小
-                                  my_thread_func,  // 线程入口函数
-                                  NULL,           // 线程参数
-                                  NULL,           // 线程工作区
-                                  NULL,           // 线程初始化数据
-                                  5,               // 优先级
-                                  0,              // 抢占选项
-                                  K_NO_WAIT);             // 退出选项
+                                  1024,                     // 栈大小
+                                  my_thread_func,           // 线程入口函数
+                                  NULL,                     // 线程参数
+                                  NULL,                     // 线程工作区
+                                  NULL,                     // 线程初始化数据
+                                  5,                        // 优先级
+                                  0,                        // 抢占选项
+                                  K_NO_WAIT);               // 退出选项
     // tester_init();
     if (tid == 0) {
-        printk("无法创建线程\n");
+        printk("creat thread OK\r\n");
     } else { 
-        printk("成功创建线程\n");
+        printk("creat thread FAIL %d\r\n", tid);
     }
     // port_task_create( "test",create_task_test, NULL,1024, 5);
     // k_timer_init(&test_timer, test_time_cb, NULL);
