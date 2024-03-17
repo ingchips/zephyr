@@ -133,7 +133,7 @@ uintptr_t app_main()
     // setup event handlers
     platform_set_evt_callback_table(&evt_cb_table);
     setup_peripherals();
-    printf("build@%s\r\n",__TIME__);
+    platform_printf("build time %s@%s\r\n",__DATE__, __TIME__);
     // trace_uart_init(&trace_ctx);
     // platform_set_irq_callback(PLATFORM_CB_IRQ_UART1, (f_platform_irq_cb)trace_uart_isr, &trace_ctx);
     // TODO: config trace mask
@@ -151,8 +151,8 @@ void my_thread_func(void *p1, void *p2, void *p3) {
         char *p_test = k_malloc(100);
         memset(p_test, 0, 100);
         snprintf(p_test,"test string %d", 1,100);
-        // platform_printf("my thread func runing %p\r\n", p_test);
-        k_sleep(K_MSEC(1000));  // 线程休眠1秒
+        platform_printf("my thread func runing %p\r\n", p_test);
+        k_sleep(K_MSEC(10000));  // 线程休眠1秒
         k_free(p_test);
         // printk("printk print out ok\r\n");
     }
@@ -161,9 +161,12 @@ void func_callback(void) {
     printk("I am OK@%s, %d\r\n", __FILE__, __LINE__);
 }
 void main() {
+    #ifdef CONFIG_BT_H4_INGCHIPS
     char *bt_name = bt_get_name();
     bt_enable(func_callback);
     printk("I am in main %s\r\n", bt_name);
+    #endif 
+    os_impl_task_create_real();
     k_tid_t tid = k_thread_create(&test_thread,             // 线程对象
                                  test_thread_stack,
                                   1024,                     // 栈大小
@@ -184,14 +187,14 @@ void main() {
     // k_timer_init(&test_timer, test_time_cb, NULL);
     // k_timer_start(&test_timer, K_MSEC(1000), K_MSEC(1000));
     k_sleep(K_MSEC(1000));
-    // os_impl_task_create_real();
+
     platform_printf("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
     while(1) {
         static uint8_t i = 8;
         const char* senddata="send hello\r\n";
         // k_msgq_put(&my_msgq ,senddata, K_NO_WAIT);
         platform_printf("I am ingchip main thread %d times\r\n", i++);
-        k_sleep(K_MSEC(1000));
+        k_sleep(K_MSEC(10000));
         // btstack_push_user_msg(3, NULL, 0);
         // k_sem_give(&test_binary_semaphore);
         // break;

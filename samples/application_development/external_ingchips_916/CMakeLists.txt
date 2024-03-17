@@ -51,7 +51,7 @@ message("zyx debug includir ${ING_REL}/src/FWlib")
 
 target_sources(app PRIVATE ${mylib_src_dir}/src/main.c)
 target_sources(app PRIVATE ${mylib_src_dir}/src/profile.c)
-target_sources(app PRIVATE ${mylib_src_dir}/src/h4_ingchips.c)
+# target_sources(app PRIVATE ${mylib_src_dir}/src/h4_ingchips.c)
 # target_sources(app PRIVATE ${mylib_src_dir}/src/uart_console.c)
 # target_sources(app PRIVATE ${mylib_src_dir}/src/service_console.c)
 target_sources(app PRIVATE ${mylib_src_dir}/portable/gen_os_impl.c)

@@ -72,7 +72,7 @@ static void os_timer_cb(struct k_timer *xTimer)
     struct timer_user_data *data = (struct timer_user_data *)xTimer->user_data;
     data->timer_cb(data->user_data);
 }
-#define OPEN_DEBUG 1
+// #define OPEN_DEBUG 1
 k_timeout_t g_time_set;
 void os_open_psp_control(void);
 
