@@ -33,13 +33,14 @@ set(mylib_build_dir ${CMAKE_CURRENT_SOURCE_DIR}/mylib)
 
 set(MYLIB_LIB_DIR     ${mylib_build_dir}/lib)
 set(MYLIB_INCLUDE_DIR ${mylib_src_dir}/include)
-set(ING_REL ${mylib_src_dir}/ING918XX_SDK_SOURCE)
-set(ING_BUNDLE ${mylib_src_dir}/ING918XX_SDK_SOURCE/bundles/noos_typical/inc)
-set(ING_BUNDLE_G ${mylib_src_dir}/ING918XX_SDK_SOURCE/bundles/noos_typical/ING9168xx)
+# set(ING_REL ${mylib_src_dir}/ING918XX_SDK_SOURCE)
+set(ING_REL ${CMAKE_CURRENT_SOURCE_DIR}/../../../../../Documents/workspace/ING918XX_SDK_SOURCE)
+set(ING_BUNDLE ${ING_REL}/bundles/noos_typical/inc)
+set(ING_BUNDLE_G ${ING_REL}/bundles/noos_typical/ING9168xx)
 
 include_directories(${MYLIB_INCLUDE_DIR}/../src)
 
-include_directories(${mylib_src_dir}/ING918XX_SDK_SOURCE/src/BSP)
+include_directories(${ING_REL}/src/BSP)
 include_directories(${ING_REL}/src/FWlib)
 
 include_directories(${ING_REL}/src/StartUP/ing916)
