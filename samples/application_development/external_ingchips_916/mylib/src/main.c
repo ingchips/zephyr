@@ -79,7 +79,7 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
     (void)(dummy);
     (void)(user_data);
     // TODO: return 0 if deep sleep is not allowed now; else deep sleep is allowed
-    return 0;
+    return PLATFORM_ALLOW_DEEP_SLEEP;
 }
 
 trace_uart_t trace_ctx = {.port = TRACE_PORT};
@@ -118,10 +118,10 @@ static const platform_evt_cb_table_t evt_cb_table =
             .user_data = &trace_ctx,
         },
         #ifdef CONFIG_BT_H4_INGCHIPS
-        [PLATFORM_CB_EVT_HCI_RECV] = {
-            .f = (f_platform_evt_cb)cb_hci_recv,
-        },
-        #endif 
+        // [PLATFORM_CB_EVT_HCI_RECV] = {
+        //     .f = (f_platform_evt_cb)cb_hci_recv,
+        // },
+        #endif
     }
 };
 
@@ -138,13 +138,14 @@ uintptr_t app_main()
     // platform_set_irq_callback(PLATFORM_CB_IRQ_UART1, (f_platform_irq_cb)trace_uart_isr, &trace_ctx);
     // TODO: config trace mask
     // platform_config(PLATFORM_CFG_TRACE_MASK, 0);
+    platform_config(PLATFORM_CFG_POWER_SAVING, PLATFORM_CFG_ENABLE);
     return (uintptr_t)os_impl_get_driver();
 }
 #if 1
 struct k_thread test_thread;
 #define TEST_STACK_SIZE 1024
 K_KERNEL_STACK_DEFINE(test_thread_stack, TEST_STACK_SIZE);
-
+static uint8_t run_times = 0;
 void my_thread_func(void *p1, void *p2, void *p3) {
     platform_printf("my thread\r\n");
     while (1) {
@@ -152,8 +153,16 @@ void my_thread_func(void *p1, void *p2, void *p3) {
         memset(p_test, 0, 100);
         snprintf(p_test,"test string %d", 1,100);
         platform_printf("my thread func runing %p\r\n", p_test);
-        k_sleep(K_MSEC(10000));  // 线程休眠1秒
+        k_sleep(K_MSEC(1000));  // 线程休眠1秒
         k_free(p_test);
+        __disable_irq();
+        uint32_t ticks = platform_pre_suppress_ticks_and_sleep_processing(0xffffff);
+        if (ticks < 5) continue;
+        sysPreSleepProcessing();
+        sysPostSleepProcessing();
+        __enable_irq();
+        platform_os_idle_resumed_hook();
+        printf("run myTask %d times\r\n", run_times++);
         // printk("printk print out ok\r\n");
     }
 }
@@ -161,11 +170,7 @@ void func_callback(void) {
     printk("I am OK@%s, %d\r\n", __FILE__, __LINE__);
 }
 void main() {
-    #ifdef CONFIG_BT_H4_INGCHIPS
-    char *bt_name = bt_get_name();
-    bt_enable(func_callback);
-    printk("I am in main %s\r\n", bt_name);
-    #endif 
+
     os_impl_task_create_real();
     k_tid_t tid = k_thread_create(&test_thread,             // 线程对象
                                  test_thread_stack,
@@ -174,30 +179,36 @@ void main() {
                                   NULL,                     // 线程参数
                                   NULL,                     // 线程工作区
                                   NULL,                     // 线程初始化数据
-                                  5,                        // 优先级
+                                  0,                        // 优先级
                                   0,                        // 抢占选项
                                   K_NO_WAIT);               // 退出选项
     // tester_init();
-    if (tid == 0) {
-        printk("creat thread OK\r\n");
-    } else { 
-        printk("creat thread FAIL %d\r\n", tid);
-    }
+    printk("creat thread tid %d\r\n", tid);
     // port_task_create( "test",create_task_test, NULL,1024, 5);
     // k_timer_init(&test_timer, test_time_cb, NULL);
     // k_timer_start(&test_timer, K_MSEC(1000), K_MSEC(1000));
     k_sleep(K_MSEC(1000));
 
     platform_printf("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
+    #ifdef CONFIG_BT_H4_INGCHIPS
+    char *bt_name = bt_get_name();
+    bt_enable(func_callback);
+    printk("\r\n ********bt name is %s\r\n", bt_name);
+    #endif 
     while(1) {
         static uint8_t i = 8;
         const char* senddata="send hello\r\n";
         // k_msgq_put(&my_msgq ,senddata, K_NO_WAIT);
         platform_printf("I am ingchip main thread %d times\r\n", i++);
-        k_sleep(K_MSEC(10000));
-        // btstack_push_user_msg(3, NULL, 0);
-        // k_sem_give(&test_binary_semaphore);
-        // break;
+        // k_sleep(K_MSEC(1000));
+
+        // k_sched_lock();
+
+        // printf("hello\r\n");
+        // // k_sched_unlock();
+        // platform_os_idle_resumed_hook();
+        k_sleep(K_MSEC(1000));
+
     }
 }
 #endif

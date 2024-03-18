@@ -87,7 +87,7 @@ static void user_packet_handler(uint8_t packet_type, uint16_t channel, const uin
     uint8_t event = hci_event_packet_get_type(packet);
     const btstack_user_msg_t *p_user_msg;
     if (packet_type != HCI_EVENT_PACKET) return;
-    platform_printf("hello@%d\r\n", __LINE__);
+    platform_printf("rec event[%2x] return\r\n", event); return;
     switch (event)
     {
     case BTSTACK_EVENT_STATE:

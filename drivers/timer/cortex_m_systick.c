@@ -172,11 +172,7 @@ void sys_clock_isr(void *arg)
 	uint32_t dticks;
 
 	/* Update overflow_cyc and clear COUNTFLAG by invoking elapsed() */
-	#ifdef CONFIG_INGCHIP_918
-	static uint8_t mark=0;
-    mark++;
-    GIO_WriteValue(9,mark&0x1);
-	#endif 
+
 	elapsed();
 
 	/* Increment the amount of HW cycles elapsed (complete counter
@@ -224,8 +220,7 @@ void sys_clock_isr(void *arg)
 void sys_clock_set_timeout(int32_t ticks, bool idle)
 {
 	/* Fast CPUs and a 24 bit counter mean that even idle systems
-	 * need to wake up multiple times per second.  If the kernel
-	 * allows us to miss tick announcements in idle, then shut off
+	 * need to wake up multiple times per second.  If the kernel	 * allows us to miss tick announcements in idle, then shut off
 	 * the counter. (Note: we can assume if idle==true that
 	 * interrupts are already disabled)
 	 */

@@ -148,7 +148,7 @@ static inline void get_acl_hdr(void)
 		struct bt_hci_acl_hdr *hdr = &rx.acl;
 
 		rx.remaining = sys_le16_to_cpu(hdr->len);
-		LOG_DBG("Got ACL header. Payload %u bytes", rx.remaining);
+		platform_printf("Got ACL header. Payload %u bytes", rx.remaining);
 		rx.have_hdr = true;
 	}
 }
@@ -161,7 +161,7 @@ static inline void get_iso_hdr(void)
 		struct bt_hci_iso_hdr *hdr = &rx.iso;
 
 		rx.remaining = bt_iso_hdr_len(sys_le16_to_cpu(hdr->len));
-		LOG_DBG("Got ISO header. Payload %u bytes", rx.remaining);
+		platform_printf("Got ISO header. Payload %u bytes", rx.remaining);
 		rx.have_hdr = true;
 	}
 }
@@ -192,12 +192,12 @@ static inline void get_evt_hdr(void)
 	if (!rx.remaining) {
 		if (rx.evt.evt == BT_HCI_EVT_LE_META_EVENT &&
 		    (rx.hdr[sizeof(*hdr)] == BT_HCI_EVT_LE_ADVERTISING_REPORT)) {
-			LOG_DBG("Marking adv report as discardable");
+			platform_printf("Marking adv report as discardable");
 			rx.discardable = true;
 		}
 
 		rx.remaining = hdr->len - (rx.hdr_len - sizeof(*hdr));
-		LOG_DBG("Got event header. Payload %u bytes", hdr->len);
+		platform_printf("Got event header. Payload %u bytes", hdr->len);
 		rx.have_hdr = true;
 	}
 }
@@ -218,7 +218,7 @@ static void reset_rx(void)
 
 static struct net_buf *get_rx(k_timeout_t timeout)
 {
-	LOG_DBG("type 0x%02x, evt 0x%02x", rx.type, rx.evt.evt);
+	platform_printf("type 0x%02x, evt 0x%02x", rx.type, rx.evt.evt);
 
 	switch (rx.type) {
 	case H4_EVT:
@@ -242,10 +242,10 @@ static void rx_thread(void *p1, void *p2, void *p3)
 	ARG_UNUSED(p2);
 	ARG_UNUSED(p3);
 
-	LOG_DBG("started");
+	platform_printf("started");
 
 	while (1) {
-		LOG_DBG("rx.buf %p", rx.buf);
+		platform_printf("rx.buf %p", rx.buf);
 
 		/* We can only do the allocation if we know the initial
 		 * header, since Command Complete/Status events must use the
@@ -253,7 +253,7 @@ static void rx_thread(void *p1, void *p2, void *p3)
 		 */
 		if (rx.have_hdr && !rx.buf) {
 			rx.buf = get_rx(K_FOREVER);
-			LOG_DBG("Got rx.buf %p", rx.buf);
+			platform_printf("Got rx.buf %p", rx.buf);
 			if (rx.remaining > net_buf_tailroom(rx.buf)) {
 				LOG_ERR("Not enough space in buffer");
 				rx.discard = rx.remaining;
@@ -268,7 +268,7 @@ static void rx_thread(void *p1, void *p2, void *p3)
 		buf = net_buf_get(&rx.fifo, K_FOREVER);
 		do {
 
-			LOG_DBG("Calling bt_recv(%p)", buf);
+			platform_printf("Calling bt_recv(%p)", buf);
 			bt_recv(buf);
 
 			/* Give other threads a chance to run if the ISR
@@ -313,7 +313,7 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 
 
     //todo write fifo
-    LOG_DBG("hci rec %d", msg->len_of_hci + 1);
+    platform_printf("hci rec %d", msg->len_of_hci + 1);
     hci_rec_buf_write(&msg->hci_type, 1);
     hci_rec_buf_write(msg->buff, msg->len_of_hci);
 
@@ -359,7 +359,7 @@ static inline void read_payload(void)
 			return;
 		}
 
-		LOG_DBG("Allocated rx.buf %p", rx.buf);
+		platform_printf("Allocated rx.buf %p", rx.buf);
 
 		buf_tailroom = net_buf_tailroom(rx.buf);
 		if (buf_tailroom < rx.remaining) {
@@ -381,8 +381,8 @@ static inline void read_payload(void)
 	net_buf_add(rx.buf, read);
 	rx.remaining -= read;
 
-	LOG_DBG("got %d bytes, remaining %u", read, rx.remaining);
-	LOG_DBG("Payload (len %u): %s", rx.buf->len, bt_hex(rx.buf->data, rx.buf->len));
+	platform_printf("got %d bytes, remaining %u", read, rx.remaining);
+	platform_printf("Payload (len %u): %s", rx.buf->len, bt_hex(rx.buf->data, rx.buf->len));
 
 	if (rx.remaining) {
 		return;
@@ -403,12 +403,12 @@ static inline void read_payload(void)
 
 	if (IS_ENABLED(CONFIG_BT_RECV_BLOCKING) &&
 	    (evt_flags & BT_HCI_EVT_FLAG_RECV_PRIO)) {
-		LOG_DBG("Calling bt_recv_prio(%p)", buf);
+		platform_printf("Calling bt_recv_prio(%p)", buf);
 		bt_recv_prio(buf);
 	}
 
 	if (evt_flags & BT_HCI_EVT_FLAG_RECV) {
-		LOG_DBG("Putting buf %p to rx fifo", buf);
+		platform_printf("Putting buf %p to rx fifo", buf);
 		net_buf_put(&rx.fifo, buf);
 	}
 }
@@ -560,8 +560,8 @@ done:
 
 static inline void process_rx(void)
 {
-	LOG_DBG("remaining %u discard %u have_hdr %u rx.buf %p len %u", rx.remaining, rx.discard,
-		rx.have_hdr, rx.buf, rx.buf ? rx.buf->len : 0);
+	// platform_printf("remaining %u discard %u have_hdr %u rx.buf %p len %u", rx.remaining, rx.discard,
+	// 	rx.have_hdr, rx.buf, rx.buf ? rx.buf->len : 0);///many log
 
 	if (rx.discard) {
 		rx.discard -= h4_discard(h4_dev, rx.discard);
@@ -579,17 +579,17 @@ static void rtx_thread(const struct device *unused, void *user_data)
 {
 	ARG_UNUSED(unused);
 	ARG_UNUSED(user_data);
-while(1) {
-	process_tx();
-	process_rx();
-    LOG_DBG("rtx\r\n");
-}
+// while(1) {
+// 	process_tx();
+// 	process_rx();
+// 	k_sleep(K_MSEC(1));
+// }
 		
 }
 
 static int h4_send(struct net_buf *buf)
 {
-	LOG_DBG("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
+	platform_printf("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
 
 	net_buf_put(&tx.fifo, buf);
 	return 0;
@@ -612,7 +612,7 @@ static int h4_open(void)
 	int ret;
 	k_tid_t tid;
     platform_printf("run@%s\r\n", __FUNCTION__);
-	LOG_DBG("");
+	platform_printf("");
 
     const platform_hci_link_layer_interf_t *hci_interf = platform_get_link_layer_interf();
 	ret = bt_hci_transport_setup(h4_dev);
@@ -664,10 +664,11 @@ static const struct bt_hci_driver drv = {
 static int bt_ingchips_init(void)
 {
     platform_printf("run @ %s %d\r\n", __FILE__, __LINE__);
-    LOG_DBG("hellp\r\n");
-	if (!device_is_ready(h4_dev)) {
-		return -ENODEV;
-	}
+    platform_printf("hellp\r\n");
+	// if (!device_is_ready(h4_dev)) {
+	// 	platform_printf("dev h4 not rdy\r\n ");
+	// 	return -ENODEV;
+	// }
 
 	bt_hci_driver_register(&drv);
 
