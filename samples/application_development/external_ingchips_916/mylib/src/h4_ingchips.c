@@ -133,6 +133,7 @@ static void h4_read_hdr(void)
 	int ret;
 
 	ret = hci_rec_buf_read(h4_dev, rx.hdr + bytes_read, rx.remaining);
+	printk("ret = %d\r\n", ret);
 	if (unlikely(ret < 0)) {
 		LOG_ERR("Unable to read from UART (ret %d)", ret);
 	} else {
@@ -148,7 +149,7 @@ static inline void get_acl_hdr(void)
 		struct bt_hci_acl_hdr *hdr = &rx.acl;
 
 		rx.remaining = sys_le16_to_cpu(hdr->len);
-		platform_printf("Got ACL header. Payload %u bytes", rx.remaining);
+		platform_printf("Got ACL header. Payload %u bytes\r\n", rx.remaining);
 		rx.have_hdr = true;
 	}
 }
@@ -161,7 +162,7 @@ static inline void get_iso_hdr(void)
 		struct bt_hci_iso_hdr *hdr = &rx.iso;
 
 		rx.remaining = bt_iso_hdr_len(sys_le16_to_cpu(hdr->len));
-		platform_printf("Got ISO header. Payload %u bytes", rx.remaining);
+		platform_printf("Got ISO header. Payload %u bytes\r\n", rx.remaining);
 		rx.have_hdr = true;
 	}
 }
@@ -268,7 +269,7 @@ static void rx_thread(void *p1, void *p2, void *p3)
 		buf = net_buf_get(&rx.fifo, K_FOREVER);
 		do {
 
-			platform_printf("Calling bt_recv(%p)", buf);
+			platform_printf("Calling bt_recv(%p)\r\n", buf);
 			bt_recv(buf);
 
 			/* Give other threads a chance to run if the ISR
@@ -302,18 +303,21 @@ int hci_rec_buf_read(const struct device *dev, uint8_t *data, int read_len) {
 
 }
 int hci_rec_buf_write(uint8_t *data,int len) {
+	platform_printf("\r\n<<<");
     k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
     for(int i = 0; i < len; i++) {
         ble_hci_rec_buf[ble_hci_rec_buf_write_len++] = data[i];
+		platform_printf("%x ", data[i]);
     }
     k_mutex_unlock(&ble_hci_rec_buf_mutex);
+	
 }
 uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 {
 
 
     //todo write fifo
-    platform_printf("hci rec %d", msg->len_of_hci + 1);
+    platform_printf("hci drv rec %d", msg->len_of_hci + 1);
     hci_rec_buf_write(&msg->hci_type, 1);
     hci_rec_buf_write(msg->buff, msg->len_of_hci);
 
@@ -349,21 +353,21 @@ static inline void read_payload(void)
 		rx.buf = get_rx(K_NO_WAIT);
 		if (!rx.buf) {
 			if (rx.discardable) {
-				LOG_WRN("Discarding event 0x%02x", rx.evt.evt);
+				platform_printf("Discarding event 0x%02x\r\n", rx.evt.evt);
 				rx.discard = rx.remaining;
 				reset_rx();
 				return;
 			}
 
-			LOG_WRN("Failed to allocate, deferring to rx_thread");
+			platform_printf("Failed to allocate, deferring to rx_thread\r\n");
 			return;
 		}
 
-		platform_printf("Allocated rx.buf %p", rx.buf);
+		platform_printf("Allocated rx.buf %p\r\n", rx.buf);
 
 		buf_tailroom = net_buf_tailroom(rx.buf);
 		if (buf_tailroom < rx.remaining) {
-			LOG_ERR("Not enough space in buffer %u/%zu", rx.remaining, buf_tailroom);
+			platform_printf("Not enough space in buffer %u/%zu\r\n", rx.remaining, buf_tailroom);
 			rx.discard = rx.remaining;
 			reset_rx();
 			return;
@@ -373,16 +377,17 @@ static inline void read_payload(void)
 	}
     
 	read = hci_rec_buf_read(h4_dev, net_buf_tail(rx.buf), rx.remaining);
+	if(read == 0) return;
 	if (unlikely(read < 0)) {
-		LOG_ERR("Failed to read UART (err %d)", read);
+		platform_printf("Failed to read UART (err %d)\r\n", read);
 		return;
 	}
 
 	net_buf_add(rx.buf, read);
 	rx.remaining -= read;
 
-	platform_printf("got %d bytes, remaining %u", read, rx.remaining);
-	platform_printf("Payload (len %u): %s", rx.buf->len, bt_hex(rx.buf->data, rx.buf->len));
+	platform_printf("got %d bytes, remaining %u\r\n", read, rx.remaining);
+	platform_printf("Payload (len %u): %s\r\n", rx.buf->len, bt_hex(rx.buf->data, rx.buf->len));
 
 	if (rx.remaining) {
 		return;
@@ -403,12 +408,12 @@ static inline void read_payload(void)
 
 	if (IS_ENABLED(CONFIG_BT_RECV_BLOCKING) &&
 	    (evt_flags & BT_HCI_EVT_FLAG_RECV_PRIO)) {
-		platform_printf("Calling bt_recv_prio(%p)", buf);
+		platform_printf("Calling bt_recv_prio(%p)\r\n", buf);
 		bt_recv_prio(buf);
 	}
 
 	if (evt_flags & BT_HCI_EVT_FLAG_RECV) {
-		platform_printf("Putting buf %p to rx fifo", buf);
+		platform_printf("Putting buf %p to rx fifo\r\n", buf);
 		net_buf_put(&rx.fifo, buf);
 	}
 }
@@ -438,7 +443,7 @@ static inline void read_header(void)
 
 	if (rx.have_hdr && rx.buf) {
 		if (rx.remaining > net_buf_tailroom(rx.buf)) {
-			LOG_ERR("Not enough space in buffer");
+			platform_printf("Not enough space in buffer\r\n");
 			rx.discard = rx.remaining;
 			reset_rx();
 		} else {
@@ -495,9 +500,12 @@ static void send_byte(void *user_data, uint8_t c)
     }
 }
 static int hci_driver_h4_send(const struct device *dev, const uint8_t *tx_data, int size) {
+	platform_printf(">>> ");
     for (int i = 0; i < size; i++) {
         send_byte(NULL, tx_data[i]);
+		platform_printf("%c ", tx_data[i]);
     }
+	return 1;
 }
 static inline void process_tx(void)
 {
@@ -506,7 +514,7 @@ static inline void process_tx(void)
 	if (!tx.buf) {
 		tx.buf = net_buf_get(&tx.fifo, K_NO_WAIT);
 		if (!tx.buf) {
-			LOG_ERR("TX interrupt but no pending buffer!");
+			platform_printf("TX interrupt but no pending buffer!\r\n");
 			return;
 		}
 	}
@@ -526,13 +534,13 @@ static inline void process_tx(void)
 			}
 			__fallthrough;
 		default:
-			LOG_ERR("Unknown buffer type");
+			platform_printf("Unknown buffer type");
 			goto done;
 		}
 
 		bytes = hci_driver_h4_send(h4_dev, &tx.type, 1);
 		if (bytes != 1) {
-			LOG_WRN("Unable to send H:4 type");
+			platform_printf("Unable to send H:4 type");
 			tx.type = H4_NONE;
 			return;
 		}
@@ -540,7 +548,7 @@ static inline void process_tx(void)
 
 	bytes = hci_driver_h4_send(h4_dev, tx.buf->data, tx.buf->len);
 	if (unlikely(bytes < 0)) {
-		LOG_ERR("Unable to write to UART (err %d)", bytes);
+		platform_printf("Unable to write to UART (err %d)\r\n", bytes);
 	} else {
 		net_buf_pull(tx.buf, bytes);
 	}
@@ -579,11 +587,11 @@ static void rtx_thread(const struct device *unused, void *user_data)
 {
 	ARG_UNUSED(unused);
 	ARG_UNUSED(user_data);
-// while(1) {
-// 	process_tx();
-// 	process_rx();
-// 	k_sleep(K_MSEC(1));
-// }
+while(1) {
+	// process_tx();
+	process_rx();
+	k_sleep(K_MSEC(1));
+}
 		
 }
 
@@ -611,12 +619,12 @@ static int h4_open(void)
 {
 	int ret;
 	k_tid_t tid;
-    platform_printf("run@%s\r\n", __FUNCTION__);
-	platform_printf("");
+	platform_printf("@%s\r\n", __FUNCTION__);
 
     const platform_hci_link_layer_interf_t *hci_interf = platform_get_link_layer_interf();
 	ret = bt_hci_transport_setup(h4_dev);
 	if (ret < 0) {
+		LOG_ERR("ret %d", ret);
 		return -EIO;
 	}
 

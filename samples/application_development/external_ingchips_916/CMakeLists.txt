@@ -51,8 +51,8 @@ message("zyx debug includir ${ING_REL}/src/FWlib")
 
 target_sources(app PRIVATE ${mylib_src_dir}/src/main.c)
 target_sources(app PRIVATE ${mylib_src_dir}/src/profile.c)
-zephyr_sources_ifdef(CONFIG_BT_H4_INGCHIPS ${mylib_src_dir}/src/h4_ingchips.c)
-# target_sources(app PRIVATE ${mylib_src_dir}/src/h4_ingchips.c)
+# zephyr_sources_ifdef(CONFIG_BT_H4_INGCHIPS ${mylib_src_dir}/src/h4_ingchips.c)
+target_sources(app PRIVATE ${mylib_src_dir}/src/h4_ingchips.c)
 
 # target_sources(app PRIVATE ${mylib_src_dir}/src/uart_console.c)
 # target_sources(app PRIVATE ${mylib_src_dir}/src/service_console.c)

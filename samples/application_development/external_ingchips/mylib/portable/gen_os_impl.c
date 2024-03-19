@@ -143,7 +143,7 @@ void port_timer_delete(gen_handle_t timer)
 #endif 
 #define APP_PRIO_LOW               2
 #define APP_PRIO_HIGH             (configMAX_PRIORITIES - 1)
-#define USER_STACKSIZE	2048
+#define USER_STACKSIZE	1024
 #define TASK_NUMBERS 3
 K_THREAD_STACK_DEFINE(user_stack[TASK_NUMBERS], USER_STACKSIZE);
 #define SEM_NUMBERS 3
