@@ -698,7 +698,12 @@ static int uart_stm32_poll_in(const struct device *dev, unsigned char *c)
 
 static void uart_stm32_poll_out(const struct device *dev, unsigned char c)
 {
+	#ifdef CONFIG_INGCHIP_918
+	extern int _write(int fd, char *ptr, int len);
+	_write(0, &c, 1);
+	#else
 	uart_stm32_poll_out_visitor(dev, (void *)&c, poll_out_u8);
+	#endif
 }
 
 #ifdef CONFIG_UART_WIDE_DATA
@@ -720,7 +725,12 @@ static int uart_stm32_poll_in_u16(const struct device *dev, uint16_t *in_u16)
 
 static void uart_stm32_poll_out_u16(const struct device *dev, uint16_t out_u16)
 {
+	#ifdef CONFIG_INGCHIP_918
+	extern int _write(int fd, char *ptr, int len);
+	_write(0, &c, 1);
+	#else
 	uart_stm32_poll_out_visitor(dev, (void *)&out_u16, poll_out_u9);
+	#endif
 }
 
 #endif
