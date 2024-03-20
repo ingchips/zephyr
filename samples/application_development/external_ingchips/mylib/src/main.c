@@ -7,12 +7,13 @@
 #include "trace.h"
 #include "../data/setup_soc.cgen"
 #include <zephyr/kernel.h>
-// #include "btp/btp.h"
+#include <zephyr/bluetooth/bluetooth.h>
+
 static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
-{
-    platform_printf("HARDFAULT:\nPC : 0x%08X\nLR : 0x%08X\nPSR: 0x%08X\n"
-                    "R0 : 0x%08X\nR1 : 0x%08X\nR2 : 0x%08X\nP3 : 0x%08X\n"
-                    "R12: 0x%08X\n",
+{ 
+    platform_printf("HARDFAULT:\r\nPC : 0x%08X\r\nLR : 0x%08X\r\nPSR: 0x%08X\r\n"
+                    "R0 : 0x%08X\r\nR1 : 0x%08X\r\nR2 : 0x%08X\r\nP3 : 0x%08X\r\n"
+                    "R12: 0x%08X\r\n",
                     info->pc, info->lr, info->psr,
                     info->r0, info->r1, info->r2, info->r3, info->r12);
     for (;;);
@@ -20,7 +21,7 @@ static uint32_t cb_hard_fault(hard_fault_info_t *info, void *_)
 
 static uint32_t cb_assertion(assertion_info_t *info, void *_)
 {
-    platform_printf("[ASSERTION] @ %s:%d\n",
+    platform_printf("[ASSERTION] @ %s:%d\r\n",
                     info->file_name,
                     info->line_no);
     for (;;);
@@ -28,9 +29,11 @@ static uint32_t cb_assertion(assertion_info_t *info, void *_)
 
 static uint32_t cb_heap_out_of_mem(uint32_t tag, void *_)
 {
-    platform_printf("[OOM] @ %d\n", tag);
+    platform_printf("[OOM] @ %d\r\n", tag);
     for (;;);
 }
+
+#define TRACE_PORT    APB_UART1
 
 #define PRINT_PORT    APB_UART0
 
@@ -38,11 +41,8 @@ uint32_t cb_putc(char *c, void *dummy)
 {
     while (apUART_Check_TXFIFO_FULL(PRINT_PORT) == 1);
     UART_SendData(PRINT_PORT, (uint8_t)*c);
-    while (apUART_Check_TXFIFO_FULL(APB_UART1) == 1);
-    UART_SendData(APB_UART1, (uint8_t)*c);
     return 0;
 }
-
 int fputc(int ch, FILE *f)
 {
     cb_putc((char *)&ch, NULL);
@@ -95,6 +95,14 @@ static uint32_t uart_isr1(void *user_data)
     }
     return 0;
 }
+int _write(int fd, char *ptr, int len)
+{
+    int i;
+    for (i = 0; i < len; i++)
+        cb_putc(ptr + i, NULL);
+
+    return len;
+}
 void config_user_uart(uint32_t freq, uint32_t baud)
 {
     UART_sStateStruct config;
@@ -123,11 +131,10 @@ void config_user_uart(uint32_t freq, uint32_t baud)
 }
 void setup_peripherals(void)
 {
-     cube_setup_peripherals();//
-     config_user_uart(OSC_CLK_FREQ, 115200);
+    cube_setup_peripherals();//
+    config_user_uart(OSC_CLK_FREQ, 115200);
     platform_set_irq_callback(PLATFORM_CB_IRQ_UART0, uart_isr0, NULL);
     platform_set_irq_callback(PLATFORM_CB_IRQ_UART1, uart_isr1, NULL);
-//platform_set_irq_callback(PLATFORM_CB_IRQ_GPIO, (f_platform_irq_cb)&gpio_isr, NULL);
 }
 
 uint32_t on_lle_init(void *dummy, void *user_data)
@@ -151,12 +158,13 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
     (void)(dummy);
     (void)(user_data);
     // TODO: return 0 if deep sleep is not allowed now; else deep sleep is allowed
-    return 0;
+    return PLATFORM_ALLOW_DEEP_SLEEP;
 }
 
-trace_rtt_t trace_ctx = {0};
-
-
+trace_uart_t trace_ctx = {.port = TRACE_PORT};
+#ifdef CONFIG_BT_H4_INGCHIPS
+extern uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_);
+#endif
 static const platform_evt_cb_table_t evt_cb_table =
 {
     .callbacks = {
@@ -188,98 +196,89 @@ static const platform_evt_cb_table_t evt_cb_table =
             .f = (f_platform_evt_cb)cb_trace_rtt,
             .user_data = &trace_ctx,
         },
+        #ifdef CONFIG_BT_H4_INGCHIPS
+        [PLATFORM_CB_EVT_HCI_RECV] = {
+            .f = (f_platform_evt_cb)cb_hci_recv,
+        },
+        #endif
     }
 };
 
 // TODO: add RTOS source code to the project.
+extern const gen_os_driver_t *os_impl_get_driver(void);
 uintptr_t app_main()
 {
+    #ifdef CONFIG_BT_H4_INGCHIPS
+    extern const platform_hci_link_layer_interf_t *hci_interf;
+    hci_interf = platform_get_link_layer_interf();
+    #endif 
     cube_soc_init();
-    
+
     // setup event handlers
     platform_set_evt_callback_table(&evt_cb_table);
 
     setup_peripherals();
-    SYSCTRL_Init();
+    platform_printf("build time %s@%s\r\n",__DATE__, __TIME__);
 
     trace_rtt_init(&trace_ctx);
-    // TODO: config trace mask
-    platform_config(PLATFORM_CFG_TRACE_MASK, 0);
+    platform_config(PLATFORM_CFG_POWER_SAVING, PLATFORM_CFG_ENABLE);
+
     return (uintptr_t)os_impl_get_driver();
 }
 
-
-
-struct k_thread test_thread;
-#define TEST_STACK_SIZE 1024
-K_KERNEL_STACK_DEFINE(test_thread_stack, TEST_STACK_SIZE);
-
-void my_thread_func(void *p1, void *p2, void *p3) {
-    platform_printf("my thread\r\n");
-    while (1) {
-        char *p_test = k_malloc(100);
-        memset(p_test, 0, 100);
-        snprintf(p_test,"test string %d", 1,100);
-        platform_printf("my thread func runing %p\r\n", p_test);
-        k_sleep(K_MSEC(1000));  // 线程休眠1秒
-        k_free(p_test);
-        printk("printk print out ok\r\n");
-    }
+// struct k_thread test_thread;
+// #define TEST_STACK_SIZE 128
+// K_KERNEL_STACK_DEFINE(test_thread_stack, TEST_STACK_SIZE);
+// static uint8_t run_times = 0;
+// void my_thread_func(void *p1, void *p2, void *p3) {
+//     platform_printf("my thread\r\n");
+//     while (1) {
+//         char *p_test = k_malloc(100);
+//         memset(p_test, 0, 100);
+//         snprintf(p_test,"test string %d", 1,100);
+//         platform_printf("my thread func runing %p\r\n", p_test);
+//         k_sleep(K_MSEC(10000));  // 线程休眠1秒
+//         k_free(p_test);
+//         // __disable_irq();
+//         // uint32_t ticks = platform_pre_suppress_ticks_and_sleep_processing(0xffffff);
+//         // if (ticks < 5) continue;
+//         // sysPreSleepProcessing();
+//         // sysPostSleepProcessing();
+//         // __enable_irq();
+//         platform_os_idle_resumed_hook();
+//         printf("run myTask %d times\r\n", run_times++);
+//         // printk("printk print out ok\r\n");
+//     }
+// }
+void func_callback(void) {
+    printk("I am OK@%s, %d\r\n", __FILE__, __LINE__);
 }
 void main() {
-    k_tid_t tid = k_thread_create(&test_thread,          // 线程对象
-                                 test_thread_stack,
-                                  1024,  // 栈大小
-                                  my_thread_func,  // 线程入口函数
-                                  NULL,           // 线程参数
-                                  NULL,           // 线程工作区
-                                  NULL,           // 线程初始化数据
-                                  5,               // 优先级
-                                  0,              // 抢占选项
-                                  K_NO_WAIT);             // 退出选项
-    // tester_init();
-    if (tid == 0) {
-        printk("无法创建线程\n");
-    } else { 
-        printk("成功创建线程\n");
-    }
-    // port_task_create( "test",create_task_test, NULL,1024, 5);
-    // k_timer_init(&test_timer, test_time_cb, NULL);
-    // k_timer_start(&test_timer, K_MSEC(1000), K_MSEC(1000));
+
     os_impl_task_create_real();
-    
+    // k_tid_t tid = k_thread_create(&test_thread,             // 线程对象
+    //                              test_thread_stack,
+    //                               1024,                     // 栈大小
+    //                               my_thread_func,           // 线程入口函数
+    //                               NULL,                     // 线程参数
+    //                               NULL,                     // 线程工作区
+    //                               NULL,                     // 线程初始化数据
+    //                               0,                        // 优先级
+    //                               0,                        // 抢占选项
+    //                               K_NO_WAIT);               // 退出选项
+    // printk("creat thread tid %d\r\n", tid);
+    k_sleep(K_MSEC(1000));
+    platform_printf("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
+    #ifdef CONFIG_BT_H4_INGCHIPS
+    char *bt_name = bt_get_name();
+    bt_enable(func_callback);
+    printk("\r\n ********bt name is %s\r\n", bt_name);
+    #endif 
     while(1) {
         static uint8_t i = 8;
         const char* senddata="send hello\r\n";
-        // k_msgq_put(&my_msgq ,senddata, K_NO_WAIT);
-        platform_printf("I am ingchip main thread %d times\r\n", i++);
+        // platform_printf("I am ingchip main thread %d times\r\n", i++);
         k_sleep(K_MSEC(1000));
-        // btstack_push_user_msg(3, NULL, 0);
-        // k_sem_give(&test_binary_semaphore);
-        // break;
     }
-// }
-// void thread_test (void) {
-//     while(1) {
-//         // k_sleep(1);
-//         // port_event_wait(NULL);
-//         // k_sem_take(&test_binary_semaphore, K_FOREVER);
-//         platform_printf("I am in thread test\r\n");
-//         #ifdef POWER_SAVING
-//         platform_printf("Defined POWER SAVING\r\n"); 
-//         #ifdef LISTEN_TO_POWER_SAVING
-//         platform_printf("Defined LISTEN TO POWER SAVING\r\n");
-//         #endif 
-//         #endif
-//          char buf[20] = {0};
-//         //  int ret = k_msgq_get(&my_msgq, buf, K_FOREVER);
-//         k_sleep(K_MSEC(1000));
-//         // if (ret == 0) {
-//         //     platform_printf("received %s\r\n",buf);
-//         // }
-//         break;
-//     }
 }
-// K_THREAD_DEFINE(blink0_id, 1024, thread_test, NULL, NULL, NULL, 1, 0, 0);//it works
-
 const char welcome_msg[] = "Built with zephyr";

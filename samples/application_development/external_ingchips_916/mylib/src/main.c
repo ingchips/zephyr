@@ -82,7 +82,7 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
     return PLATFORM_ALLOW_DEEP_SLEEP;
 }
 
-trace_uart_t trace_ctx = {.port = TRACE_PORT};
+// trace_uart_t trace_ctx = {.port = TRACE_PORT};
 #ifdef CONFIG_BT_H4_INGCHIPS
 extern uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_);
 #endif
@@ -113,10 +113,10 @@ static const platform_evt_cb_table_t evt_cb_table =
         [PLATFORM_CB_EVT_PUTC] = {
             .f = (f_platform_evt_cb)cb_putc,
         },
-        [PLATFORM_CB_EVT_TRACE] = {
-            .f = (f_platform_evt_cb)cb_trace_uart,
-            .user_data = &trace_ctx,
-        },
+        // [PLATFORM_CB_EVT_TRACE] = {
+        //     .f = (f_platform_evt_cb)cb_trace_uart,
+        //     .user_data = &trace_ctx,
+        // },
         #ifdef CONFIG_BT_H4_INGCHIPS
         [PLATFORM_CB_EVT_HCI_RECV] = {
             .f = (f_platform_evt_cb)cb_hci_recv,

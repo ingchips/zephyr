@@ -1,9 +1,9 @@
+#include <zephyr/kernel.h>
 #include "port_gen_os_driver.h"
 #include "platform_api.h"
 #include "profile.h"
 #include "ingsoc.h"
-#include <zephyr/kernel.h>
-// #include <zephyr.h>
+
 /* Exported macro ------------------------------------------------------------*/
 #define USER_FULL_ASSERT
 #ifdef  USER_FULL_ASSERT
@@ -394,6 +394,18 @@ void *port_malloc(size_t size) {
     return ptr;
 
 }
+void port_sys_clock_isr(void) {
+    static int i = 0;
+    i++;
+    // if(i%100 == 0)
+    // platform_printf("I am in %s %d times\r\n", "sys clock isr", i);
+    if(i%2) {
+        GIO_WriteValue(9, 1);
+    } else {
+        GIO_WriteValue(9, 0);
+    }
+    sys_clock_isr(NULL);
+}
 const gen_os_driver_t gen_os_driver =
 {
     .timer_create = port_timer_create,
@@ -418,7 +430,7 @@ const gen_os_driver_t gen_os_driver =
     .enter_critical = port_enter_critical,
     .leave_critical = port_leave_critical,
     .os_start = port_os_start,
-    .tick_isr = sys_clock_isr,
+    .tick_isr = port_sys_clock_isr,
     .svc_isr = svc_isr_wraper,
     .pendsv_isr = pendsv_isr_wraper,
 };
