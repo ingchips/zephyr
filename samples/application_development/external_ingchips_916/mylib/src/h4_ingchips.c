@@ -126,6 +126,7 @@ static inline void h4_get_type(void)
 		LOG_ERR("Unknown H:4 type 0x%02x", rx.type);
 		rx.type = H4_NONE;
 	}
+	LOG_DBG("rx.remaining is[%d]", rx.remaining);
 }
 
 static void h4_read_hdr(void)
@@ -299,16 +300,21 @@ int hci_rec_buf_read(const struct device *dev, uint8_t *data, int read_len) {
         ble_hci_rec_buf_write_len = 0;
         ble_hci_rec_buf_read_len = 0;
     }
+	LOG_DBG("\r\n<<<<<<[%d]\r\n", read_len);
+	int i = 0;
+	for(; i < read_len; i++) {
+		LOG_DBG("%x ", data[i]);
+	}
     k_mutex_unlock(&ble_hci_rec_buf_mutex);
     return ret;
 
 }
 int hci_rec_buf_write(uint8_t *data,int len) {
-	LOG_DBG("\r\n<<<");
+	LOG_DBG("\r\n<<<[%d]\r\n", len);
     k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
     for(int i = 0; i < len; i++) {
         ble_hci_rec_buf[ble_hci_rec_buf_write_len++] = data[i];
-		platform_printf("%x ", data[i]);
+		LOG_DBG("%x ", data[i]);
     }
     k_mutex_unlock(&ble_hci_rec_buf_mutex);
 	
@@ -331,7 +337,7 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
         hci_interf->acl_data_processed(msg->conn_handle, msg->handle);
         break;
     }
-	k_sem_give(&recv_sem);
+	// k_sem_give(&recv_sem);
     return 0;
 }
 
@@ -379,7 +385,7 @@ static inline void read_payload(void)
 	}
     
 	read = hci_rec_buf_read(h4_dev, net_buf_tail(rx.buf), rx.remaining);
-	if(read == 0) return;
+	if (read == 0) {LOG_ERR("read=0"); return;}
 	if (unlikely(read < 0)) {
 		LOG_ERR("Failed to read UART (err %d)\r\n", read);
 		return;
@@ -400,6 +406,7 @@ static inline void read_payload(void)
 
 	if (rx.type == H4_EVT) {
 		evt_flags = bt_hci_evt_get_flags(rx.evt.evt);
+		LOG_DBG("evt_flags [%x]", evt_flags);
 		bt_buf_set_type(buf, BT_BUF_EVT);
 	} else {
 		evt_flags = BT_HCI_EVT_FLAG_RECV;
@@ -457,8 +464,11 @@ static inline void read_header(void)
 
 static void send_byte(void *user_data, uint8_t c)
 {
-    if (rx_len >= MAX_SIZE)
+    if (rx_len >= MAX_SIZE) {
+  		LOG_DBG("reset");
+		while(1);
         platform_reset();
+	}
 
     buffer[rx_len++] = c;
 
@@ -497,6 +507,9 @@ static void send_byte(void *user_data, uint8_t c)
         }
         break;
     default:
+	platform_printf("reset********************************************************\r\n");
+	LOG_DBG("reset");
+		while(1);
         platform_reset();
         break;
     }
@@ -505,9 +518,9 @@ static int hci_driver_h4_send(const struct device *dev, const uint8_t *tx_data, 
 	LOG_DBG(">>> ");
     for (int i = 0; i < size; i++) {
         send_byte(NULL, tx_data[i]);
-		LOG_DBG("%c ", tx_data[i]);
+		LOG_DBG("%x ", tx_data[i]);
     }
-	return 1;
+	return size;
 }
 static inline void process_tx(void)
 {
@@ -566,11 +579,12 @@ done:
 
 static inline void process_rx(void)
 {
-	// LOG_DBG("remaining %u discard %u have_hdr %u rx.buf %p len %u", rx.remaining, rx.discard,
-	// 	rx.have_hdr, rx.buf, rx.buf ? rx.buf->len : 0);///many log
+	LOG_DBG("remaining %u discard %u have_hdr %u rx.buf %p len %u", rx.remaining, rx.discard,
+	 	rx.have_hdr, rx.buf, rx.buf ? rx.buf->len : 0);///many log
 
 	if (rx.discard) {
 		rx.discard -= h4_discard(h4_dev, rx.discard);
+		LOG_DBG("discard return %d", rx.discard);
 		return;
 	}
 
@@ -585,17 +599,26 @@ static void rtx_thread(const struct device *unused, void *user_data)
 {
 	ARG_UNUSED(unused);
 	ARG_UNUSED(user_data);
+	LOG_DBG("rtx_thread");
 while(1) {
-	process_tx();
-	k_sem_take(&recv_sem, K_FOREVER);
-	process_rx();
-	k_sleep(K_MSEC(1));
+	// 
+	// k_sem_take(&recv_sem, K_FOREVER);
+	// LOG_DBG("rec recv_sem");
+	int ret = 0;
+	do {
+		process_rx();
+		// process_tx();
+		ret++;
+		// LOG_DBG("process rx");
+		// k_sleep(K_MSEC(1000));
+	} while (ret < 10);
 }
 		
 }
 
 static int h4_send(struct net_buf *buf)
 {
+	LOG_DBG(">>>>>>>>>>>>>>***********h4 send");
 	LOG_DBG("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
 
 	net_buf_put(&tx.fifo, buf);
