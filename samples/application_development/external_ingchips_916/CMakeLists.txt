@@ -35,8 +35,8 @@ set(MYLIB_LIB_DIR     ${mylib_build_dir}/lib)
 set(MYLIB_INCLUDE_DIR ${mylib_src_dir}/include)
 # set(ING_REL ${mylib_src_dir}/ING918XX_SDK_SOURCE)
 set(ING_REL ${CMAKE_CURRENT_SOURCE_DIR}/../../../../../Documents/workspace/ING918XX_SDK_SOURCE)
-set(ING_BUNDLE ${ING_REL}/bundles/noos_typical/inc)
-set(ING_BUNDLE_G ${ING_REL}/bundles/noos_typical/ING9168xx)
+set(ING_BUNDLE ${ING_REL}/bundles/noos_mini/inc)
+set(ING_BUNDLE_G ${ING_REL}/bundles/noos_mini/ING9168xx)
 
 include_directories(${MYLIB_INCLUDE_DIR}/../src)
 
