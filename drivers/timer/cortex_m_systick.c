@@ -323,6 +323,10 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 	} else {
 		cycle_count += (val1 - val2);
 	}
+	#ifdef CONFIG_INGCHIP_918
+	extern int platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
+	platform_pre_suppress_ticks_and_sleep_processing(SysTick->LOAD);
+	#endif
 	k_spin_unlock(&lock, key);
 #endif
 }
