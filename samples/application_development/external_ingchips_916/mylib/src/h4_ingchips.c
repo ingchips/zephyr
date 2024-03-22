@@ -291,16 +291,16 @@ int ble_hci_rec_buf_write_len = 0;
 int ble_hci_rec_buf_read_len = 0;
 int hci_rec_buf_read(const struct device *dev, uint8_t *data, int read_len) {
 
+	LOG_DBG("\r\n<<<<<<[%d]\r\n", read_len);
     k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
     int buf_len = ble_hci_rec_buf_write_len - ble_hci_rec_buf_read_len;
-    int ret = buf_len > read_len ? buf_len: read_len;
+    int ret = buf_len < read_len ? buf_len: read_len;
     memcpy(data, &ble_hci_rec_buf[ble_hci_rec_buf_read_len], ret);
     ble_hci_rec_buf_read_len = ble_hci_rec_buf_read_len + ret;
     if (ble_hci_rec_buf_read_len == ble_hci_rec_buf_write_len) {
         ble_hci_rec_buf_write_len = 0;
         ble_hci_rec_buf_read_len = 0;
     }
-	LOG_DBG("\r\n<<<<<<[%d]\r\n", read_len);
 	int i = 0;
 	for(; i < read_len; i++) {
 		LOG_DBG("%x ", data[i]);
@@ -314,7 +314,7 @@ int hci_rec_buf_write(uint8_t *data,int len) {
     k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
     for(int i = 0; i < len; i++) {
         ble_hci_rec_buf[ble_hci_rec_buf_write_len++] = data[i];
-		LOG_DBG("%x ", data[i]);
+		// LOG_DBG("%x ", data[i]);
     }
     k_mutex_unlock(&ble_hci_rec_buf_mutex);
 	
@@ -385,7 +385,8 @@ static inline void read_payload(void)
 	}
     
 	read = hci_rec_buf_read(h4_dev, net_buf_tail(rx.buf), rx.remaining);
-	if (read == 0) {LOG_ERR("read=0"); return;}
+	LOG_DBG("red payload %d", read);
+	if (read == 0) {LOG_DBG("read=0"); return;}
 	if (unlikely(read < 0)) {
 		LOG_ERR("Failed to read UART (err %d)\r\n", read);
 		return;
@@ -507,8 +508,8 @@ static void send_byte(void *user_data, uint8_t c)
         }
         break;
     default:
-	platform_printf("reset********************************************************\r\n");
-	LOG_DBG("reset");
+		platform_printf("reset********************************************************\r\n");
+		LOG_DBG("reset");
 		while(1);
         platform_reset();
         break;
