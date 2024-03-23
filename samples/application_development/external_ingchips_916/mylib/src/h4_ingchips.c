@@ -35,6 +35,10 @@ LOG_MODULE_REGISTER(bt_driver);
 #define H4_SCO  0x03
 #define H4_EVT  0x04
 #define H4_ISO  0x05
+
+#define HCI_BT_HCI_SEND_TIMEOUT K_MSEC(2000)
+static K_SEM_DEFINE(hci_send_sem, 1, 1);
+
 const platform_hci_link_layer_interf_t *hci_interf = NULL;
 #define MAX_SIZE 512
 static int rx_len = 0;
@@ -60,11 +64,7 @@ struct hci_event_packet_header
 };
 #pragma pack (pop)
 
-static K_KERNEL_STACK_DEFINE(rx_thread_stack, CONFIG_BT_DRV_RX_STACK_SIZE);
-static K_KERNEL_STACK_DEFINE(rtx_thread_stack, CONFIG_BT_DRV_RX_STACK_SIZE);
 K_SEM_DEFINE(recv_sem, 0, 1);
-static struct k_thread rx_thread_data;
-static struct k_thread rtx_thread_data;
 
 static struct {
 	struct net_buf *buf;
@@ -169,164 +169,206 @@ static inline void get_iso_hdr(void)
 	}
 }
 
-
-
-static inline void get_evt_hdr(void)
+static bool is_hci_event_discardable(const uint8_t *evt_data)
 {
-	struct bt_hci_evt_hdr *hdr = &rx.evt;
+	uint8_t evt_type = evt_data[0];
 
-	h4_read_hdr();
-
-	if (rx.hdr_len == sizeof(*hdr) && rx.remaining < sizeof(*hdr)) {
-		switch (rx.evt.evt) {
-		case BT_HCI_EVT_LE_META_EVENT:
-			rx.remaining++;
-			rx.hdr_len++;
-			break;
+	switch (evt_type) {
 #if defined(CONFIG_BT_BREDR)
-		case BT_HCI_EVT_INQUIRY_RESULT_WITH_RSSI:
-		case BT_HCI_EVT_EXTENDED_INQUIRY_RESULT:
-			rx.discardable = true;
-			break;
+	case BT_HCI_EVT_INQUIRY_RESULT_WITH_RSSI:
+	case BT_HCI_EVT_EXTENDED_INQUIRY_RESULT:
+		return true;
 #endif
+	case BT_HCI_EVT_LE_META_EVENT: {
+		uint8_t subevt_type = evt_data[sizeof(struct bt_hci_evt_hdr)];
+
+		switch (subevt_type) {
+		case BT_HCI_EVT_LE_ADVERTISING_REPORT:
+			return true;
+		default:
+			return false;
 		}
 	}
-
-	if (!rx.remaining) {
-		if (rx.evt.evt == BT_HCI_EVT_LE_META_EVENT &&
-		    (rx.hdr[sizeof(*hdr)] == BT_HCI_EVT_LE_ADVERTISING_REPORT)) {
-			LOG_DBG("Marking adv report as discardable");
-			rx.discardable = true;
-		}
-
-		rx.remaining = hdr->len - (rx.hdr_len - sizeof(*hdr));
-		LOG_DBG("Got event header. Payload %u bytes", hdr->len);
-		rx.have_hdr = true;
+	default:
+		return false;
 	}
 }
-
-static inline void copy_hdr(struct net_buf *buf)
+static struct net_buf *bt_esp_evt_recv(uint8_t *data, size_t remaining)
 {
-	net_buf_add_mem(buf, rx.hdr, rx.hdr_len);
-}
-
-static void reset_rx(void)
-{
-	rx.type = H4_NONE;
-	rx.remaining = 0U;
-	rx.have_hdr = false;
-	rx.hdr_len = 0U;
-	rx.discardable = false;
-}
-
-static struct net_buf *get_rx(k_timeout_t timeout)
-{
-	LOG_DBG("type 0x%02x, evt 0x%02x", rx.type, rx.evt.evt);
-
-	switch (rx.type) {
-	case H4_EVT:
-		return bt_buf_get_evt(rx.evt.evt, rx.discardable, timeout);
-	case H4_ACL:
-		return bt_buf_get_rx(BT_BUF_ACL_IN, timeout);
-	case H4_ISO:
-		if (IS_ENABLED(CONFIG_BT_ISO)) {
-			return bt_buf_get_rx(BT_BUF_ISO_IN, timeout);
-		}
-	}
-
-	return NULL;
-}
-
-static void rx_thread(void *p1, void *p2, void *p3)
-{
+	bool discardable = false;
+	struct bt_hci_evt_hdr hdr;
 	struct net_buf *buf;
+	size_t buf_tailroom;
 
-	ARG_UNUSED(p1);
-	ARG_UNUSED(p2);
-	ARG_UNUSED(p3);
+	if (remaining < sizeof(hdr)) {
+		LOG_ERR("Not enough data for event header");
+		return NULL;
+	}
 
-	LOG_DBG("started");
+	discardable = is_hci_event_discardable(data);
 
-	while (1) {
-		LOG_DBG("rx.buf %p", rx.buf);
+	memcpy((void *)&hdr, data, sizeof(hdr));
+	data += sizeof(hdr);
+	remaining -= sizeof(hdr);
 
-		/* We can only do the allocation if we know the initial
-		 * header, since Command Complete/Status events must use the
-		 * original command buffer (if available).
-		 */
-		if (rx.have_hdr && !rx.buf) {
-			rx.buf = get_rx(K_FOREVER);
-			LOG_ERR("Got rx.buf %p", rx.buf);
-			if (rx.remaining > net_buf_tailroom(rx.buf)) {
-				LOG_ERR("Not enough space in buffer");
-				rx.discard = rx.remaining;
-				reset_rx();
-			} else {
-				copy_hdr(rx.buf);
-			}
+	if (remaining != hdr.len) {
+		LOG_ERR("Event payload length is not correct");
+		return NULL;
+	}
+	LOG_DBG("len %u", hdr.len);
+
+	buf = bt_buf_get_evt(hdr.evt, discardable, K_NO_WAIT);
+	if (!buf) {
+		if (discardable) {
+			LOG_DBG("Discardable buffer pool full, ignoring event");
+		} else {
+			LOG_ERR("No available event buffers!");
 		}
-
-
-
-		buf = net_buf_get(&rx.fifo, K_FOREVER);
-		do {
-
-			LOG_DBG("Calling bt_recv(%p)\r\n", buf);
-			bt_recv(buf);
-
-			/* Give other threads a chance to run if the ISR
-			 * is receiving data so fast that rx.fifo never
-			 * or very rarely goes empty.
-			 */
-			k_yield();
-
-			buf = net_buf_get(&rx.fifo, K_NO_WAIT);
-		} while (buf);
+		return buf;
 	}
-}
 
-K_MUTEX_DEFINE(ble_hci_rec_buf_mutex);
-static uint8_t ble_hci_rec_buf[512];
-int ble_hci_rec_buf_write_len = 0;
-int ble_hci_rec_buf_read_len = 0;
-int hci_rec_buf_read(const struct device *dev, uint8_t *data, int read_len) {
+	net_buf_add_mem(buf, &hdr, sizeof(hdr));
 
-	LOG_DBG("\r\n<<<<<<[%d]\r\n", read_len);
-    k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
-    int buf_len = ble_hci_rec_buf_write_len - ble_hci_rec_buf_read_len;
-    int ret = buf_len < read_len ? buf_len: read_len;
-    memcpy(data, &ble_hci_rec_buf[ble_hci_rec_buf_read_len], ret);
-    ble_hci_rec_buf_read_len = ble_hci_rec_buf_read_len + ret;
-    if (ble_hci_rec_buf_read_len == ble_hci_rec_buf_write_len) {
-        ble_hci_rec_buf_write_len = 0;
-        ble_hci_rec_buf_read_len = 0;
-    }
-	int i = 0;
-	for(; i < read_len; i++) {
-		LOG_DBG("%x ", data[i]);
+	buf_tailroom = net_buf_tailroom(buf);
+	if (buf_tailroom < remaining) {
+		LOG_ERR("Not enough space in buffer %zu/%zu", remaining, buf_tailroom);
+		net_buf_unref(buf);
+		return NULL;
 	}
-    k_mutex_unlock(&ble_hci_rec_buf_mutex);
-    return ret;
 
+	net_buf_add_mem(buf, data, remaining);
+
+	return buf;
 }
-int hci_rec_buf_write(uint8_t *data,int len) {
-	LOG_DBG("\r\n<<<[%d]\r\n", len);
-    k_mutex_lock(&ble_hci_rec_buf_mutex, K_FOREVER);
-    for(int i = 0; i < len; i++) {
-        ble_hci_rec_buf[ble_hci_rec_buf_write_len++] = data[i];
-		// LOG_DBG("%x ", data[i]);
-    }
-    k_mutex_unlock(&ble_hci_rec_buf_mutex);
-	
+
+static struct net_buf *bt_esp_acl_recv(uint8_t *data, size_t remaining)
+{
+	struct bt_hci_acl_hdr hdr;
+	struct net_buf *buf;
+	size_t buf_tailroom;
+
+	if (remaining < sizeof(hdr)) {
+		LOG_ERR("Not enough data for ACL header");
+		return NULL;
+	}
+
+	buf = bt_buf_get_rx(BT_BUF_ACL_IN, K_NO_WAIT);
+	if (buf) {
+		memcpy((void *)&hdr, data, sizeof(hdr));
+		data += sizeof(hdr);
+		remaining -= sizeof(hdr);
+
+		net_buf_add_mem(buf, &hdr, sizeof(hdr));
+	} else {
+		LOG_ERR("No available ACL buffers!");
+		return NULL;
+	}
+
+	if (remaining != sys_le16_to_cpu(hdr.len)) {
+		LOG_ERR("ACL payload length is not correct");
+		net_buf_unref(buf);
+		return NULL;
+	}
+
+	buf_tailroom = net_buf_tailroom(buf);
+	if (buf_tailroom < remaining) {
+		LOG_ERR("Not enough space in buffer %zu/%zu", remaining, buf_tailroom);
+		net_buf_unref(buf);
+		return NULL;
+	}
+
+	LOG_DBG("len %u", remaining);
+	net_buf_add_mem(buf, data, remaining);
+
+	return buf;
 }
+
+static struct net_buf *bt_esp_iso_recv(uint8_t *data, size_t remaining)
+{
+	struct bt_hci_iso_hdr hdr;
+	struct net_buf *buf;
+	size_t buf_tailroom;
+
+	if (remaining < sizeof(hdr)) {
+		LOG_ERR("Not enough data for ISO header");
+		return NULL;
+	}
+
+	buf = bt_buf_get_rx(BT_BUF_ISO_IN, K_NO_WAIT);
+	if (buf) {
+		memcpy((void *)&hdr, data, sizeof(hdr));
+		data += sizeof(hdr);
+		remaining -= sizeof(hdr);
+
+		net_buf_add_mem(buf, &hdr, sizeof(hdr));
+	} else {
+		LOG_ERR("No available ISO buffers!");
+		return NULL;
+	}
+
+	if (remaining != bt_iso_hdr_len(sys_le16_to_cpu(hdr.len))) {
+		LOG_ERR("ISO payload length is not correct");
+		net_buf_unref(buf);
+		return NULL;
+	}
+
+	buf_tailroom = net_buf_tailroom(buf);
+	if (buf_tailroom < remaining) {
+		LOG_ERR("Not enough space in buffer %zu/%zu", remaining, buf_tailroom);
+		net_buf_unref(buf);
+		return NULL;
+	}
+
+	LOG_DBG("len %zu", remaining);
+	net_buf_add_mem(buf, data, remaining);
+
+	return buf;
+}
+
 uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 {
 
 
     //todo write fifo
     LOG_DBG("hci drv rec %d", msg->len_of_hci + 1);
-    hci_rec_buf_write(&msg->hci_type, 1);
-    hci_rec_buf_write(msg->buff, msg->len_of_hci);
+    // hci_rec_buf_write(&msg->hci_type, 1);
+    // hci_rec_buf_write(msg->buff, msg->len_of_hci);
+	uint8_t pkt_indicator;
+	struct net_buf *buf = NULL;
+	size_t remaining = msg->len_of_hci;
+	uint8_t *data = msg->buff;
+	LOG_HEXDUMP_DBG(data, remaining, "host packet data:");
+	pkt_indicator = msg->hci_type;
+	static int i = 0;
+	i++;
+	if( i == 1) {
+		LOG_DBG("drop hci rec data");
+		goto end;
+	}
+		switch (pkt_indicator) {
+		case H4_EVT:
+			buf = bt_esp_evt_recv(data, remaining);
+			break;
+
+		case H4_ACL:
+			buf = bt_esp_acl_recv(data, remaining);
+			break;
+
+		case H4_SCO:
+			buf = bt_esp_iso_recv(data, remaining);
+			break;
+
+		default:
+			LOG_ERR("Unknown HCI type %u", pkt_indicator);
+			return -1;
+		}
+
+		if (buf) {
+			LOG_DBG("Calling bt_recv(%p)", buf);
+
+			bt_recv(buf);
+		}
+end:
 
     switch (msg->hci_type)
     {
@@ -341,139 +383,8 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
     return 0;
 }
 
-
-static size_t h4_discard(const struct device *uart, size_t len)
-{
-    ble_hci_rec_buf_write_len = 0;
-    ble_hci_rec_buf_read_len = 0;
-	return 0;
-}
-
-static inline void read_payload(void)
-{
-	struct net_buf *buf;
-	uint8_t evt_flags;
-	int read;
-
-	if (!rx.buf) {
-		size_t buf_tailroom;
-
-		rx.buf = get_rx(K_NO_WAIT);
-		if (!rx.buf) {
-			if (rx.discardable) {
-				LOG_WRN("Discarding event 0x%02x\r\n", rx.evt.evt);
-				rx.discard = rx.remaining;
-				reset_rx();
-				return;
-			}
-
-			LOG_WRN("Failed to allocate, deferring to rx_thread\r\n");
-			return;
-		}
-
-		LOG_DBG("Allocated rx.buf %p\r\n", rx.buf);
-
-		buf_tailroom = net_buf_tailroom(rx.buf);
-		if (buf_tailroom < rx.remaining) {
-			LOG_ERR("Not enough space in buffer %u/%zu\r\n", rx.remaining, buf_tailroom);
-			rx.discard = rx.remaining;
-			reset_rx();
-			return;
-		}
-
-		copy_hdr(rx.buf);
-	}
-    
-	read = hci_rec_buf_read(h4_dev, net_buf_tail(rx.buf), rx.remaining);
-	LOG_DBG("red payload %d", read);
-	if (read == 0) {LOG_DBG("read=0"); return;}
-	if (unlikely(read < 0)) {
-		LOG_ERR("Failed to read UART (err %d)\r\n", read);
-		return;
-	}
-
-	net_buf_add(rx.buf, read);
-	rx.remaining -= read;
-
-	LOG_DBG("got %d bytes, remaining %u\r\n", read, rx.remaining);
-	LOG_DBG("Payload (len %u): %s\r\n", rx.buf->len, bt_hex(rx.buf->data, rx.buf->len));
-
-	if (rx.remaining) {
-		return;
-	}
-
-	buf = rx.buf;
-	rx.buf = NULL;
-
-	if (rx.type == H4_EVT) {
-		evt_flags = bt_hci_evt_get_flags(rx.evt.evt);
-		LOG_DBG("evt_flags [%x]", evt_flags);
-		bt_buf_set_type(buf, BT_BUF_EVT);
-	} else {
-		evt_flags = BT_HCI_EVT_FLAG_RECV;
-		bt_buf_set_type(buf, BT_BUF_ACL_IN);
-	}
-
-	reset_rx();
-
-	if (IS_ENABLED(CONFIG_BT_RECV_BLOCKING) &&
-	    (evt_flags & BT_HCI_EVT_FLAG_RECV_PRIO)) {
-		LOG_DBG("Calling bt_recv_prio(%p)\r\n", buf);
-		bt_recv_prio(buf);
-	}
-
-	if (evt_flags & BT_HCI_EVT_FLAG_RECV) {
-		LOG_DBG("Putting buf %p to rx fifo\r\n", buf);
-		net_buf_put(&rx.fifo, buf);
-	}
-}
-
-static inline void read_header(void)
-{
-	switch (rx.type) {
-	case H4_NONE:
-		h4_get_type();
-		return;
-	case H4_EVT:
-		get_evt_hdr();
-		break;
-	case H4_ACL:
-		get_acl_hdr();
-		break;
-	case H4_ISO:
-		if (IS_ENABLED(CONFIG_BT_ISO)) {
-			get_iso_hdr();
-			break;
-		}
-		__fallthrough;
-	default:
-		CODE_UNREACHABLE;
-		return;
-	}
-
-	if (rx.have_hdr && rx.buf) {
-		if (rx.remaining > net_buf_tailroom(rx.buf)) {
-			LOG_ERR("Not enough space in buffer\r\n");
-			rx.discard = rx.remaining;
-			reset_rx();
-		} else {
-			copy_hdr(rx.buf);
-		}
-	}
-}
-
-
-static void send_byte(void *user_data, uint8_t c)
-{
-    if (rx_len >= MAX_SIZE) {
-  		LOG_DBG("reset");
-		while(1);
-        platform_reset();
-	}
-
-    buffer[rx_len++] = c;
-
-    switch (buffer[0])
+void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
+	switch (buffer[0])
     {
     case HCI_COMMAND_DATA_PACKET:
         if (rx_len >= 1 + sizeof(struct hci_command_packet_header))
@@ -515,115 +426,43 @@ static void send_byte(void *user_data, uint8_t c)
         break;
     }
 }
-static int hci_driver_h4_send(const struct device *dev, const uint8_t *tx_data, int size) {
-	LOG_DBG(">>> ");
-    for (int i = 0; i < size; i++) {
-        send_byte(NULL, tx_data[i]);
-		LOG_DBG("%x ", tx_data[i]);
-    }
-	return size;
-}
-static inline void process_tx(void)
+static int h4_send(struct net_buf *buf)
 {
-	int bytes;
-	if (!tx.buf) {
-		tx.buf = net_buf_get(&tx.fifo, Z_FOREVER);
-		if (!tx.buf) {
-			LOG_DBG("TX interrupt but no pending buffer!\r\n");
-			return;
-		}
+	int err = 0;
+	uint8_t pkt_indicator;
+
+	LOG_DBG("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
+
+	switch (bt_buf_get_type(buf)) {
+	case BT_BUF_ACL_OUT:
+		pkt_indicator = H4_ACL;
+		break;
+	case BT_BUF_CMD:
+		pkt_indicator = H4_CMD;
+		break;
+	case BT_BUF_ISO_OUT:
+		pkt_indicator = H4_ISO;
+		break;
+	default:
+		LOG_ERR("Unknown type %u", bt_buf_get_type(buf));
+		goto done;
 	}
+	net_buf_push_u8(buf, pkt_indicator);
 
-	if (!tx.type) {
-		switch (bt_buf_get_type(tx.buf)) {
-		case BT_BUF_ACL_OUT:
-			tx.type = H4_ACL;
-			break;
-		case BT_BUF_CMD:
-			tx.type = H4_CMD;
-			break;
-		case BT_BUF_ISO_OUT:
-			if (IS_ENABLED(CONFIG_BT_ISO)) {
-				tx.type = H4_ISO;
-				break;
-			}
-			__fallthrough;
-		default:
-			LOG_DBG("Unknown buffer type");
-			goto done;
-		}
+	LOG_HEXDUMP_DBG(buf->data, buf->len, "Final HCI buffer:");
 
-		bytes = hci_driver_h4_send(h4_dev, &tx.type, 1);
-		if (bytes != 1) {
-			LOG_DBG("Unable to send H:4 type");
-			tx.type = H4_NONE;
-			return;
-		}
-	}
-
-	bytes = hci_driver_h4_send(h4_dev, tx.buf->data, tx.buf->len);
-	if (unlikely(bytes < 0)) {
-		LOG_DBG("Unable to write to UART (err %d)\r\n", bytes);
+	if (k_sem_take(&hci_send_sem, HCI_BT_HCI_SEND_TIMEOUT) == 0) {
+		ingchips_host_send_packet_to_controller(buf->data, buf->len);
 	} else {
-		net_buf_pull(tx.buf, bytes);
-	}
-
-	if (tx.buf->len) {
-		return;
+		LOG_ERR("Send packet timeout error");
+		err = -ETIMEDOUT;
 	}
 
 done:
-	tx.type = H4_NONE;
-	net_buf_unref(tx.buf);
-	tx.buf = net_buf_get(&tx.fifo, K_NO_WAIT);
-}
+	net_buf_unref(buf);
+	k_sem_give(&hci_send_sem);
 
-static inline void process_rx(void)
-{
-	LOG_DBG("remaining %u discard %u have_hdr %u rx.buf %p len %u", rx.remaining, rx.discard,
-	 	rx.have_hdr, rx.buf, rx.buf ? rx.buf->len : 0);///many log
-
-	if (rx.discard) {
-		rx.discard -= h4_discard(h4_dev, rx.discard);
-		LOG_DBG("discard return %d", rx.discard);
-		return;
-	}
-
-	if (rx.have_hdr) {
-		read_payload();
-	} else {
-		read_header();
-	}
-}
-
-static void rtx_thread(const struct device *unused, void *user_data)
-{
-	ARG_UNUSED(unused);
-	ARG_UNUSED(user_data);
-	LOG_DBG("rtx_thread");
-while(1) {
-	// 
-	// k_sem_take(&recv_sem, K_FOREVER);
-	// LOG_DBG("rec recv_sem");
-	int ret = 0;
-	do {
-		process_rx();
-		// process_tx();
-		ret++;
-		// LOG_DBG("process rx");
-		// k_sleep(K_MSEC(1000));
-	} while (ret < 10);
-}
-		
-}
-
-static int h4_send(struct net_buf *buf)
-{
-	LOG_DBG(">>>>>>>>>>>>>>***********h4 send");
-	LOG_DBG("buf %p type %u len %u", buf, bt_buf_get_type(buf), buf->len);
-
-	net_buf_put(&tx.fifo, buf);
-	return 0;
+	return err;
 }
 
 /** Setup the HCI transport, which usually means to reset the Bluetooth IC
@@ -634,7 +473,7 @@ static int h4_send(struct net_buf *buf)
   */
 int __weak bt_hci_transport_setup(const struct device *dev)
 {
-	h4_discard(h4_dev, 32);
+	//h4_discard(h4_dev, 32);
 	return 0;
 }
 
@@ -650,20 +489,6 @@ static int h4_open(void)
 		LOG_ERR("ret %d", ret);
 		return -EIO;
 	}
-
-	// uart_irq_callback_set(h4_dev, bt_uart_isr);
-	tid = k_thread_create(&rx_thread_data, rx_thread_stack,
-			      K_KERNEL_STACK_SIZEOF(rx_thread_stack),
-			      rx_thread, NULL, NULL, NULL,
-			      K_PRIO_COOP(CONFIG_BT_RX_PRIO),
-			      0, K_NO_WAIT);
-	k_thread_name_set(tid, "bt_rx_thread");
-    tid = k_thread_create(&rtx_thread_data, rtx_thread_stack,
-			      K_KERNEL_STACK_SIZEOF(rtx_thread_stack),
-			      rtx_thread, NULL, NULL, NULL,
-			      K_PRIO_COOP(CONFIG_BT_RX_PRIO),
-			      0, K_NO_WAIT);
-	k_thread_name_set(tid, "bt_rtx_thread");
 	return 0;
 }
 
@@ -695,11 +520,6 @@ static const struct bt_hci_driver drv = {
 static int bt_ingchips_init(void)
 {
     LOG_DBG("run @ %s %d\r\n", __FILE__, __LINE__);
-	// if (!device_is_ready(h4_dev)) {
-	// 	platform_printf("dev h4 not rdy\r\n ");
-	// 	return -ENODEV;
-	// }
-
 	bt_hci_driver_register(&drv);
 
 	return 0;
