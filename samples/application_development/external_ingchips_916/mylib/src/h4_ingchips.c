@@ -337,8 +337,9 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 	struct net_buf *buf = NULL;
 	size_t remaining = msg->len_of_hci;
 	uint8_t *data = msg->buff;
-	LOG_HEXDUMP_DBG(data, remaining, "host packet data:");
 	pkt_indicator = msg->hci_type;
+	printk("<<<%02x\r\n", pkt_indicator);
+	LOG_HEXDUMP_DBG(data, remaining, "host packet data:");
 	static int i = 0;
 	i++;
 	if( i == 1) {
@@ -362,10 +363,8 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 			LOG_ERR("Unknown HCI type %u", pkt_indicator);
 			return -1;
 		}
-
 		if (buf) {
 			LOG_DBG("Calling bt_recv(%p)", buf);
-
 			bt_recv(buf);
 		}
 end:
@@ -380,10 +379,13 @@ end:
         break;
     }
 	// k_sem_give(&recv_sem);
+	k_sem_give(&hci_send_sem);
     return 0;
 }
 
 void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
+	printk(">>>");
+	LOG_HEXDUMP_DBG(buffer,rx_len,"to controller");
 	switch (buffer[0])
     {
     case HCI_COMMAND_DATA_PACKET:
@@ -398,6 +400,7 @@ void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
                     buffer + 1 + sizeof(struct hci_command_packet_header),
                     header->param_len);
                 rx_len = 0;
+				LOG_DBG("CMD SEND");
             }
         }
         break;
@@ -415,6 +418,7 @@ void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
                     buffer + 1 + sizeof(struct hci_acl_packet_header),
                     data_len);
                 rx_len = 0;
+				LOG_DBG("ACL DATA send");
             }
         }
         break;
@@ -449,15 +453,12 @@ static int h4_send(struct net_buf *buf)
 	}
 	net_buf_push_u8(buf, pkt_indicator);
 
-	LOG_HEXDUMP_DBG(buf->data, buf->len, "Final HCI buffer:");
-
 	if (k_sem_take(&hci_send_sem, HCI_BT_HCI_SEND_TIMEOUT) == 0) {
 		ingchips_host_send_packet_to_controller(buf->data, buf->len);
 	} else {
 		LOG_ERR("Send packet timeout error");
 		err = -ETIMEDOUT;
 	}
-
 done:
 	net_buf_unref(buf);
 	k_sem_give(&hci_send_sem);
