@@ -1,5 +1,5 @@
-identifier: stm32f103_mini
-name: STM32F103RCT6 Mini Board
+identifier: ing916_mini
+name: ing916 Mini Board
 type: mcu
 arch: arm
 toolchain:
@@ -9,11 +9,11 @@ toolchain:
 ram: 40
 flash: 256
 supported:
-  - gpio
-  - i2c
-  - spi
-  - pwm
-  - watchdog
-  - adc
-  - counter
-vendor: st
+  # - gpio
+  # - i2c
+  # - spi
+  # - pwm
+  # - watchdog
+  # - adc
+  # - counter
+vendor: ingchips
