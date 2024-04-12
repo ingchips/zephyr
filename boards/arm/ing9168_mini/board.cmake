@@ -1,9 +1,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
-board_runner_args(jlink "--device=ING9168xx" "--speed=4000")
-board_runner_args(pyocd "--target=ING9168xx" "--frequency=4000000")
-include(${ZEPHYR_BASE}/boards/common/nrfjprog.board.cmake)
-include(${ZEPHYR_BASE}/boards/common/nrfutil.board.cmake)
-include(${ZEPHYR_BASE}/boards/common/jlink.board.cmake)
-include(${ZEPHYR_BASE}/boards/common/pyocd.board.cmake)
-include(${ZEPHYR_BASE}/boards/common/openocd-nrf5.board.cmake)
+set(SUPPORTED_EMU_PLATFORMS qemu)
+
+set(QEMU_CPU_TYPE_${ARCH} cortex-m3)
+set(QEMU_FLAGS_${ARCH}
+  -cpu ${QEMU_CPU_TYPE_${ARCH}}
+  -machine lm3s6965evb
+  -nographic
+  -vga none
+  )
+board_set_debugger_ifnset(qemu)
