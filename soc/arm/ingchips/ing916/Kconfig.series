@@ -3,14 +3,14 @@
 # Copyright (c) 2016 Linaro Limited
 # SPDX-License-Identifier: Apache-2.0
 
-config SOC_SERIES_STM32F4X
+config SOC_SERIES_INGCHIPS
 	bool "STM32F4x Series MCU"
 	select ARM
 	select CPU_CORTEX_M4
 	select CPU_CORTEX_M_HAS_DWT
 	select CPU_HAS_FPU
-	select SOC_FAMILY_STM32
-	select HAS_STM32CUBE
+	select SOC_FAMILY_ING916
+	# select HAS_STM32CUBE
 	select CPU_HAS_ARM_MPU
 	select HAS_SWO
 	help

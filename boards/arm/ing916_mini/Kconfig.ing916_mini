@@ -1,0 +1,8 @@
+# STM32F103RCT6 Mini board configuration
+
+# Copyright (c) 2020 WuhanStudio
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_ING916_MINI
+	bool "ing916 Mini Board"
+	select SOC_ING916

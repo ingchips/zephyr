@@ -26,15 +26,15 @@
  */
 static int st_stm32f4_init(void)
 {
-	/* Enable ART Flash cache accelerator for both instruction and data */
-	LL_FLASH_EnableInstCache();
-	LL_FLASH_EnableDataCache();
+	// /* Enable ART Flash cache accelerator for both instruction and data */
+	// LL_FLASH_EnableInstCache();
+	// LL_FLASH_EnableDataCache();
 
-	/* Update CMSIS SystemCoreClock variable (HCLK) */
-	/* At reset, system core clock is set to 16 MHz from HSI */
-	SystemCoreClock = 16000000;
+	// /* Update CMSIS SystemCoreClock variable (HCLK) */
+	// /* At reset, system core clock is set to 16 MHz from HSI */
+	// SystemCoreClock = 16000000;
 
-	return 0;
+	// return 0;
 }
 
 SYS_INIT(st_stm32f4_init, PRE_KERNEL_1, 0);

@@ -10,7 +10,6 @@ config SOC_FAMILY_INGCHIPS
 	select BUILD_OUTPUT_HEX
 
 if SOC_FAMILY_INGCHIPS
-
 config SOC_FAMILY
 	string
 	default "ingchips"

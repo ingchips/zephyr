@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_INGCHIPS_ING9168
+
+config BOARD
+	default "ingchips dev_boards ing9168"
+
+endif #
