@@ -61,7 +61,6 @@ Hints:
     break()
   endif()
 endforeach()
-
 if(NOT SOC_DIR)
   message(FATAL_ERROR "Could not find SOC=${SOC_NAME} for BOARD=${BOARD},\n"
           "please check your installation.\n"

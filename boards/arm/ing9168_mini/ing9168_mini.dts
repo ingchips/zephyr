@@ -2,11 +2,11 @@
 
 /dts-v1/;
 
-#include <ti/lm3s6965.dtsi>
+#include <ingchips/ing9168.dtsi>
 
 / {
-	model = "QEMU Cortex-M3";
-	compatible = "ti,lm3s6965evb-qemu", "ti,lm3s6965";
+	model = "QEMU Cortex-M4";
+	compatible = "ingchips,ing9168mini-qemu", "ingchips,ing9168mini";
 
 	aliases {
 		uart-0 = &uart0;

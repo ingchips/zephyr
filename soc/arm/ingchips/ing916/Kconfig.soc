@@ -1,4 +1,0 @@
-
-config SOC_INGCHIPS_ING916
-	bool "INGCHIPS 916"
-

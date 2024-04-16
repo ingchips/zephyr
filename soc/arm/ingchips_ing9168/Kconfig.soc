@@ -1,0 +1,9 @@
+
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_INGCHIPS_ING9168
+	bool "INGCHIPS ING9168"
+	select ARM
+	select CPU_CORTEX_M3
+	select CPU_CORTEX_M_HAS_DWT	
+

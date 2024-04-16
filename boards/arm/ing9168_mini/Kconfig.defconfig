@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
-if BOARD_QEMU_CORTEX_M3
+if BOARD_INGCHIPS_ING9168
 
 config BUILD_OUTPUT_BIN
 	default n
 
 config BOARD
-	default "qemu_cortex_m3"
+	default "boards_ingchips_ing9168"
 
 # DWT is not properly emulated in QEMU
 choice NULL_POINTER_EXCEPTION_DETECTION
@@ -14,4 +14,4 @@ choice NULL_POINTER_EXCEPTION_DETECTION
 	default NULL_POINTER_EXCEPTION_DETECTION_NONE
 endchoice
 
-endif # BOARD_QEMU_CORTEX_M3
+endif # BOARD_INGCHIPS_ING9168
