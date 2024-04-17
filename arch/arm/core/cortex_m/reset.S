@@ -93,7 +93,7 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
 #endif /* CONFIG_PM_S2RAM */
 
 #if defined(CONFIG_PLATFORM_SPECIFIC_INIT)
-#ifndef CONFIG_INGCHIP_918
+#ifndef CONFIG_SOC_INGCHIPS_ING9168
     bl z_arm_platform_init
 #endif
 #endif
@@ -151,7 +151,7 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
     ldr r1, =CONFIG_ISR_STACK_SIZE + MPU_GUARD_ALIGN_AND_SIZE
     adds r0, r0, r1
     msr PSP, r0
-#ifndef CONFIG_INGCHIP_918
+#ifndef CONFIG_SOC_INGCHIPS_ING9168
     mrs r0, CONTROL
     movs r1, #2
     orrs r0, r1 /* CONTROL_SPSEL_Msk */
@@ -170,7 +170,7 @@ SECTION_SUBSEC_FUNC(TEXT,_reset_section,__start)
      * (even though we do not intend to return).
      */
 
-#ifndef CONFIG_INGCHIP_918
+#ifndef CONFIG_SOC_INGCHIPS_ING9168
     bl z_arm_prep_c
 #else 
 Reset_Handler:

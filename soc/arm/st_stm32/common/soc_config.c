@@ -25,7 +25,7 @@
  */
 static int st_stm32_common_config(void)
 {
-#ifdef CONFIG_INGCHIP_918
+#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 #endif
 #ifdef CONFIG_LOG_BACKEND_SWO

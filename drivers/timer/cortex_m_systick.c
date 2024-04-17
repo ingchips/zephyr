@@ -323,7 +323,7 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 	} else {
 		cycle_count += (val1 - val2);
 	}
-#ifdef CONFIG_INGCHIP_918
+#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern int platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
 	platform_pre_suppress_ticks_and_sleep_processing(SysTick->LOAD);
 	#endif
@@ -414,7 +414,7 @@ void sys_clock_disable(void)
 {
 	SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
 }
-#ifdef CONFIG_INGCHIP_918
+#ifdef CONFIG_SOC_INGCHIPS_ING9168
 int sys_clock_driver_init(void)
 #else
 static int sys_clock_driver_init(void)

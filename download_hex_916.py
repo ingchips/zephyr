@@ -2,6 +2,12 @@
 
 import pylink
 import time
+import sys
+if len(sys.argv) != 2:
+	print("Usage: python script.py <file_path>")
+file_path = sys.argv[1]
+# 在这里可以使用 file_path 进行后续操作
+print("文件路径为:", file_path)
 
 jlink = pylink.JLink()
 jlink.open()
@@ -22,9 +28,6 @@ if (rst == True):
 else:
 	print("Target connect fail\r")
 	jlink.close()
-
-file_path = './build/zephyr/zephyr.hex'
-# file_path = '~/zephyrproject/zephyr/samples/application_development/external_ingchips/mylib/ING918XX_SDK_SOURCE/bundles/noos_typical/ING9187xx/platform.hex'
 
 jlink.flash_file(file_path, 0x2027000)
 jlink.reset()

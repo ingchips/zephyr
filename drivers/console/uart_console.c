@@ -77,7 +77,7 @@ void uart_console_out_debug_hook_install(uart_console_out_debug_hook_t *hook)
 
 static int console_out(int c)
 {
-#ifdef CONFIG_INGCHIP_918
+#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern uint32_t cb_putc(char *c, void *dummy);
 	cb_putc(&c, NULL);
 	return c;

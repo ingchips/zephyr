@@ -698,7 +698,7 @@ static int uart_stm32_poll_in(const struct device *dev, unsigned char *c)
 
 static void uart_stm32_poll_out(const struct device *dev, unsigned char c)
 {
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern int _write(int fd, char *ptr, int len);
 	_write(0, &c, 1);
 	#else
@@ -725,7 +725,7 @@ static int uart_stm32_poll_in_u16(const struct device *dev, uint16_t *in_u16)
 
 static void uart_stm32_poll_out_u16(const struct device *dev, uint16_t out_u16)
 {
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern int _write(int fd, char *ptr, int len);
 	_write(0, &c, 1);
 	#else
@@ -1978,7 +1978,7 @@ static int uart_stm32_init(const struct device *dev)
 {
 	const struct uart_stm32_config *config = dev->config;
 	int err;
-    #ifdef CONFIG_INGCHIP_918
+    #ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	err = uart_stm32_clocks_enable(dev);

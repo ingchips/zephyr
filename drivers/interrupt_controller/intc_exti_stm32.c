@@ -223,7 +223,7 @@ static void stm32_fill_irq_table(int8_t start, int8_t len, int32_t irqn)
  */
 static int stm32_exti_init(const struct device *dev)
 {
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	ARG_UNUSED(dev);

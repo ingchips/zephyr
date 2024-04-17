@@ -249,7 +249,7 @@ void sys_clock_announce(int32_t ticks)
 	announce_remaining = 0;
 
 	sys_clock_set_timeout(next_timeout(), false);
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern int platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
 	platform_pre_suppress_ticks_and_sleep_processing(next_timeout());
 	#endif

@@ -719,7 +719,7 @@ static void set_up_fixed_clock_sources(void)
 int stm32_clock_control_init(const struct device *dev)
 {
 	ARG_UNUSED(dev);
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 

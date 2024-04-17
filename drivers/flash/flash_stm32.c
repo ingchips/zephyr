@@ -166,7 +166,7 @@ static int flash_stm32_read(const struct device *dev, off_t offset,
 			    void *data,
 			    size_t len)
 {
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	if (!flash_stm32_valid_range(dev, offset, len, false)) {
@@ -190,7 +190,7 @@ static int flash_stm32_erase(const struct device *dev, off_t offset,
 			     size_t len)
 {
 	int rc;
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	if (!flash_stm32_valid_range(dev, offset, len, true)) {
@@ -229,7 +229,7 @@ static int flash_stm32_write(const struct device *dev, off_t offset,
 			     const void *data, size_t len)
 {
 	int rc;
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	if (!flash_stm32_valid_range(dev, offset, len, true)) {
@@ -530,7 +530,7 @@ static const struct flash_driver_api flash_stm32_api = {
 static int stm32_flash_init(const struct device *dev)
 {
 	int rc;
-	#ifdef CONFIG_INGCHIP_918
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
 	return 0;
 	#endif
 	/* Below is applicable to F0, F1, F3, G0, G4, L1, L4, L5, U5 & WB55 series.
