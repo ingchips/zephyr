@@ -10,9 +10,9 @@ toolchain:
 supported:
   - netif:serial-net
   - gpio
-ram: 64
+ram: 40
 flash: 256
 testing:
   ignore_tags:
     - net
-vendor: ti
+vendor: ingchips
