@@ -283,6 +283,7 @@ infineon	Infineon Technologies
 inforce	Inforce Computing
 inventek	Inventek Systems
 ivo	InfoVision Optoelectronics Kunshan Co. Ltd.
+ingchips	Ingchips Technology Co., Ltd.
 ingenic	Ingenic Semiconductor
 innolux	Innolux Corporation
 inside-secure	INSIDE Secure
