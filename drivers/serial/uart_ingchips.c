@@ -1,6 +1,6 @@
 /* stellarisUartDrv.c - Stellaris UART driver */
 
-#define DT_DRV_COMPAT ingchips_stellaris_uart
+#define DT_DRV_COMPAT ti_stellaris_uart
 
 /*
  * Copyright (c) 2013-2015 Wind River Systems, Inc.

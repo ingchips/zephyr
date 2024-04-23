@@ -1,0 +1,12 @@
+description: ingchips Stellaris UART
+
+compatible: "ingchips,stellaris-uart"
+
+include: uart-controller.yaml
+
+properties:
+  reg:
+    required: true
+
+  interrupts:
+    required: true
