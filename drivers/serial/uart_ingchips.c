@@ -28,6 +28,7 @@
 #include <zephyr/drivers/uart.h>
 #include <zephyr/linker/sections.h>
 #include <zephyr/irq.h>
+#include "platform_api.h"
 
 /* definitions */
 
@@ -290,11 +291,16 @@ static void uart_stellaris_poll_out(const struct device *dev,
 {
 	const struct uart_stellaris_config *config = dev->config;
 
-	while (!poll_tx_ready(dev)) {
-	}
+	// while (!poll_tx_ready(dev)) {
+	// }
 
-	/* send a character */
-	config->uart->dr = (uint32_t)c;
+	// /* send a character */
+	// config->uart->dr = (uint32_t)c;
+	#define TRACE_PORT    APB_UART1
+
+#define PRINT_PORT    APB_UART0
+	while (apUART_Check_TXFIFO_FULL(PRINT_PORT) == 1);
+    UART_SendData(PRINT_PORT, (uint8_t)*c);
 }
 
 #if CONFIG_UART_INTERRUPT_DRIVEN
