@@ -293,12 +293,10 @@ static void uart_stellaris_poll_out(const struct device *dev,
 
 	// while (!poll_tx_ready(dev)) {
 	// }
-
 	// /* send a character */
 	// config->uart->dr = (uint32_t)c;
 	#define TRACE_PORT    APB_UART1
-
-#define PRINT_PORT    APB_UART0
+	#define PRINT_PORT    APB_UART0
 	while (apUART_Check_TXFIFO_FULL(PRINT_PORT) == 1);
     UART_SendData(PRINT_PORT, (uint8_t)*c);
 }

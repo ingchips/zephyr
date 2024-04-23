@@ -35,7 +35,7 @@
 
 			flash0: flash@0 {
 				compatible = "soc-nv-flash";
-				reg = <0x00000000 (256*1024)>;
+				reg = <0x2027000 (256*1024)>;
 			};
 		};
 
