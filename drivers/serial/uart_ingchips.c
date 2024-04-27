@@ -1,6 +1,6 @@
 /* stellarisUartDrv.c - Stellaris UART driver */
 
-#define DT_DRV_COMPAT ti_stellaris_uart
+#define DT_DRV_COMPAT ingchips_ing_uart
 
 /*
  * Copyright (c) 2013-2015 Wind River Systems, Inc.
@@ -293,12 +293,13 @@ static void uart_stellaris_poll_out(const struct device *dev,
 
 	// while (!poll_tx_ready(dev)) {
 	// }
+
 	// /* send a character */
 	// config->uart->dr = (uint32_t)c;
 	#define TRACE_PORT    APB_UART1
 	#define PRINT_PORT    APB_UART0
 	while (apUART_Check_TXFIFO_FULL(PRINT_PORT) == 1);
-    UART_SendData(PRINT_PORT, (uint8_t)*c);
+    UART_SendData(PRINT_PORT,c);
 }
 
 #if CONFIG_UART_INTERRUPT_DRIVEN
@@ -679,7 +680,7 @@ DEVICE_DT_INST_DEFINE(2,
 		    NULL,
 		    &uart_stellaris_dev_data_2, &uart_stellaris_dev_cfg_2,
 		    PRE_KERNEL_1, CONFIG_SERIAL_INIT_PRIORITY,
-		    &uart_stellaris_driver_api);
+		    &uart_ing_driver_api);
 
 #ifdef CONFIG_UART_INTERRUPT_DRIVEN
 static void irq_config_func_2(const struct device *dev)

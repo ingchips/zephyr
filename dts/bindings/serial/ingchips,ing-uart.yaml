@@ -1,6 +1,6 @@
-description: ingchips Stellaris UART
+description: ingchips ing UART
 
-compatible: "ingchips,stellaris-uart"
+compatible: "ingchips,ing-uart"
 
 include: uart-controller.yaml
 
