@@ -1,4 +1,4 @@
-description: ingchips ing UART
+description: INGCHIPS Ing UART
 
 compatible: "ingchips,ing-uart"
 

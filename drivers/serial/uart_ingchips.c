@@ -578,7 +578,6 @@ static const struct uart_driver_api uart_stellaris_driver_api = {
 };
 
 
-#ifdef CONFIG_UART_STELLARIS_PORT_0
 
 #ifdef CONFIG_UART_INTERRUPT_DRIVEN
 static void irq_config_func_0(const struct device *port);
@@ -615,9 +614,7 @@ static void irq_config_func_0(const struct device *dev)
 }
 #endif
 
-#endif /* CONFIG_UART_STELLARIS_PORT_0 */
 
-#ifdef CONFIG_UART_STELLARIS_PORT_1
 
 #ifdef CONFIG_UART_INTERRUPT_DRIVEN
 static void irq_config_func_1(const struct device *port);
@@ -654,7 +651,6 @@ static void irq_config_func_1(const struct device *dev)
 }
 #endif
 
-#endif /* CONFIG_UART_STELLARIS_PORT_1 */
 
 #ifdef CONFIG_UART_STELLARIS_PORT_2
 
