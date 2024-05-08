@@ -482,9 +482,8 @@ static int h4_open(void)
 {
 	int ret;
 	k_tid_t tid;
-	LOG_DBG("@%s\r\n", __FUNCTION__);
-
-    const platform_hci_link_layer_interf_t *hci_interf = platform_get_link_layer_interf();
+	LOG_DBG("call %s\r\n", __FUNCTION__);
+    hci_interf = (const platform_hci_link_layer_interf_t *)platform_get_link_layer_interf();
 	ret = bt_hci_transport_setup(h4_dev);
 	if (ret < 0) {
 		LOG_ERR("ret %d", ret);
@@ -522,7 +521,9 @@ static int bt_ingchips_init(void)
 {
     LOG_DBG("run @ %s %d\r\n", __FILE__, __LINE__);
 	bt_hci_driver_register(&drv);
-
+	if (hci_interf == NULL) {
+		hci_interf = (const platform_hci_link_layer_interf_t *)platform_get_link_layer_interf();
+	}
 	return 0;
 }
 

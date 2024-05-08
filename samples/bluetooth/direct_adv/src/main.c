@@ -163,7 +163,8 @@ int main(void)
 	bt_conn_auth_info_cb_register(&bt_conn_auth_info);
 
 	while (1) {
-		k_sleep(K_FOREVER);
+		printk("ready");
+		k_sleep(K_SECONDS(5));
 	}
 	return 0;
 }

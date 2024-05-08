@@ -50,7 +50,7 @@ include_directories(${ING_BUNDLE}/os)
 
 target_sources(app PRIVATE ${mylib_src_dir}/src/main.c)
 target_sources(app PRIVATE ${mylib_src_dir}/src/profile.c)
-# zephyr_sources_ifdef(CONFIG_BT_H4_INGCHIPS ${mylib_src_dir}/src/h4_ingchips.c)
+# zephyr_sources_ifdef(CONFIG_BT_INGCHIPS ${mylib_src_dir}/src/h4_ingchips.c)
 target_sources(app PRIVATE ${mylib_src_dir}/src/h4_ingchips.c)
 
 # target_sources(app PRIVATE ${mylib_src_dir}/src/uart_console.c)

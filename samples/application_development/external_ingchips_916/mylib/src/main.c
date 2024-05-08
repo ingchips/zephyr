@@ -226,7 +226,7 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
 }
 
 // trace_uart_t trace_ctx = {.port = TRACE_PORT};
-#ifdef CONFIG_BT_H4_INGCHIPS
+#ifdef CONFIG_BT_INGCHIPS
 extern uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_);
 #endif
 static const platform_evt_cb_table_t evt_cb_table =
@@ -260,7 +260,7 @@ static const platform_evt_cb_table_t evt_cb_table =
         //     .f = (f_platform_evt_cb)cb_trace_uart,
         //     .user_data = &trace_ctx,
         // },
-        #ifdef CONFIG_BT_H4_INGCHIPS
+        #ifdef CONFIG_BT_INGCHIPS
         [PLATFORM_CB_EVT_HCI_RECV] = {
             .f = (f_platform_evt_cb)cb_hci_recv,
         },
@@ -272,7 +272,7 @@ static const platform_evt_cb_table_t evt_cb_table =
 extern const gen_os_driver_t *os_impl_get_driver(void);
 uintptr_t app_main()
 {
-    #ifdef CONFIG_BT_H4_INGCHIPS
+    #ifdef CONFIG_BT_INGCHIPS
     extern const platform_hci_link_layer_interf_t *hci_interf;
     hci_interf = platform_get_link_layer_interf();
     #endif 
@@ -328,7 +328,7 @@ void main() {
     // printk("creat thread tid %d\r\n", tid);
     k_sleep(K_MSEC(1000));
     platform_printf("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
-    #ifdef CONFIG_BT_H4_INGCHIPS
+    #ifdef CONFIG_BT_INGCHIPS
     char *bt_name = bt_get_name();
     int ret = bt_enable(NULL);
     bt_ready();
