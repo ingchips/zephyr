@@ -11,6 +11,7 @@ config SOC_INGCHIPS_ING9168
 	select HAS_SWO
 	select HAS_PM
 	select HAS_POWEROFF
+	select HAS_INGCHIPS_DRIVERS
 	help
 	  Enable support for ING9168
 
