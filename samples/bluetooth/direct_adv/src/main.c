@@ -151,6 +151,9 @@ static struct bt_conn_auth_info_cb bt_conn_auth_info = {
 
 int main(void)
 {
+	extern uint32_t os_impl_task_create_real();
+	os_impl_task_create_real();
+	k_sleep(K_SECONDS(5));
 	int err;
 
 	err = bt_enable(NULL);
