@@ -21,7 +21,7 @@
 
 	sysclk: system-clock {
 		compatible = "fixed-clock";
-		clock-frequency = <120000000>;
+		clock-frequency = <112000000>;
 		#clock-cells = <0>;
 	};
 
