@@ -55,13 +55,15 @@
 			status = "disabled";
 		};
 
-		uart2: uart@4000e000 {
-			compatible = "ingchips,ing-uart";
-			reg = <0x4000e000 0x4c>;
-			clocks = <&sysclk>;
-			interrupts = <33 3>;
-			status = "disabled";
+		gpio0: gpio@40004000 {
+			compatible = "ingchips,ing-gpio";
+			reg = <0x40004000 0x1000>;
+			interrupts = <0 3>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <8>;
 		};
+
 	};
 };
 

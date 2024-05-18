@@ -119,6 +119,8 @@ source "drivers/gpio/Kconfig.it8xxx2"
 
 source "drivers/gpio/Kconfig.ifx_cat1"
 
+source "drivers/gpio/Kconfig.ingchips"
+
 source "drivers/gpio/Kconfig.intel"
 
 source "drivers/gpio/Kconfig.xec"
@@ -213,5 +215,6 @@ source "drivers/gpio/Kconfig.altera"
 source "drivers/gpio/Kconfig.bcm2711"
 
 source "drivers/gpio/Kconfig.ra"
+
 
 endif # GPIO
