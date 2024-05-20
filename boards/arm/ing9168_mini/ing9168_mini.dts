@@ -31,8 +31,17 @@
 	status = "okay";
 	current-speed = <115200>;
 };
+
 &gpio0 {
 	status = "okay";
 };
 
+&gpio1 {
+	status = "okay";
+};
+
+// &i2c0 {
+// 	pinctrl-0 = <&i2c3_scl_pc0 &i2c3_sda_pc1>;
+// 	status = "okay";
+// };
 
