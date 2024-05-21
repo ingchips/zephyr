@@ -5,10 +5,11 @@
 #include <ingchips/ing9168.dtsi>
 
 / {
-	model = "QEMU Cortex-M4";
-	compatible = "ingchips,ing9168mini-qemu", "ingchips,ing9168mini";
+	model = "ingchips ing9168mini";
+	compatible = "ingchips,ing9168mini";
 
 	aliases {
+		led0 = &green_led_2;
 		uart-0 = &uart0;
 		uart-1 = &uart1;
 	};
@@ -20,6 +21,24 @@
 		zephyr,shell-uart = &uart0;
 		zephyr,uart-pipe = &uart1;
 	};
+
+	leds: leds {
+		compatible = "gpio-leds";
+		green_led_2: led_2 {
+			gpios = <&gpio0 35 1>;
+			label = "User LD2";
+		};
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		user_button: button {
+			label = "User";
+			gpios = <&gpio0 1 0>;
+			zephyr,code = <0>;
+		};
+	};
+
 };
 
 &uart0 {
