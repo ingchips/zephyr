@@ -15,8 +15,9 @@
 #define COUNTER_MAX 0x00ffffff
 #define TIMER_STOPPED 0xff000000
 
-#define CYC_PER_TICK (sys_clock_hw_cycles_per_sec()	\
-		      / CONFIG_SYS_CLOCK_TICKS_PER_SEC)
+// #define CYC_PER_TICK (sys_clock_hw_cycles_per_sec()	\
+// 		      / CONFIG_SYS_CLOCK_TICKS_PER_SEC)
+#define CYC_PER_TICK 32
 #define MAX_TICKS ((k_ticks_t)(COUNTER_MAX / CYC_PER_TICK) - 1)
 #define MAX_CYCLES (MAX_TICKS * CYC_PER_TICK)
 
@@ -98,6 +99,7 @@ static uint32_t idle_timer_pre_idle;
 static const struct device *idle_timer = DEVICE_DT_GET(DT_CHOSEN(zephyr_cortex_m_idle_timer));
 #endif /* CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER */
 
+uint32_t timeout_ticks_recent_set = 0;
 /* This internal function calculates the amount of HW cycles that have
  * elapsed since the last time the absolute HW cycles counter has been
  * updated. 'cycle_count' may be updated either by the ISR, or when we
@@ -170,7 +172,6 @@ void sys_clock_isr(void *arg)
 	ARG_UNUSED(arg);
 	uint32_t dcycles;
 	uint32_t dticks;
-
 	/* Update overflow_cyc and clear COUNTFLAG by invoking elapsed() */
 
 	elapsed();
@@ -178,8 +179,8 @@ void sys_clock_isr(void *arg)
 	/* Increment the amount of HW cycles elapsed (complete counter
 	 * cycles) and announce the progress to the kernel.
 	 */
-	cycle_count += overflow_cyc;
-	overflow_cyc = 0;
+	cycle_count += overflow_cyc;//
+	overflow_cyc = 0;//
 
 #ifdef CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER
 	/* Rare case, when the interrupt was triggered, with previously programmed
@@ -209,7 +210,7 @@ void sys_clock_isr(void *arg)
 
 		dcycles = cycle_count - announced_cycles;
 		dticks = dcycles / CYC_PER_TICK;
-		announced_cycles += dticks * CYC_PER_TICK;
+				announced_cycles += dticks * CYC_PER_TICK;
 		sys_clock_announce(dticks);
 	} else {
 		sys_clock_announce(1);
@@ -224,6 +225,8 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 	 * the counter. (Note: we can assume if idle==true that
 	 * interrupts are already disabled)
 	 */
+	// timeout_ticks_recent_set = ticks;
+	// return;
 	if (IS_ENABLED(CONFIG_TICKLESS_KERNEL) && idle && ticks == K_TICKS_FOREVER) {
 		SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
 		last_load = TIMER_STOPPED;
@@ -323,10 +326,7 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 	} else {
 		cycle_count += (val1 - val2);
 	}
-#ifdef CONFIG_SOC_INGCHIPS_ING9168
-	extern int platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
-	platform_pre_suppress_ticks_and_sleep_processing(SysTick->LOAD);
-	#endif
+
 	k_spin_unlock(&lock, key);
 #endif
 }
@@ -426,9 +426,11 @@ static int sys_clock_driver_init(void)
 	overflow_cyc = 0U;
 	SysTick->LOAD = last_load - 1;
 	SysTick->VAL = 0; /* resets timer to last_load */
+	// SysTick->CTRL |= (SysTick_CTRL_ENABLE_Msk |
+	// 		  SysTick_CTRL_TICKINT_Msk |
+	// 		  SysTick_CTRL_CLKSOURCE_Msk);
 	SysTick->CTRL |= (SysTick_CTRL_ENABLE_Msk |
-			  SysTick_CTRL_TICKINT_Msk |
-			  SysTick_CTRL_CLKSOURCE_Msk);
+			  SysTick_CTRL_TICKINT_Msk);
 	return 0;
 }
 

@@ -139,35 +139,55 @@ static void bt_ready(void)
 
 void pairing_complete(struct bt_conn *conn, bool bonded)
 {
-	printk("Pairing completed. Rebooting in 5 seconds...\n");
+	printk("Pairing completed.  not Rebooting in 5 seconds...\n");
 
 	k_sleep(K_SECONDS(5));
-	sys_reboot(SYS_REBOOT_WARM);
+	// sys_reboot(SYS_REBOOT_WARM);
 }
 
 static struct bt_conn_auth_info_cb bt_conn_auth_info = {
 	.pairing_complete = pairing_complete
 };
 
+int sleep_s = 1;
 int main(void)
 {
 	extern uint32_t os_impl_task_create_real();
 	os_impl_task_create_real();
-	k_sleep(K_SECONDS(5));
-	int err;
+	// k_sleep(K_SECONDS(3));
+	// int err;
 
-	err = bt_enable(NULL);
-	if (err) {
-		printk("Bluetooth init failed (err %d)\n", err);
-		return 0;
-	}
+	// err = bt_enable(NULL);
+	// if (err) {
+	// 	printk("Bluetooth init failed (err %d)\n", err);
+	// 	return 0;
+	// }
 
-	bt_ready();
-	bt_conn_auth_info_cb_register(&bt_conn_auth_info);
-
+	// bt_ready();
+	// bt_conn_auth_info_cb_register(&bt_conn_auth_info);
+	// k_sleep(K_SECONDS(10));
+	printk("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
 	while (1) {
-		printk("ready");
-		k_sleep(K_SECONDS(5));
+		// k_timeout_t time_out =  K_MSEC(1);
+        
+        // uint32_t ticks = platform_pre_suppress_ticks_and_sleep_processing(0xffffff);
+        // if (ticks < 5) continue;
+        // sysPreSleepProcessing();
+        // sysPostSleepProcessing();
+        
+		// extern int platform_pre_suppress_ticks_and_sleep_processing(int a);
+		// platform_pre_suppress_ticks_and_sleep_processing(0xfff);
+		// extern int platform_pre_sleep_processing();
+		// platform_pre_sleep_processing();
+		// // k_cpu_idle();
+		// extern int platform_post_sleep_processing();
+		// platform_post_sleep_processing();
+
+
+        // platform_os_idle_resumed_hook();
+		k_sleep(K_SECONDS(sleep_s));
+		printk("main thread ksleep%ds\r\n", sleep_s++);
+		
 	}
 	return 0;
 }
