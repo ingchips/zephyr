@@ -338,7 +338,7 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 	size_t remaining = msg->len_of_hci;
 	uint8_t *data = msg->buff;
 	pkt_indicator = msg->hci_type;
-	printk("<<<%02x\r\n", pkt_indicator);
+	LOG_DBG("<<<%02x\r\n", pkt_indicator);
 	LOG_HEXDUMP_DBG(data, remaining, "host packet data:");
 	static int i = 0;
 	i++;
@@ -384,7 +384,7 @@ end:
 }
 
 void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
-	printk(">>>");
+	LOG_DBG(">>>");
 	LOG_HEXDUMP_DBG(buffer,rx_len,"to controller");
 	switch (buffer[0])
     {
