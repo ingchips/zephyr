@@ -42,15 +42,23 @@ void idle(void *unused1, void *unused2, void *unused3)
 	__ASSERT_NO_MSG(_current->base.prio >= 0);
 	while (true) {
 		uint32_t next_timeout_ticks = z_get_next_timeout_expiry(); 
+		if (next_timeout_ticks == 0x7fffffff) {
+			k_cpu_idle();
+			printk(" ");
+			continue;
+			// next_timeout_ticks = 0xffffff;
+		}
 		extern uint32_t platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
 		extern uint32_t _rt_suppress_ticks_and_sleep(uint32_t expected_ticks);
-		next_timeout_ticks = platform_pre_suppress_ticks_and_sleep_processing(next_timeout_ticks);
-		if (next_timeout_ticks < 5) {
-			k_cpu_idle();
+		uint32_t next_timeout_ticks_out = platform_pre_suppress_ticks_and_sleep_processing(next_timeout_ticks);
+		printk("next timeout ticks = %d %d\r\n", next_timeout_ticks, next_timeout_ticks_out);
+		if (next_timeout_ticks_out < 5) {
+			// k_cpu_idle();
 		} else {
-			__set_PRIMASK(1);
-			uint32_t delta_ticks = _rt_suppress_ticks_and_sleep(next_timeout_ticks);
-			__set_PRIMASK(0);
+			
+			// unsigned int key = arch_irq_lock();
+			uint32_t delta_ticks = _rt_suppress_ticks_and_sleep(next_timeout_ticks_out);
+			// arch_irq_unlock(key);
 			sys_clock_announce(delta_ticks);
 
 		}

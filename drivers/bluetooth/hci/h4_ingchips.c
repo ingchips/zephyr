@@ -384,8 +384,8 @@ end:
 }
 
 void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
-	LOG_DBG(">>>");
-	LOG_HEXDUMP_DBG(buffer,rx_len,"to controller");
+
+	LOG_HEXDUMP_DBG(buffer, rx_len, ">>>");
 	switch (buffer[0])
     {
     case HCI_COMMAND_DATA_PACKET:
