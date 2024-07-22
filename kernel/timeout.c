@@ -206,7 +206,7 @@ int32_t z_get_next_timeout_expiry(void)
 	return ret;
 }
 
-void sys_clock_announce(int32_t ticks)///+1
+void sys_clock_announce(int32_t ticks)
 {
 	k_spinlock_key_t key = k_spin_lock(&timeout_lock);
 
@@ -247,10 +247,12 @@ void sys_clock_announce(int32_t ticks)///+1
 
 	curr_tick += announce_remaining;
 	announce_remaining = 0;
-	// if(ticks != 1)
-	// printk("next_timeout=%d\r\n", ticks);
-	sys_clock_set_timeout(next_timeout(), false);
 
+	sys_clock_set_timeout(next_timeout(), false);
+	#ifdef CONFIG_SOC_INGCHIPS_ING9168
+	extern int platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
+	platform_pre_suppress_ticks_and_sleep_processing(next_timeout());
+	#endif
 	k_spin_unlock(&timeout_lock, key);
 
 #ifdef CONFIG_TIMESLICING

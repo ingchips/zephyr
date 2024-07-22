@@ -112,10 +112,10 @@ static void pm_resume_devices(void)
  */
 static inline void pm_state_notify(bool entering_state)
 {
-		LOG_DBG("%s", __FUNCTION__);
 	struct pm_notifier *notifier;
 	k_spinlock_key_t pm_notifier_key;
 	void (*callback)(enum pm_state state);
+
 	pm_notifier_key = k_spin_lock(&pm_notifier_lock);
 	SYS_SLIST_FOR_EACH_CONTAINER(&pm_notifiers, notifier, _node) {
 		if (entering_state) {
@@ -147,7 +147,6 @@ void pm_system_resume(void)
 	 * The kernel scheduler will get control after the ISR finishes
 	 * and it may schedule another thread.
 	 */
-	LOG_DBG("%s", __FUNCTION__);
 	if (atomic_test_and_clear_bit(z_post_ops_required, id)) {
 		pm_state_exit_post_ops(z_cpus_pm_state[id].state, z_cpus_pm_state[id].substate_id);
 		pm_state_notify(false);
@@ -166,7 +165,7 @@ bool pm_state_force(uint8_t cpu, const struct pm_state_info *info)
 	key = k_spin_lock(&pm_forced_state_lock);
 	z_cpus_pm_forced_state[cpu] = *info;
 	k_spin_unlock(&pm_forced_state_lock, key);
-	LOG_DBG("%s", __FUNCTION__);
+
 	return true;
 }
 
@@ -174,7 +173,7 @@ bool pm_system_suspend(int32_t ticks)
 {
 	uint8_t id = CURRENT_CPU;
 	k_spinlock_key_t key;
-	LOG_DBG("%s %d", __FUNCTION__, ticks);
+
 	SYS_PORT_TRACING_FUNC_ENTER(pm, system_suspend, ticks);
 
 	key = k_spin_lock(&pm_forced_state_lock);

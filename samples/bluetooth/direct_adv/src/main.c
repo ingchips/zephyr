@@ -119,7 +119,7 @@ static void bt_ready(void)
 	/* Address is equal to BT_ADDR_LE_NONE if compare returns 0.
 	 * This means there is no bond yet.
 	 */
-	if (bt_addr_le_cmp(&bond_addr, BT_ADDR_LE_NONE) != 0) {
+	if (0) { // bt_addr_le_cmp(&bond_addr, BT_ADDR_LE_NONE) != 0) {
 		bt_addr_le_to_str(&bond_addr, addr, sizeof(addr));
 		printk("Direct advertising to %s\n", addr);
 
@@ -127,7 +127,10 @@ static void bt_ready(void)
 		adv_param.options |= BT_LE_ADV_OPT_DIR_ADDR_RPA;
 		err = bt_le_adv_start(&adv_param, NULL, 0, NULL, 0);
 	} else {
-		err = bt_le_adv_start(BT_LE_ADV_CONN_NAME, ad, ARRAY_SIZE(ad), NULL, 0);
+		adv_param = *BT_LE_ADV_CONN_NAME;
+		adv_param.interval_max = 500;
+		adv_param.interval_min = 500;
+		err = bt_le_adv_start(&adv_param, ad, ARRAY_SIZE(ad), NULL, 0);
 	}
 
 	if (err) {
@@ -139,8 +142,10 @@ static void bt_ready(void)
 
 void pairing_complete(struct bt_conn *conn, bool bonded)
 {
-	printk("Pairing completed.  not Rebooting in 5 seconds...\n");
+	printk("Pairing completed. Rebooting in 5 seconds...\n");
 
+	k_sleep(K_SECONDS(5));
+	printk(" 5 seconds arrive\n");
 	k_sleep(K_SECONDS(5));
 	// sys_reboot(SYS_REBOOT_WARM);
 }
@@ -149,45 +154,21 @@ static struct bt_conn_auth_info_cb bt_conn_auth_info = {
 	.pairing_complete = pairing_complete
 };
 
-int sleep_s = 1;
 int main(void)
 {
-	extern uint32_t os_impl_task_create_real();
-	os_impl_task_create_real();
-	// k_sleep(K_SECONDS(3));
-	// int err;
+	printk("build time %s@%s\r\n",__DATE__, __TIME__);
 
-	// err = bt_enable(NULL);
-	// if (err) {
-	// 	printk("Bluetooth init failed (err %d)\n", err);
-	// 	return 0;
-	// }
+	k_sleep(K_SECONDS(1));
+	int err;
 
-	// bt_ready();
-	// bt_conn_auth_info_cb_register(&bt_conn_auth_info);
-	// k_sleep(K_SECONDS(10));
-	printk("CPU: %dHZ\r\n", SYSCTRL_GetHClk());
-	while (1) {
-		// k_timeout_t time_out =  K_MSEC(1);
-        
-        // uint32_t ticks = platform_pre_suppress_ticks_and_sleep_processing(0xffffff);
-        // if (ticks < 5) continue;
-        // sysPreSleepProcessing();
-        // sysPostSleepProcessing();
-        
-		// extern int platform_pre_suppress_ticks_and_sleep_processing(int a);
-		// platform_pre_suppress_ticks_and_sleep_processing(0xfff);
-		// extern int platform_pre_sleep_processing();
-		// platform_pre_sleep_processing();
-		// // k_cpu_idle();
-		// extern int platform_post_sleep_processing();
-		// platform_post_sleep_processing();
-
-
-        // platform_os_idle_resumed_hook();
-		k_sleep(K_SECONDS(sleep_s));
-		printk("main thread ksleep%ds\r\n", sleep_s++);
-		
+	err = bt_enable(NULL);
+	if (err) {
+		printk("Bluetooth init failed (err %d)\n", err);
+		return 0;
 	}
+
+	bt_ready();
+	bt_conn_auth_info_cb_register(&bt_conn_auth_info);
+
 	return 0;
 }

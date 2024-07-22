@@ -37,12 +37,8 @@ LOG_MODULE_REGISTER(bt_driver);
 #define H4_ISO  0x05
 
 #define HCI_BT_HCI_SEND_TIMEOUT K_MSEC(2000)
-static K_SEM_DEFINE(hci_send_sem, 1, 1);
 
 const platform_hci_link_layer_interf_t *hci_interf = NULL;
-#define MAX_SIZE 512
-static int rx_len = 0;
-static uint8_t buffer[MAX_SIZE] = {0};
 
 #pragma pack (push, 1)
 struct hci_command_packet_header
@@ -96,78 +92,8 @@ static struct {
 } tx = {
 	.fifo = Z_FIFO_INITIALIZER(tx.fifo),
 };
+
 static const struct device *const h4_dev = NULL;
-static inline void h4_get_type(void)
-{
-	/* Get packet type */
-	if (hci_rec_buf_read(h4_dev, &rx.type, 1) != 1) {
-		LOG_WRN("Unable to read H:4 packet type");
-		rx.type = H4_NONE;
-		return;
-	}
-
-	switch (rx.type) {
-	case H4_EVT:
-		rx.remaining = sizeof(rx.evt);
-		rx.hdr_len = rx.remaining;
-		break;
-	case H4_ACL:
-		rx.remaining = sizeof(rx.acl);
-		rx.hdr_len = rx.remaining;
-		break;
-	case H4_ISO:
-		if (IS_ENABLED(CONFIG_BT_ISO)) {
-			rx.remaining = sizeof(rx.iso);
-			rx.hdr_len = rx.remaining;
-			break;
-		}
-		__fallthrough;
-	default:
-		LOG_ERR("Unknown H:4 type 0x%02x", rx.type);
-		rx.type = H4_NONE;
-	}
-	LOG_DBG("rx.remaining is[%d]", rx.remaining);
-}
-
-static void h4_read_hdr(void)
-{
-	int bytes_read = rx.hdr_len - rx.remaining;
-	int ret;
-
-	ret = hci_rec_buf_read(h4_dev, rx.hdr + bytes_read, rx.remaining);
-	LOG_DBG("ret = %d\r\n", ret);
-	if (unlikely(ret < 0)) {
-		LOG_ERR("Unable to read from UART (ret %d)", ret);
-	} else {
-		rx.remaining -= ret;
-	}
-}
-
-static inline void get_acl_hdr(void)
-{
-	h4_read_hdr();
-
-	if (!rx.remaining) {
-		struct bt_hci_acl_hdr *hdr = &rx.acl;
-
-		rx.remaining = sys_le16_to_cpu(hdr->len);
-		LOG_DBG("Got ACL header. Payload %u bytes\r\n", rx.remaining);
-		rx.have_hdr = true;
-	}
-}
-
-static inline void get_iso_hdr(void)
-{
-	h4_read_hdr();
-
-	if (!rx.remaining) {
-		struct bt_hci_iso_hdr *hdr = &rx.iso;
-
-		rx.remaining = bt_iso_hdr_len(sys_le16_to_cpu(hdr->len));
-		LOG_DBG("Got ISO header. Payload %u bytes\r\n", rx.remaining);
-		rx.have_hdr = true;
-	}
-}
 
 static bool is_hci_event_discardable(const uint8_t *evt_data)
 {
@@ -184,6 +110,9 @@ static bool is_hci_event_discardable(const uint8_t *evt_data)
 
 		switch (subevt_type) {
 		case BT_HCI_EVT_LE_ADVERTISING_REPORT:
+		case BT_HCI_EVT_LE_EXT_ADVERTISING_REPORT:
+		case BT_HCI_EVT_LE_PER_ADVERTISING_REPORT:
+		case BT_HCI_EVT_LE_PER_ADVERTISING_REPORT_V2:
 			return true;
 		default:
 			return false;
@@ -193,6 +122,7 @@ static bool is_hci_event_discardable(const uint8_t *evt_data)
 		return false;
 	}
 }
+
 static struct net_buf *bt_esp_evt_recv(uint8_t *data, size_t remaining)
 {
 	bool discardable = false;
@@ -283,92 +213,46 @@ static struct net_buf *bt_esp_acl_recv(uint8_t *data, size_t remaining)
 	return buf;
 }
 
-static struct net_buf *bt_esp_iso_recv(uint8_t *data, size_t remaining)
-{
-	struct bt_hci_iso_hdr hdr;
-	struct net_buf *buf;
-	size_t buf_tailroom;
-
-	if (remaining < sizeof(hdr)) {
-		LOG_ERR("Not enough data for ISO header");
-		return NULL;
-	}
-
-	buf = bt_buf_get_rx(BT_BUF_ISO_IN, K_NO_WAIT);
-	if (buf) {
-		memcpy((void *)&hdr, data, sizeof(hdr));
-		data += sizeof(hdr);
-		remaining -= sizeof(hdr);
-
-		net_buf_add_mem(buf, &hdr, sizeof(hdr));
-	} else {
-		LOG_ERR("No available ISO buffers!");
-		return NULL;
-	}
-
-	if (remaining != bt_iso_hdr_len(sys_le16_to_cpu(hdr.len))) {
-		LOG_ERR("ISO payload length is not correct");
-		net_buf_unref(buf);
-		return NULL;
-	}
-
-	buf_tailroom = net_buf_tailroom(buf);
-	if (buf_tailroom < remaining) {
-		LOG_ERR("Not enough space in buffer %zu/%zu", remaining, buf_tailroom);
-		net_buf_unref(buf);
-		return NULL;
-	}
-
-	LOG_DBG("len %zu", remaining);
-	net_buf_add_mem(buf, data, remaining);
-
-	return buf;
-}
-
 uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 {
-
-
-    //todo write fifo
-    LOG_DBG("hci drv rec %d", msg->len_of_hci + 1);
-    // hci_rec_buf_write(&msg->hci_type, 1);
-    // hci_rec_buf_write(msg->buff, msg->len_of_hci);
 	uint8_t pkt_indicator;
 	struct net_buf *buf = NULL;
 	size_t remaining = msg->len_of_hci;
-	uint8_t *data = msg->buff;
+	const uint8_t *data = msg->buff;
 	pkt_indicator = msg->hci_type;
-	LOG_DBG("<<<%02x\r\n", pkt_indicator);
 	LOG_HEXDUMP_DBG(data, remaining, "host packet data:");
-	static int i = 0;
-	i++;
-	if( i == 1) {
+
+	static bool first_event = true;
+	if (first_event)
+	{
+		// skip RESET event
+		first_event = false;
 		LOG_DBG("drop hci rec data");
 		goto end;
 	}
-		switch (pkt_indicator) {
-		case H4_EVT:
-			buf = bt_esp_evt_recv(data, remaining);
-			break;
 
-		case H4_ACL:
-			buf = bt_esp_acl_recv(data, remaining);
-			break;
+	switch (pkt_indicator)
+	{
+	case H4_EVT:
+		buf = bt_esp_evt_recv(data, remaining);
+		break;
 
-		case H4_SCO:
-			buf = bt_esp_iso_recv(data, remaining);
-			break;
+	case H4_ACL:
+		buf = bt_esp_acl_recv(data, remaining);
+		break;
 
-		default:
-			LOG_ERR("Unknown HCI type %u", pkt_indicator);
-			return -1;
-		}
-		if (buf) {
-			LOG_DBG("Calling bt_recv(%p)", buf);
-			bt_recv(buf);
-		}
+	default:
+		LOG_ERR("Unknown HCI type %u", pkt_indicator);
+		return -1;
+	}
+
+	if (buf)
+	{
+		LOG_DBG("Calling bt_recv(%p)", buf);
+		bt_recv(buf);
+	}
+
 end:
-
     switch (msg->hci_type)
     {
     case HCI_EVENT_PACKET:
@@ -378,14 +262,12 @@ end:
         hci_interf->acl_data_processed(msg->conn_handle, msg->handle);
         break;
     }
-	// k_sem_give(&recv_sem);
-	k_sem_give(&hci_send_sem);
     return 0;
 }
 
-void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
-
-	LOG_HEXDUMP_DBG(buffer, rx_len, ">>>");
+static void host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len)
+{
+	LOG_HEXDUMP_DBG(buffer, rx_len, "to controller");
 	switch (buffer[0])
     {
     case HCI_COMMAND_DATA_PACKET:
@@ -423,9 +305,6 @@ void ingchips_host_send_packet_to_controller(uint8_t *buffer, uint16_t rx_len) {
         }
         break;
     default:
-		platform_printf("reset********************************************************\r\n");
-		LOG_DBG("reset");
-		while(1);
         platform_reset();
         break;
     }
@@ -444,51 +323,23 @@ static int h4_send(struct net_buf *buf)
 	case BT_BUF_CMD:
 		pkt_indicator = H4_CMD;
 		break;
-	case BT_BUF_ISO_OUT:
-		pkt_indicator = H4_ISO;
-		break;
 	default:
 		LOG_ERR("Unknown type %u", bt_buf_get_type(buf));
 		goto done;
 	}
 	net_buf_push_u8(buf, pkt_indicator);
 
-	if (k_sem_take(&hci_send_sem, HCI_BT_HCI_SEND_TIMEOUT) == 0) {
-		ingchips_host_send_packet_to_controller(buf->data, buf->len);
-	} else {
-		LOG_ERR("Send packet timeout error");
-		err = -ETIMEDOUT;
-	}
+	host_send_packet_to_controller(buf->data, buf->len);
+
 done:
 	net_buf_unref(buf);
-	k_sem_give(&hci_send_sem);
 
 	return err;
 }
 
-/** Setup the HCI transport, which usually means to reset the Bluetooth IC
-  *
-  * @param dev The device structure for the bus connecting to the IC
-  *
-  * @return 0 on success, negative error value on failure
-  */
-int __weak bt_hci_transport_setup(const struct device *dev)
-{
-	//h4_discard(h4_dev, 32);
-	return 0;
-}
-
 static int h4_open(void)
 {
-	int ret;
-	k_tid_t tid;
-	LOG_DBG("call %s\r\n", __FUNCTION__);
     hci_interf = (const platform_hci_link_layer_interf_t *)platform_get_link_layer_interf();
-	ret = bt_hci_transport_setup(h4_dev);
-	if (ret < 0) {
-		LOG_ERR("ret %d", ret);
-		return -EIO;
-	}
 	return 0;
 }
 

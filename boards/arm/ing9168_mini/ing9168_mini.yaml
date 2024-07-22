@@ -1,5 +1,5 @@
-identifier: qemu_cortex_m3
-name: QEMU Emulation for Cortex-M3
+identifier: qemu_cortex_m4
+name: QEMU Emulation for Cortex-M4
 type: qemu
 simulation: qemu
 arch: arm
