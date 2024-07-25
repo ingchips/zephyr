@@ -536,6 +536,79 @@ void __weak z_early_rand_get(uint8_t *buf, size_t length)
 	}
 }
 
+static struct k_thread init_dummy_thread;
+
+void z_cstart0(void) {
+	/* gcov hook needed to get the coverage report.*/
+	gcov_static_init();
+
+	/* initialize early init calls */
+	z_sys_init_run_level(INIT_LEVEL_EARLY);
+
+	LOG_CORE_INIT();
+
+#if defined(CONFIG_MULTITHREADING)
+	/* Note: The z_ready_thread() call in prepare_multithreading() requires
+	 * a dummy thread even if CONFIG_ARCH_HAS_CUSTOM_SWAP_TO_MAIN=y
+	 */
+	z_dummy_thread_init(&init_dummy_thread);
+#endif
+	/* do any necessary initialization of static devices */
+	z_device_state_init();
+
+	/* perform basic hardware initialization */
+	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_1);
+	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_2);
+
+#ifdef CONFIG_STACK_CANARIES
+	uintptr_t stack_guard;
+
+	z_early_rand_get((uint8_t *)&stack_guard, sizeof(stack_guard));
+	__stack_chk_guard = stack_guard;
+	__stack_chk_guard <<= 8;
+#endif	/* CONFIG_STACK_CANARIES */
+
+#ifdef CONFIG_TIMING_FUNCTIONS_NEED_AT_BOOT
+	timing_init();
+	timing_start();
+#endif
+}
+
+void z_cstart1(void) {
+	/* perform any architecture-specific initialization */
+	arch_kernel_init();
+
+#ifdef CONFIG_MULTITHREADING
+	switch_to_main_thread(prepare_multithreading());
+#else
+#ifdef ARCH_SWITCH_TO_MAIN_NO_MULTITHREADING
+	/* Custom ARCH-specific routine to switch to main()
+	 * in the case of no multi-threading.
+	 */
+	ARCH_SWITCH_TO_MAIN_NO_MULTITHREADING(bg_thread_main,
+		NULL, NULL, NULL);
+#else
+	bg_thread_main(NULL, NULL, NULL);
+
+	/* LCOV_EXCL_START
+	 * We've already dumped coverage data at this point.
+	 */
+	irq_lock();
+	while (true) {
+	}
+	/* LCOV_EXCL_STOP */
+#endif
+#endif /* CONFIG_MULTITHREADING */
+
+	/*
+	 * Compiler can't tell that the above routines won't return and issues
+	 * a warning unless we explicitly tell it that control never gets this
+	 * far.
+	 */
+
+	CODE_UNREACHABLE; /* LCOV_EXCL_LINE */
+}
+
 /**
  *
  * @brief Initialize kernel
@@ -573,9 +646,7 @@ FUNC_NORETURN void z_cstart(void)
 	z_device_state_init();
 
 	/* perform basic hardware initialization */
-// #ifndef CONFIG_SOC_INGCHIPS_ING9168
 	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_1);
-// #endif 
 	z_sys_init_run_level(INIT_LEVEL_PRE_KERNEL_2);
 
 #ifdef CONFIG_STACK_CANARIES

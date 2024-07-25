@@ -2,7 +2,7 @@
 
 set(SUPPORTED_EMU_PLATFORMS qemu)
 
-set(QEMU_CPU_TYPE_${ARCH} cortex-m3)
+set(QEMU_CPU_TYPE_${ARCH} cortex-m4)
 set(QEMU_FLAGS_${ARCH}
   -cpu ${QEMU_CPU_TYPE_${ARCH}}
   -machine lm3s6965evb

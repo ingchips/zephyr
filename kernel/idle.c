@@ -40,29 +40,6 @@ void idle(void *unused1, void *unused2, void *unused3)
 	ARG_UNUSED(unused3);
 
 	__ASSERT_NO_MSG(_current->base.prio >= 0);
-	while (true) {
-		uint32_t next_timeout_ticks = z_get_next_timeout_expiry(); 
-		if (next_timeout_ticks == 0x7fffffff) {
-			k_cpu_idle();
-			printk(" ");
-			continue;
-			// next_timeout_ticks = 0xffffff;
-		}
-		extern uint32_t platform_pre_suppress_ticks_and_sleep_processing(uint32_t expected_ticks);
-		extern uint32_t _rt_suppress_ticks_and_sleep(uint32_t expected_ticks);
-		uint32_t next_timeout_ticks_out = platform_pre_suppress_ticks_and_sleep_processing(next_timeout_ticks);
-		printk("next timeout ticks = %d %d\r\n", next_timeout_ticks, next_timeout_ticks_out);
-		if (next_timeout_ticks_out < 5) {
-			// k_cpu_idle();
-		} else {
-			
-			// unsigned int key = arch_irq_lock();
-			uint32_t delta_ticks = _rt_suppress_ticks_and_sleep(next_timeout_ticks_out);
-			// arch_irq_unlock(key);
-			sys_clock_announce(delta_ticks);
-
-		}
-	}
 
 	while (true) {
 		/* SMP systems without a working IPI can't actual
@@ -85,7 +62,7 @@ void idle(void *unused1, void *unused2, void *unused3)
 		 * unmasked.  It does not take a spinlock or other
 		 * higher level construct.
 		 */
-(void) arch_irq_lock();
+		(void) arch_irq_lock();
 
 #ifdef CONFIG_PM
 		_kernel.idle = z_get_next_timeout_expiry();
@@ -109,7 +86,7 @@ void idle(void *unused1, void *unused2, void *unused3)
 			k_cpu_idle();
 		}
 #else
-	k_cpu_idle();
+		k_cpu_idle();
 #endif
 
 #if !defined(CONFIG_PREEMPT_ENABLED)

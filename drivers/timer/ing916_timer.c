@@ -31,7 +31,7 @@ void platform_printf(const char *format, ...);
  * masked.  Choosing a fraction of a tick is probably a good enough
  * default, with an absolute minimum of 1k cyc.
  */
-#define MIN_DELAY MAX(50U, ((uint32_t)CYC_PER_TICK/16U))
+#define MIN_DELAY MAX(1024U, ((uint32_t)CYC_PER_TICK/16U))
 
 #define TICKLESS (IS_ENABLED(CONFIG_TICKLESS_KERNEL))
 
@@ -39,11 +39,7 @@ static struct k_spinlock lock;
 
 static uint32_t last_load;
 
-#ifdef CONFIG_CORTEX_M_SYSTICK_64BIT_CYCLE_COUNTER
-#define cycle_t uint64_t
-#else
 #define cycle_t uint32_t
-#endif
 
 /*
  * This local variable holds the amount of SysTick HW cycles elapsed
@@ -79,26 +75,6 @@ static cycle_t announced_cycles;
  * the overflow_cyc must be reset to zero.
  */
 static volatile uint32_t overflow_cyc;
-
-#ifdef CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER
-/* This local variable indicates that the timeout was set right before
- * entering idle state.
- *
- * It is used for chips that has to use a separate idle timer in such
- * case because the Cortex-m SysTick is not clocked in the low power
- * mode state.
- */
-static bool timeout_idle;
-
-/* Cycle counter before entering the idle state. */
-static cycle_t cycle_pre_idle;
-
-/* Idle timer value before entering the idle state. */
-static uint32_t idle_timer_pre_idle;
-
-/* Idle timer used for timer while entering the idle state */
-static const struct device *idle_timer = DEVICE_DT_GET(DT_CHOSEN(zephyr_cortex_m_idle_timer));
-#endif /* CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER */
 
 /* This internal function calculates the amount of HW cycles that have
  * elapsed since the last time the absolute HW cycles counter has been
@@ -182,19 +158,6 @@ void sys_clock_isr(void *arg)
 	cycle_count += overflow_cyc;
 	overflow_cyc = 0;
 
-#ifdef CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER
-	/* Rare case, when the interrupt was triggered, with previously programmed
-	 * LOAD value, just before entering the idle mode (SysTick is clocked) or right
-	 * after exiting the idle mode, before executing the procedure in the
-	 * sys_clock_idle_exit function.
-	 */
-	if (timeout_idle) {
-		z_arm_int_exit();
-
-		return;
-	}
-#endif /* CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER */
-
 	if (TICKLESS) {
 		/* In TICKLESS mode, the SysTick.LOAD is re-programmed
 		 * in sys_clock_set_timeout(), followed by resetting of
@@ -219,7 +182,7 @@ void sys_clock_isr(void *arg)
 }
 
 void sys_clock_set_timeout(int32_t ticks, bool idle)
-{
+{platform_printf("t: %d,%d\n", ticks, idle);
 	/* Fast CPUs and a 24 bit counter mean that even idle systems
 	 * need to wake up multiple times per second.  If the kernel
 	 * allows us to miss tick announcements in idle, then shut off
@@ -231,36 +194,6 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 		last_load = TIMER_STOPPED;
 		return;
 	}
-
-#ifdef CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER
-	if (idle) {
-		uint64_t timeout_us =
-			((uint64_t)ticks * USEC_PER_SEC) / CONFIG_SYS_CLOCK_TICKS_PER_SEC;
-		struct counter_alarm_cfg cfg = {
-			.callback = NULL,
-			.ticks = counter_us_to_ticks(idle_timer, timeout_us),
-			.user_data = NULL,
-			.flags = 0,
-		};
-
-		timeout_idle = true;
-
-		/* Set the alarm using timer that runs the idle.
-		 * Needed rump-up/setting time, lower accurency etc. should be
-		 * included in the exit-latency in the power state definition.
-		 */
-		counter_cancel_channel_alarm(idle_timer, 0);
-		counter_set_channel_alarm(idle_timer, 0, &cfg);
-
-		/* Store current values to calculate a difference in
-		 * measurements after exiting the idle state.
-		 */
-		counter_get_value(idle_timer, &idle_timer_pre_idle);
-		cycle_pre_idle = cycle_count + elapsed();
-
-		return;
-	}
-#endif /* CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER */
 
 #if defined(CONFIG_TICKLESS_KERNEL)
 	uint32_t delay;
@@ -309,7 +242,7 @@ void sys_clock_set_timeout(int32_t ticks, bool idle)
 
 	SysTick->LOAD = last_load - 1;
 	SysTick->VAL = 0; /* resets timer to last_load */
-
+platform_printf("t = %08x\n", last_load);
 	/*
 	 * Add elapsed cycles while computing the new load to cycle_count.
 	 *
@@ -353,56 +286,8 @@ uint32_t sys_clock_cycle_get_32(void)
 	return ret;
 }
 
-#ifdef CONFIG_CORTEX_M_SYSTICK_64BIT_CYCLE_COUNTER
-uint64_t sys_clock_cycle_get_64(void)
-{
-	k_spinlock_key_t key = k_spin_lock(&lock);
-	uint64_t ret = cycle_count + elapsed();
-
-	k_spin_unlock(&lock, key);
-	return ret;
-}
-#endif
-
 void sys_clock_idle_exit(void)
 {
-#ifdef CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER
-	if (timeout_idle) {
-		cycle_t systick_diff, missed_cycles;
-		uint32_t idle_timer_diff, idle_timer_post, dcycles, dticks;
-		uint64_t systick_us, idle_timer_us, measurement_diff_us;
-
-		/* Get current values for both timers */
-		counter_get_value(idle_timer, &idle_timer_post);
-		systick_diff = cycle_count + elapsed() - cycle_pre_idle;
-
-		/* Calculate has much time has pasted since last measurement for both timers */
-		idle_timer_diff = idle_timer_post - idle_timer_pre_idle;
-		idle_timer_us = counter_ticks_to_us(idle_timer, idle_timer_diff);
-		systick_us =
-			((uint64_t)systick_diff * USEC_PER_SEC) / sys_clock_hw_cycles_per_sec();
-
-		/* Calculate difference in measurements to get how much time
-		 * the SysTick missed in idle state.
-		 */
-		measurement_diff_us = idle_timer_us - systick_us;
-		missed_cycles =
-			(sys_clock_hw_cycles_per_sec() * measurement_diff_us) / USEC_PER_SEC;
-
-		/* Update the cycle counter to include the cycles missed in idle */
-		cycle_count += missed_cycles;
-
-		/* Announce the passed ticks to the kernel */
-		dcycles = cycle_count + elapsed() - announced_cycles;
-		dticks = dcycles / CYC_PER_TICK;
-		announced_cycles += dticks * CYC_PER_TICK;
-		sys_clock_announce(dticks);
-
-		/* We've alredy performed all needed operations */
-		timeout_idle = false;
-	}
-#endif /* CONFIG_CORTEX_M_SYSTICK_IDLE_TIMER */
-
 	if (last_load == TIMER_STOPPED) {
 		SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
 	}
@@ -415,7 +300,6 @@ void sys_clock_disable(void)
 
 static int sys_clock_driver_init(void)
 {
-
 	NVIC_SetPriority(SysTick_IRQn, _IRQ_PRIO_OFFSET);
 	last_load = CYC_PER_TICK;
 	overflow_cyc = 0U;
@@ -423,6 +307,7 @@ static int sys_clock_driver_init(void)
 	SysTick->VAL = 0; /* resets timer to last_load */
 	SysTick->CTRL |= (SysTick_CTRL_ENABLE_Msk |
 			  SysTick_CTRL_TICKINT_Msk);
+	printk("init");
 	return 0;
 }
 

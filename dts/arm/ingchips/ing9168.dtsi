@@ -11,12 +11,30 @@
 			device_type = "cpu";
 			compatible = "arm,cortex-m4";
 			reg = <0>;
+			cpu-power-states = <&idle &suspend>;
+		};
+
+	    power-states {
+			/* This is the setting Sleep Mode */
+			idle: idle {
+				compatible = "zephyr,power-state";
+				power-state-name = "runtime-idle";
+				min-residency-us = <0>;
+				exit-latency-us = <0>;
+			};
+			/* This is the setting for Deep-sleep Mode */
+			suspend: suspend {
+				compatible = "zephyr,power-state";
+				power-state-name = "suspend-to-idle";
+				min-residency-us = <5000>;
+				exit-latency-us = <800>;
+			};
 		};
 	};
 
-	sram0: memory@20004350 {
+	sram0: memory@20004358 {
 		compatible = "mmio-sram";
-		reg = <0x20004350 (40*1024)>;
+		reg = <0x20004358 40104>;
 	};
 
 	sysclk: system-clock {
@@ -27,15 +45,15 @@
 
 	soc {
 
-		flash-controller@2027000 {
+		flash-controller@02027000 {
 			compatible = "ingchips,ing-flash-controller";
-			reg = <0x2027000 0x1000>;
+			reg = <0x02027000 364544>;
 			#address-cells = <1>;
 			#size-cells = <1>;
 
 			flash0: flash@0 {
 				compatible = "soc-nv-flash";
-				reg = <0x2027000 (256*1024)>;
+				reg = <0x02027000 364544>;
 			};
 		};
 
@@ -129,5 +147,5 @@
 };
 
 &nvic {
-	arm,num-irq-priority-bits = <3>;
+	arm,num-irq-priority-bits = <5>;
 };
