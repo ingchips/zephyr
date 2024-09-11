@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "modules/tinycrypt/lib",
+		"source" : "/home/ming/zephyrproject/modules/crypto/tinycrypt/lib"
+	}
+}

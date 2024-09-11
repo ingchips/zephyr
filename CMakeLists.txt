@@ -1795,7 +1795,7 @@ endif()
 if(NOT CMAKE_C_COMPILER_ID STREQUAL "ARMClang")
   add_custom_target(
     initlevels
-    COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/build/check_init_priorities.py
+    COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/build/check_init_priorities.pyx
       --elf-file=${ZEPHYR_BINARY_DIR}/${KERNEL_ELF_NAME}
       --initlevels
     DEPENDS ${logical_target_for_zephyr_elf}

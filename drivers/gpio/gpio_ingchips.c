@@ -11,6 +11,7 @@
 #include <zephyr/kernel.h>
 #include <peripheral_pinctrl.h>
 #include <peripheral_gpio.h>
+#include <peripheral_pinctrl.h>
 typedef void (*config_func_t)(const struct device *dev);
 
 struct gpio_ingchips_config {
@@ -64,29 +65,34 @@ static int gpio_ingchips_configure(const struct device *dev,
 {
 	const struct gpio_ingchips_config *cfg = dev->config;
 	uint32_t base = cfg->base;
+    if(base == 0x40011000){
+        ;
+    } else if(base == 0x40012000){
+        pin += 21;
+    } else{
+        return -ENODEV;
+    }
 
-	
-	if ((flags & (GPIO_PULL_UP | GPIO_PULL_DOWN)) != 0) {
-		return -ENOTSUP;
-	}
-
+    if(0 != (flags & GPIO_PULL_UP)){
+        PINCTRL_Pull((GIO_Index_t)pin,PINCTRL_PULL_UP);
+    } else if(0 != (flags & GPIO_PULL_DOWN)){
+        PINCTRL_Pull((GIO_Index_t)pin,PINCTRL_PULL_DOWN);
+    } else{
+        PINCTRL_Pull((GIO_Index_t)pin,PINCTRL_PULL_DISABLE);
+    }
 	if ((flags & GPIO_SINGLE_ENDED) != 0) {
 		return -ENOTSUP;
 	}
 
 	if ((flags & GPIO_OUTPUT) != 0) {
-		mm_reg_t mask_addr;
-
-		mask_addr = GPIO_RW_MASK_ADDR(base, GPIO_DATA_OFFSET, BIT(pin));
+        GIO_SetDirection((GIO_Index_t)pin,GIO_DIR_OUTPUT);
 		if ((flags & GPIO_OUTPUT_INIT_HIGH) != 0) {
 			GIO_WriteValue(pin, 1);
-			
 		} else if ((flags & GPIO_OUTPUT_INIT_LOW) != 0) {
 			GIO_WriteValue(pin, 0);
 		}
-		GIO_SetDirection(pin, 1);
 	} else if ((flags & GPIO_INPUT) != 0) {
-		GIO_SetDirection(pin, 0);
+		GIO_SetDirection((GIO_Index_t)pin, GIO_DIR_INPUT);
 	} else {
 		/* Pin digital disable */
 		
@@ -120,8 +126,16 @@ static int gpio_ingchips_port_set_bits_raw(const struct device *dev,
 {
 	const struct gpio_ingchips_config *cfg = dev->config;
 	uint32_t base = cfg->base;
+    uint64_t  pin_mask;
+    if(base == 0x40011000){
+        pin_mask = mask;
+    } else if(base == 0x40012000){
+        pin_mask = ((uint64_t)mask) << 21;
+    } else{
+        return -ENODEV;
+    }
 
-	sys_write32(mask, GPIO_RW_MASK_ADDR(base, GPIO_DATA_OFFSET, mask));
+    GIO_SetBits(pin_mask);
 
 	return 0;
 }
@@ -129,10 +143,18 @@ static int gpio_ingchips_port_set_bits_raw(const struct device *dev,
 static int gpio_ingchips_port_clear_bits_raw(const struct device *dev,
 					      uint32_t mask)
 {
-	const struct gpio_ingchips_config *cfg = dev->config;
-	uint32_t base = cfg->base;
+    const struct gpio_ingchips_config *cfg = dev->config;
+    uint32_t base = cfg->base;
+    uint64_t  pin_mask;
+    if(base == 0x40011000){
+        pin_mask = mask;
+    } else if(base == 0x40012000){
+        pin_mask = ((uint64_t)mask) << 21;
+    } else{
+        return -ENODEV;
+    }
 
-	sys_write32(0, GPIO_RW_MASK_ADDR(base, GPIO_DATA_OFFSET, mask));
+    GIO_ClearBits(pin_mask);
 
 	return 0;
 }
@@ -140,13 +162,18 @@ static int gpio_ingchips_port_clear_bits_raw(const struct device *dev,
 static int gpio_ingchips_port_toggle_bits(const struct device *dev,
 					   uint32_t mask)
 {
-	const struct gpio_ingchips_config *cfg = dev->config;
-	uint32_t base = cfg->base;
-	uint32_t value;
+    const struct gpio_ingchips_config *cfg = dev->config;
+    uint32_t base = cfg->base;
+    uint64_t  pin_mask;
+    if(base == 0x40011000){
+        pin_mask = mask;
+    } else if(base == 0x40012000){
+        pin_mask = mask << 21;
+    } else{
+        return -ENODEV;
+    }
 
-	value = sys_read32(GPIO_RW_MASK_ADDR(base, GPIO_DATA_OFFSET, 0xff));
-	value ^= mask;
-	sys_write32(value, GPIO_RW_MASK_ADDR(base, GPIO_DATA_OFFSET, 0xff));
+    GIO_ToggleBits(pin_mask);
 
 	return 0;
 }
@@ -222,7 +249,7 @@ static const struct gpio_driver_api gpio_ingchips_driver_api = {
 		.common = {								\
 			.port_pin_mask = GPIO_PORT_PIN_MASK_FROM_DT_INST(n),		\
 		},									\
-		.base = DT_INST_REG_ADDR(n),			\
+            .base = DT_INST_REG_ADDR(n),			\
 		.port_map = BIT_MASK(DT_INST_PROP(n, ngpios)),		\
 		.config_func = port_## n ##_ingchips_config_func,			\
 	};										\

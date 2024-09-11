@@ -2,7 +2,7 @@
 
 /dts-v1/;
 
-#include <ingchips/ing9168.dtsi>
+#include <ingchips/ing91682.dtsi>
 
 / {
 	model = "ingchips ing9168mini";
@@ -25,7 +25,7 @@
 	leds: leds {
 		compatible = "gpio-leds";
 		green_led_2: led_2 {
-			gpios = <&gpio0 35 1>;
+			gpios = <&gpio1 1 1>;
 			label = "User LD2";
 		};
 	};

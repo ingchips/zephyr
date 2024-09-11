@@ -1,0 +1,30 @@
+/home/ming/.cache/JetBrains/RemoteDev/dist/0cd704f641a40_CLion-2024.1.5/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/ming/.cache/JetBrains/RemoteDev/dist/0cd704f641a40_CLion-2024.1.5/bin/ninja/linux/x64/ninja -DBOARD=ing9168_mini -G Ninja -S /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module -B /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr
+Loading Zephyr default modules (Zephyr base (cached)).
+-- Application: /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module
+-- CMake version: 3.28.6
+-- Cache files will be written to: /home/ming/.cache/zephyr
+-- Zephyr version: 3.5.99 (/home/ming/zephyrproject/zephyr)
+-- Found west (found suitable version "1.2.0", minimum required is "0.14.0")
+-- Board: ing9168_mini
+-- Found host-tools: zephyr 0.16.8 (/home/ming/zephyr-sdk-0.16.8)
+-- Found toolchain: zephyr 0.16.8 (/home/ming/zephyr-sdk-0.16.8)
+-- Found BOARD.dts: /home/ming/zephyrproject/zephyr/boards/arm/ing9168_mini/ing9168_mini.dts
+unit address and first address in 'reg' (0x2027000) don't match for /soc/flash-controller@02027000/flash@0
+-- Generated zephyr.dts: /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/zephyr.dts
+-- Generated devicetree_generated.h: /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/include/generated/devicetree_generated.h
+-- Including generated dts.cmake file: /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/dts.cmake
+/home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/zephyr.dts:39.29-48.5: Warning (simple_bus_reg): /soc/flash-controller@02027000: simple-bus unit address format error, expected "2027000"
+Parsing /home/ming/zephyrproject/zephyr/Kconfig
+Loaded configuration '/home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/.config'
+No change to configuration in '/home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/.config'
+No change to Kconfig header in '/home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr/zephyr/include/generated/autoconf.h'
+CMake Warning at /home/ming/zephyrproject/zephyr/CMakeLists.txt:1971 (message):
+  
+
+        The CMake build type was set to 'Debug', but the optimization flag was set to '-Og'.
+        This may be intentional and the warning can be turned off by setting the CMake variable 'NO_BUILD_TYPE_WARNING'
+
+
+-- Configuring done (2.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/ming/zephyrproject/zephyr/samples/modu_test/frist_module/cmake-build-zephyr
