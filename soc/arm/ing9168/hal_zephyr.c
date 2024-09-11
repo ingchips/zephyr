@@ -79,7 +79,7 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
     (void)(dummy);
     (void)(user_data);
     // TODO: return 0 if deep sleep is not allowed now; else deep sleep is allowed
-    return PLATFORM_ALLOW_DEEP_SLEEP;
+    return 0;
 }
 
 trace_rtt_t trace_ctx = {0};
