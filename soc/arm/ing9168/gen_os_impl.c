@@ -249,6 +249,7 @@ static void override_isr_handlers(void)
     #define VECTOR_ADDRESS ((uintptr_t)_vector_start)
 
     SCB->VTOR = VECTOR_ADDRESS;
+
 }
 
 const gen_os_driver_t *os_impl_get_driver(void)

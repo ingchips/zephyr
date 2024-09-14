@@ -1,0 +1,19 @@
+#include <ingchips/ing91680.dtsi>
+
+&gpio0 {
+	ngpios = <21>;
+};
+
+/{
+	soc{
+		gpio1: gpio@40016000 {
+			compatible = "ingchips,ing-gpio";
+			reg = <0x40016000 0x1000>;
+			interrupts = <3 4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <15>;
+		};
+	};
+
+};

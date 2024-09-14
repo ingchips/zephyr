@@ -13,11 +13,6 @@ SYSCTRL_ClearClkGateMulti((1 << SYSCTRL_ITEM_APB_PinCtrl)
 
 // SYSCTRL_SelectUsedDmaItems(...)
 
-// GPIO1
-// PINCTRL_SetPadMux(36, 0)
-GIO_SetDirection((GIO_Index_t)36, (GIO_Direction_t)1);
-GIO_WriteValue((GIO_Index_t)36, 1);
-
 // UART0
 // PINCTRL_SetPadMux(1, 20)
 // PINCTRL_SelUartIn(0, 127, 127)
