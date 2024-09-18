@@ -103,8 +103,6 @@
 		};
 
 		spi0: spi@40008000 {
-			/*
-			 */
 			compatible = "ingchips,ing-spi";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -115,8 +113,6 @@
 		};
 
 		spi1: spi@40009000 {
-			/*
-			 */
 			compatible = "ingchips,ing-spi";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -133,6 +129,14 @@
 			status = "disabled";
 			clock-frequency = <32768>;
 			prescaler = <1>;
+		};
+
+		adc0: adc0@0x4000f000 {
+			compatible = "ingchips,ing-adc";
+			reg = <0x4000f000 0x1000>;
+			interrupts = <12 0>;
+			status = "disabled";
+			#io-channel-cells = <1>;
 		};
 	};
 };
