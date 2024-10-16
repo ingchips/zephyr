@@ -48,6 +48,24 @@ static struct gpio_callback button_cb_data;
 #if ADC_ENABLE
 #include <zephyr/drivers/adc.h>
 
+//使用别名定义
+//#define ADC_NODE DT_ALIAS(vol0)
+#define ADC_NODE DT_NODELABEL(adc0)
+//#define ADC_NODE_SPACE DT_NODELABEL(vol_channel0)
+
+#if (!DT_NODE_HAS_STATUS(ADC_NODE, okay))
+#error "Unsupported board: adc_0 devicetree alias is not defined"
+#endif
+
+//#if (!DT_NODE_HAS_STATUS(ADC_NODE_SPACE, okay))
+//#error "Unsupported board: adc_0 devicetree alias is not defined"
+//#endif
+
+const struct device *adc_dev = DEVICE_DT_GET(ADC_NODE);
+
+//static const struct adc_dt_spec adc_space = ADC_DT_SPEC_GET(ADC_NODE_SPACE);
+
+//static const struct adc_dt_spec adc_space = ADC_DT_SPEC_GET_BY_NAME(ADC_NODE, vol_channel0);
 #define ADC_RESOLUTION 12
 #define ADC_CHANNEL_ID 1
 
@@ -119,7 +137,7 @@ int main(void)
 
 #if ADC_ENABLE
 
-    const struct device *adc_dev;
+//    const struct device *adc_dev;
     struct adc_channel_cfg channel_cfg;
     struct adc_sequence sequence;
     uint16_t sample_buffer[1];
@@ -156,5 +174,10 @@ int main(void)
     }
 
     printf("ADC value: %d\n", sample_buffer[0]);
+
+    while (1) {
+        printf("adc while data\n");
+        k_sleep(K_MSEC(1000));  // Delay for 1 second
+    }
 #endif
 }

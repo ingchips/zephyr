@@ -121,6 +121,7 @@
 			interrupts = <5 1>;
 			status = "disabled";
 		};
+
 		rtc: rtc@4000a000 {
 			compatible = "ingchips,ing-rtc";
 			reg = <0x4000a000 0x1000>;
@@ -136,7 +137,12 @@
 			reg = <0x4000f000 0x1000>;
 			interrupts = <12 0>;
 			status = "disabled";
-			#io-channel-cells = <1>;
+			#io-channel-cells = <3>;
+		};
+
+		pinctrl: pinctrl@0x40006000{
+			compatible = "ingchips,ing-pinctrl";
+			reg = <0x4006000 0x1000>;
 		};
 	};
 };

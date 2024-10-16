@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+
+description: INGCHIPS ing family ADC
+
+compatible: "ingchips,ing-adc"
+
+include: [adc-controller.yaml, pinctrl-device.yaml]
+
+properties:
+  reg:
+    type: array
+    required: true
+
+  interrupts:
+    type: array
+    required: true
+
+  adc-mode:
+    type: string
+    enum:
+      - different
+      - single
+  io-channels:
+    type: phandle-array
+    description: |
+      List of input channels. Each channel specifier contains:
+      1. Channel number (integer): ADC channel index on the hardware.
+      2. Gain setting (integer): Defines the gain configuration.
+      3. Acquisition time (integer): Time to sample a value (in microseconds).
+  "#io-channel-cells":
+    description: |
+      Number of cells in each `io-channels` specifier. 
+      The order of the parameters must be:
+      1. Channel number
+      2. Gain setting
+      3. Acquisition time
+    const: 3
+
+#io-channel-cells:
+#  - channel
+#  - gain
+#  - time
+
+#io-channels:
+#  - channel
+#  - gain
+#  - time

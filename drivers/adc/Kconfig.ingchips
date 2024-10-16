@@ -1,0 +1,34 @@
+# ADC configuration options
+
+# Copyright (c) 2019 Intel Corporation
+# Copyright (c) 2019 Endre Karlson
+# Copyright (c) 2019 Song Qiang <songqiang1304521@gmail.com>
+# Copyright (c) 2021 Marius Scholtz, RIC Electronics
+# Copyright (c) 2022 Hein Wessels, Nobleo Technology
+# SPDX-License-Identifier: Apache-2.0
+
+config ADC_INGCHIPS
+	bool "ingchips ADC driver"
+	default y
+	depends on DT_HAS_INGCHIPS_ING_ADC_ENABLED
+	help
+	  Enable the driver implementation for the INGCHIPS ADC
+
+if ADC_INGCHIPS
+
+config ADC_INGCHIPS_DMA
+	bool "ingchips MCU ADC DMA Support"
+	select DMA
+	help
+	  Enable the ADC DMA mode for ADC instances
+	  that enable dma channels in their device tree node.
+
+config ADC_INGCHIPS_SHARED_IRQS
+	bool "ingchips ADC shared interrupts"
+	default y
+	depends on ADC_INGCHIPS && !ADC_INGCHIPS_DMA
+	help
+	  Enable the use of shared interrupts for families that only have a single interrupt for all ADC's
+
+
+endif

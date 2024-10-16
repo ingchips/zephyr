@@ -106,6 +106,8 @@ source "drivers/adc/Kconfig.gecko"
 
 source "drivers/adc/Kconfig.ifx_cat1"
 
+source "drivers/adc/Kconfig.ingchips"
+
 source "drivers/adc/Kconfig.smartbond"
 
 source "drivers/adc/Kconfig.tla2021"

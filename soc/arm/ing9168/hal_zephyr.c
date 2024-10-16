@@ -62,7 +62,7 @@ uint32_t on_lle_init(void *dummy, void *user_data)
 {
     (void)(dummy);
     (void)(user_data);
-    cube_on_lle_init();
+//    cube_on_lle_init();
     return 0;
 }
 

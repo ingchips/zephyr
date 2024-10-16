@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config PINCTRL_INGCHIPS
+	bool "ingchips pin controller"
+	default y
+	depends on DT_HAS_INGCHIPS_ING_PINCTRL_ENABLED
+	help
+	  Enables INGCHIPS pin controller
