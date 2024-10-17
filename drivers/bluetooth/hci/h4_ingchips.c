@@ -93,7 +93,6 @@ static struct {
 } tx = {
 	.fifo = Z_FIFO_INITIALIZER(tx.fifo),
 };
-static const struct device *const h4_dev = NULL;
 
 static bool is_hci_event_discardable(const uint8_t *evt_data)
 {
@@ -233,11 +232,11 @@ uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_)
 	switch (pkt_indicator)
 	{
 	case H4_EVT:
-		buf = bt_esp_evt_recv(data, remaining);
+		buf = bt_esp_evt_recv((uint8_t *)data, remaining);
 		break;
 
 	case H4_ACL:
-		buf = bt_esp_acl_recv(data, remaining);
+		buf = bt_esp_acl_recv((uint8_t *)data, remaining);
 		break;
 
 	default:

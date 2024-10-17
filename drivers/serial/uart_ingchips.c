@@ -29,6 +29,7 @@
 #include <zephyr/linker/sections.h>
 #include <zephyr/irq.h>
 #include "platform_api.h"
+#include "peripheral_uart.h"
 
 /* definitions */
 
@@ -248,12 +249,12 @@ static int uart_ingchips_init(const struct device *dev)
  *
  * @return 0 if ready to transmit, 1 otherwise
  */
-static int poll_tx_ready(const struct device *dev)
-{
-	const struct uart_ingchips_config *config = dev->config;
-
-	return (config->uart->fr & UARTFR_TXFE);
-}
+//static int poll_tx_ready(const struct device *dev)
+//{
+//	const struct uart_ingchips_config *config = dev->config;
+//
+//	return (config->uart->fr & UARTFR_TXFE);
+//}
 
 /**
  * @brief Poll the device for input.
@@ -290,7 +291,6 @@ static int uart_ingchips_poll_in(const struct device *dev, unsigned char *c)
 static void uart_ingchips_poll_out(const struct device *dev,
 					     unsigned char c)
 {
-	const struct uart_ingchips_config *config = dev->config;
 
 	// while (!poll_tx_ready(dev)) {
 	// }

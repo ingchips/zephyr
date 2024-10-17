@@ -35,16 +35,17 @@ struct gpio_ingchips_runtime {
 	sys_slist_t cb;
 };
 
-static void gpio_ingchips_isr(const struct device *dev)
+static void gpio_ingchips_isr(const void *dev)
 {
-	const struct gpio_ingchips_config * const cfg = dev->config;
-	struct gpio_ingchips_runtime *context = dev->data;
+    const struct device *dev_ptr = dev;
+	const struct gpio_ingchips_config * const cfg = dev_ptr->config;
+	struct gpio_ingchips_runtime *context = dev_ptr->data;
 	uint32_t base = cfg->base;
     GIO_TypeDef *gio_type_ptr = (GIO_TypeDef *)base;
     uint32_t int_stat = gio_type_ptr->IntStatus;
 
     gio_type_ptr->IntStatus = (uint32_t)-1;
-	gpio_fire_callbacks(&context->cb, dev, int_stat);
+	gpio_fire_callbacks(&context->cb, dev_ptr, int_stat);
 }
 
 static int gpio_ingchips_configure(const struct device *dev,
@@ -94,7 +95,6 @@ static int gpio_ingchips_port_get_raw(const struct device *dev,
 {
     const struct gpio_ingchips_config *cfg = dev->config;
     uint32_t base = cfg->base;
-    uint64_t  pin_mask;
     if(base == GPIO0_BASE){
         *value = (uint32_t)GIO_ReadAll();
     } else if(base == GPIO1_BASE){
@@ -186,8 +186,6 @@ static int gpio_ingchips_pin_interrupt_configure(const struct device *dev,
 						  enum gpio_int_mode mode,
 						  enum gpio_int_trig trig)
 {
-	const struct gpio_ingchips_config *cfg = dev->config;
-	uint32_t base = cfg->base;
     uint8_t  io_int_trigger_type = 0, io_int_enable = 0;
 
 	/* Check if GPIO port needs interrupt support */

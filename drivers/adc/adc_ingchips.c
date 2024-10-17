@@ -59,20 +59,20 @@ static int adc_ingchips_async_callback(const struct device *dev, const struct ad
     uint8_t channel_id_num;
     uint8_t channel_id_buf[32];
 
-//    channel_id_num = adc_ingchips_get_read_channel(sequence->channels,channel_id_buf);
-//    if(channel_id_num < sequence->buffer_size)
-//        return -EIO;//IO处理操作错误
-//
-//    while(ADC_GetFifoEmpty())
-//    {
-//        rc_data = ADC_PopFifoData();
-//        channel = ADC_GetDataChannel(rc_data);
-//        num = adc_ingchips_check_channel(channel,channel_id_buf,channel_id_num);
-//        if(num)
-//            *((uint16_t*)sequence->buffer + num)= ADC_GetData(rc_data);
-//        else
-//            return -EIO;
-//    }
+    channel_id_num = adc_ingchips_get_read_channel(sequence->channels,channel_id_buf);
+    if(channel_id_num < sequence->buffer_size)
+        return -EIO;//IO处理操作错误
+
+    while(ADC_GetFifoEmpty())
+    {
+        rc_data = ADC_PopFifoData();
+        channel = ADC_GetDataChannel(rc_data);
+        num = adc_ingchips_check_channel(channel,channel_id_buf,channel_id_num);
+        if(num)
+            *((uint16_t*)sequence->buffer + num)= ADC_GetData(rc_data);
+        else
+            return -EIO;
+    }
     return 0;
 }
 
@@ -117,12 +117,14 @@ static int adc_ingchips_start_read(const struct device *dev, const struct adc_se
     return 0;
 }
 
+#ifdef CONFIG_ADC_ASYNC
 static int adc_ingchips_start_read_async(const struct device *dev, const struct adc_sequence *sequence, struct k_poll_signal *async)
 {
     ADC_Start(1);
     //Register interrupt callback function
     return 0;
 }
+#endif
 
 static int adc_ingchips_data_0(const struct device *dev, const struct adc_sequence *sequence)
 {

@@ -79,7 +79,7 @@ static int console_out(int c)
 {
 #ifdef CONFIG_SOC_INGCHIPS_ING9168
 	extern uint32_t cb_putc(char *c, void *dummy);
-	cb_putc(&c, NULL);
+	cb_putc((char *)&c, NULL);
 	return c;
 #endif
 #ifdef CONFIG_UART_CONSOLE_DEBUG_SERVER_HOOKS

@@ -89,7 +89,7 @@ static gen_handle_t _port_task_create(
 
     k_tid_t tid = k_thread_create(thread,
                         stack, stack_size,
-                        entry,
+                                  (k_thread_entry_t)entry,
                         parameter, NULL, NULL,
                         priority == GEN_TASK_PRIORITY_LOW ? Z_PRIORITY_LOW : Z_PRIORITY_HIGH,
                         K_USER, K_MSEC(1));
@@ -118,7 +118,6 @@ static int _port_queue_recv_msg(gen_handle_t queue, void *msg)
 
 static gen_handle_t _port_event_create()
 {
-    gen_handle_t ret = NULL;
     struct k_sem *sem = k_malloc(sizeof(*sem));
     GEN_OS_ASSERT(sem);
     k_sem_init(sem, 0, 1);
