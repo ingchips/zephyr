@@ -86,6 +86,7 @@
 			compatible = "ingchips,ing-i2c";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			clock-frequency = <1>;
 			reg = <0x40013000 0x1000>;
 			clocks = <&sysclk>;
 			interrupts = <2 4>;

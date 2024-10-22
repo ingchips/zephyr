@@ -9,9 +9,9 @@
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
 
-#define LED_ENABLE (0)
+#define LED_ENABLE (1)
 #define KEY_ENABLE (0)
-#define ADC_ENABLE (1)
+#define ADC_ENABLE (0)
 
 #if LED_ENABLE
 #include <zephyr/drivers/gpio.h>
