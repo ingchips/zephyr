@@ -1,0 +1,10 @@
+# INGCHIPS I2C configuration
+
+# Copyright (c) 2016 Open-RnD Sp. z o.o.
+# SPDX-License-Identifier: Apache-2.0
+config SPI_INGCHIPS
+	bool "SPI Driver for ingchips family of MCUs"
+	default y
+	depends on DT_HAS_INGCHIPS_ING_SPI_ENABLED
+	help
+	  Enable GPIO driver for INGCHIPS line of MCUs

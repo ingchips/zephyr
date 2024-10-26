@@ -16,7 +16,7 @@
  */
 struct pinctrl_soc_pin {
 	/* Pinmux control group */
-	const struct device *pinctrls;
+	const struct device  *pinctrls;
 	/*
 	 * Pin configuration
 	 * kSI[7:0] and KSO[15:0] pins only support pull-up, push-pull/open-drain.

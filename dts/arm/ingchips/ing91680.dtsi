@@ -107,6 +107,8 @@
 			compatible = "ingchips,ing-spi";
 			#address-cells = <1>;
 			#size-cells = <0>;
+			peripheral-id = "HSPI_MODULE";
+			cs0-pin = "0";
 			reg = <0x40008000 0x1000>;
 			clocks = <&sysclk>;
 			interrupts = <5 0>;

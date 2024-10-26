@@ -123,6 +123,11 @@
 	status = "okay";
 };
 
+&spi0 {
+//	pinctrl-0 = <&pinctrl_i2c0>;
+	status = "okay";
+};
+
 //&gpio1 {
 //	status = "okay";
 //};
