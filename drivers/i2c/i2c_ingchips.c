@@ -8,9 +8,10 @@
 
 #if 1
 
+#include "ingsoc.h"
 #include "peripheral_i2c.h"
-#include "peripheral_sysctrl.h"
 #include "peripheral_pinctrl.h"
+#include "peripheral_sysctrl.h"
 #include <zephyr/logging/log.h>
 
 LOG_MODULE_REGISTER(i2c_ingchips);

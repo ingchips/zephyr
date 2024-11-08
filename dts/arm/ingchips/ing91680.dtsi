@@ -128,7 +128,6 @@
 		rtc: rtc@4000a000 {
 			compatible = "ingchips,ing-rtc";
 			reg = <0x4000a000 0x1000>;
-			cc-num = <3>;
 			interrupts = <11 0>;
 			status = "disabled";
 			clock-frequency = <32768>;
@@ -143,10 +142,21 @@
 			#io-channel-cells = <3>;
 		};
 
+		i2s0: i2s0@0x40010000 {
+			compatible = "ingchips,ing-i2s";
+			reg = <0x40010000 0x1000>;
+			interrupts = <16 0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
 		pinctrl: pinctrl@0x40006000{
 			compatible = "ingchips,ing-pinctrl";
 			reg = <0x4006000 0x1000>;
+			reg-names = "pin_mux";
 		};
+
 	};
 };
 

@@ -1,0 +1,9 @@
+# ingchips,ing-i2s.yaml
+compatible: "ingchips,ing-i2s"
+description: I2S controller for INGCHIPS MCUs
+
+include: [i2s-controller.yaml, pinctrl-device.yaml]
+
+properties:
+  reg:
+    required: true

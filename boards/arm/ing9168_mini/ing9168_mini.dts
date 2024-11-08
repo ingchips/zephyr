@@ -3,6 +3,7 @@
 /dts-v1/;
 
 #include <ingchips/ing91682.dtsi>
+#include <ingchips/ing9168x-pinctrl-map.dtsi>
 
 / {
 	model = "ingchips ing9168mini";
@@ -15,7 +16,6 @@
 		uart-0 = &uart0;
 		uart-1 = &uart1;
 		key0 = &board_key1;
-//		vol0 = &vol_channel0;
 	};
 
 	chosen {
@@ -98,9 +98,6 @@
 		};
 	};
 
-	pinctrl_i2c0:pinctr_i2c0_scl{
-
-	};
 
 };
 
@@ -114,17 +111,33 @@
 	current-speed = <115200>;
 };
 
-&gpio0 {
+&gpio1 {
 	status = "okay";
 };
 
 &i2c0 {
-	pinctrl-0 = <&pinctrl_i2c0>;
+	pinctrl-0 = <&i2c0_scl_out_iox_default>;
+	status = "okay";
+};
+
+&gpio0 {
 	status = "okay";
 };
 
 &spi0 {
-//	pinctrl-0 = <&pinctrl_i2c0>;
+//	pinctrl-0 = <&pinctrl_i2c0>;0
+	status = "okay";
+};
+
+&i2s0{
+	status = "okay";
+};
+
+&rtc{
+	status = "okay";
+};
+
+&adc0{
 	status = "okay";
 };
 

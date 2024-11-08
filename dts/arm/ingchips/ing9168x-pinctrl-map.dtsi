@@ -1,0 +1,392 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+#include <zephyr/dt-bindings/pinctrl/ing916x-pinctrl.h>
+
+&pinctrl {
+	/* ADC alternate function */
+	adc_channel0_io8_default: adc_channel0_io8_default {
+		pinmuxs = <&pinctrl 8 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel1_io9_default: adc_channel1_io9_default {
+		pinmuxs = <&pinctrl 9 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel2_io10_default: adc_channel2_io10_default {
+		pinmuxs = <&pinctrl 10 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel3_io11_default: adc_channel3_io11_default {
+		pinmuxs = <&pinctrl 11 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel4_io12_default: adc_channel4_io12_default {
+		pinmuxs = <&pinctrl 12 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel5_io13_default: adc_channel5_io13_default {
+		pinmuxs = <&pinctrl 13 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel6_io14_default: adc_channel6_io14_default {
+		pinmuxs = <&pinctrl 14 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel7_io15_default: adc_channel7_io15_default {
+		pinmuxs = <&pinctrl 15 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel8_io35_default: adc_channel8_io35_default {
+		pinmuxs = <&pinctrl 35 IO_SOURCE_ADC_IN>;
+	};
+
+//	adc_channel9_vref12_adc_in_default: adc_channel9_vref12_adc_in_default {
+//		pinmuxs = <&pinctrl 36 IO_SOURCE_ADC_IN>;
+//	};
+
+	adc_channel10_io30_default: adc_channel10_io30_default {
+		pinmuxs = <&pinctrl 30 IO_SOURCE_ADC_IN>;
+	};
+
+	adc_channel11_io31_default: adc_channel11_io31_default {
+		pinmuxs = <&pinctrl 31 IO_SOURCE_ADC_IN>;
+	};
+
+	/* All map related peripherals to fixed IO */
+	/* All map IO can use 0-17 */
+	//iic
+	i2c0_scl_in_iox_default: i2c0_scl_in_iox_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_I2C0_SCL_IN>;
+	};
+
+	i2c0_sda_in_iox_default: i2c0_sda_in_iox_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_I2C0_SDA_IN>;
+	};
+
+	i2c1_scl_in_iox_default: i2c1_scl_in_iox_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_I2C1_SCL_IN>;
+	};
+
+	i2c1_sda_in_iox_default: i2c1_sda_in_iox_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_I2C1_SDA_IN>;
+	};
+
+	i2c0_scl_out_iox_default: i2c0_scl_out_iox_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_I2C0_SCL_OUT>;
+	};
+
+	i2c0_sda_out_iox_default: i2c0_sda_out_iox_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_I2C0_SDA_OUT>;
+	};
+
+	i2c1_scl_out_iox_default: i2c1_scl_out_iox_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_I2C1_SCL_OUT>;
+	};
+
+	i2c1_sda_out_iox_default: i2c1_sda_out_iox_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_I2C1_SDA_OUT>;
+	};
+
+	//i2s
+	i2s_bclk_in_default: i2s_bclk_in_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_I2S_BCLK_IN>;
+	};
+
+	i2s_bclk_out_default: i2s_bclk_out_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_I2S_BCLK_OUT>;
+	};
+
+	i2s_din_default: i2s_din_default {
+		pinmuxs = <&pinctrl 7 IO_SOURCE_I2S_DATA_IN>;
+	};
+
+	i2s_dout_default: i2s_dout_default {
+		pinmuxs = <&pinctrl 8 IO_SOURCE_I2S_DATA_OUT>;
+	};
+
+	i2s_lrclk_in_default: i2s_lrclk_in_default {
+		pinmuxs = <&pinctrl 9 IO_SOURCE_I2S_LRCLK_IN>;
+	};
+
+	i2s_lrclk_out_default: i2s_lrclk_out_default {
+		pinmuxs = <&pinctrl 10 IO_SOURCE_I2S_LRCLK_OUT>;
+	};
+
+	//ir
+	ir_dat_in_default: ir_dat_in_default {
+		pinmuxs = <&pinctrl 11 IO_SOURCE_IR_DATA_IN>;
+	};
+
+	ir_dat_out_default: ir_dat_out_default {
+		pinmuxs = <&pinctrl 12 IO_SOURCE_IR_DATA_OUT>;
+	};
+
+	ir_wakeup_default: ir_wakeup_default {
+		pinmuxs = <&pinctrl 13 IO_SOURCE_IR_WAKEUP>;
+	};
+
+	//pcap
+	pcap0_in_default: pcap0_in_default {
+		pinmuxs = <&pinctrl 14 IO_SOURCE_PCAP0_IN>;
+	};
+
+	pcap1_in_default: pcap1_in_default {
+		pinmuxs = <&pinctrl 15 IO_SOURCE_PCAP1_IN>;
+	};
+
+	pcap2_in_default: pcap2_in_default {
+		pinmuxs = <&pinctrl 16 IO_SOURCE_PCAP2_IN>;
+	};
+
+	pcap3_in_default: pcap3_in_default {
+		pinmuxs = <&pinctrl 17 IO_SOURCE_PCAP3_IN>;
+	};
+
+	pcap4_in_default: pcap4_in_default {
+		pinmuxs = <&pinctrl 18 IO_SOURCE_PCAP4_IN>;
+	};
+
+	pcap5_in_default: pcap5_in_default {
+		pinmuxs = <&pinctrl 19 IO_SOURCE_PCAP5_IN>;
+	};
+
+	//pdm
+	pdm_dmic_in_default: pdm_dmic_in_default {
+		pinmuxs = <&pinctrl 0 IO_SOURCE_PDM_DMIC_IN>;
+	};
+
+	pdm_dmic_mclk_default: pdm_dmic_mclk_default {
+		pinmuxs = <&pinctrl 1 IO_SOURCE_PDM_DMIC_MCLK>;
+	};
+
+	//qdec
+	qdec_index_default: qdec_index_default {
+		pinmuxs = <&pinctrl 2 IO_SOURCE_QDEC_INDEX>;
+	};
+
+	qdec_phasea_default: qdec_phasea_default {
+		pinmuxs = <&pinctrl 3 IO_SOURCE_QDEC_PHASEA>;
+	};
+
+	qdec_phaseb_default: qdec_phaseb_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_QDEC_PHASEB>;
+	};
+
+	//spi
+	spi0_clk_in_default: spi0_clk_in_default {
+		pinmuxs = <&pinctrl 20 IO_SOURCE_SPI0_CLK_IN>;
+	};
+
+	spi0_clk_out_default: spi0_clk_out_default {
+		pinmuxs = <&pinctrl 21 IO_SOURCE_SPI0_CLK_OUT>;
+	};
+
+	spi0_csn_in_default: spi0_csn_in_default {
+		pinmuxs = <&pinctrl 22 IO_SOURCE_SPI0_CSN_IN>;
+	};
+
+	spi0_csn_out_default: spi0_csn_out_default {
+		pinmuxs = <&pinctrl 23 IO_SOURCE_SPI0_CSN_OUT>;
+	};
+
+	spi0_hold_in_default: spi0_hold_in_default {
+		pinmuxs = <&pinctrl 24 IO_SOURCE_SPI0_HOLD_IN>;
+	};
+
+	spi0_hold_out_default: spi0_hold_out_default {
+		pinmuxs = <&pinctrl 25 IO_SOURCE_SPI0_HOLD_OUT>;
+	};
+
+	spi0_miso_in_default: spi0_miso_in_default {
+		pinmuxs = <&pinctrl 26 IO_SOURCE_SPI0_MISO_IN>;
+	};
+
+	spi0_miso_out_default: spi0_miso_out_default {
+		pinmuxs = <&pinctrl 27 IO_SOURCE_SPI0_MISO_OUT>;
+	};
+
+	spi0_mosi_in_default: spi0_mosi_in_default {
+		pinmuxs = <&pinctrl 28 IO_SOURCE_SPI0_MOSI_IN>;
+	};
+
+	spi0_mosi_out_default: spi0_mosi_out_default {
+		pinmuxs = <&pinctrl 29 IO_SOURCE_SPI0_MOSI_OUT>;
+	};
+
+	spi0_wp_in_default: spi0_wp_in_default {
+		pinmuxs = <&pinctrl 30 IO_SOURCE_SPI0_WP_IN>;
+	};
+
+	spi0_wp_out_default: spi0_wp_out_default {
+		pinmuxs = <&pinctrl 31 IO_SOURCE_SPI0_WP_OUT>;
+	};
+
+	spi1_clk_in_default: spi1_clk_in_default {
+		pinmuxs = <&pinctrl 0 IO_SOURCE_SPI1_CLK_IN>;
+	};
+
+	spi1_clk_out_default: spi1_clk_out_default {
+		pinmuxs = <&pinctrl 1 IO_SOURCE_SPI1_CLK_OUT>;
+	};
+
+	spi1_csn_in_default: spi1_csn_in_default {
+		pinmuxs = <&pinctrl 2 IO_SOURCE_SPI1_CSN_IN>;
+	};
+
+	spi1_csn_out_default: spi1_csn_out_default {
+		pinmuxs = <&pinctrl 3 IO_SOURCE_SPI1_CSN_OUT>;
+	};
+
+	spi1_hold_in_default: spi1_hold_in_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_SPI1_HOLD_IN>;
+	};
+
+	spi1_hold_out_default: spi1_hold_out_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_SPI1_HOLD_OUT>;
+	};
+
+	spi1_miso_in_default: spi1_miso_in_default {
+		pinmuxs = <&pinctrl 6 IO_SOURCE_SPI1_MISO_IN>;
+	};
+
+	spi1_miso_out_default: spi1_miso_out_default {
+		pinmuxs = <&pinctrl 7 IO_SOURCE_SPI1_MISO_OUT>;
+	};
+
+	spi1_mosi_in_default: spi1_mosi_in_default {
+		pinmuxs = <&pinctrl 8 IO_SOURCE_SPI1_MOSI_IN>;
+	};
+
+	spi1_mosi_out_default: spi1_mosi_out_default {
+		pinmuxs = <&pinctrl 9 IO_SOURCE_SPI1_MOSI_OUT>;
+	};
+
+	spi1_wp_in_default: spi1_wp_in_default {
+		pinmuxs = <&pinctrl 10 IO_SOURCE_SPI1_WP_IN>;
+	};
+
+	spi1_wp_out_default: spi1_wp_out_default {
+		pinmuxs = <&pinctrl 11 IO_SOURCE_SPI1_WP_OUT>;
+	};
+
+	//swd
+	swdo_default: swdo_default {
+		pinmuxs = <&pinctrl 32 IO_SOURCE_SW_DATA_OUT>;
+	};
+
+	sw_tck_default: sw_tck_default {
+		pinmuxs = <&pinctrl 33 IO_SOURCE_SW_CLK>;
+	};
+
+	sw_tms_default: sw_tms_default {
+		pinmuxs = <&pinctrl 34 IO_SOURCE_SW_DIO>;
+	};
+
+	//uart
+	uart0_cts_default: uart0_cts_default {
+		pinmuxs = <&pinctrl 35 IO_SOURCE_UART0_CTS>;
+	};
+
+	uart0_rts_default: uart0_rts_default {
+		pinmuxs = <&pinctrl 36 IO_SOURCE_UART1_RTS>;
+	};
+
+	uart0_rxd_default: uart0_rxd_default {
+		pinmuxs = <&pinctrl 37 IO_SOURCE_UART0_RXD>;
+	};
+
+	uart0_txd_default: uart0_txd_default {
+		pinmuxs = <&pinctrl 38 IO_SOURCE_UART0_TXD>;
+	};
+
+	uart1_cts_default: uart1_cts_default {
+		pinmuxs = <&pinctrl 0 IO_SOURCE_UART1_CTS>;
+	};
+
+	uart1_rts_default: uart1_rts_default {
+		pinmuxs = <&pinctrl 1 IO_SOURCE_UART1_RTS>;
+	};
+
+	uart1_rxd_default: uart1_rxd_default {
+		pinmuxs = <&pinctrl 2 IO_SOURCE_UART1_RXD>;
+	};
+
+	uart1_txd_default: uart1_txd_default {
+		pinmuxs = <&pinctrl 3 IO_SOURCE_UART1_TXD>;
+	};
+
+	//pwm A B channel io
+	//A: 0, 2, 4, 6, 8, 10, 12, 14, 16, 21, 31, 35
+	//B: 1, 3, 5, 7, 9, 11, 13, 15, 17, 22, 34
+	timer0_pwm0_a_default: timer0_pwm0_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER0_PWM0_A>;
+	};
+
+	timer0_pwm0_b_default: timer0_pwm0_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER0_PWM0_B>;
+	};
+
+	timer0_pwm1_a_default: timer0_pwm1_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER0_PWM1_A>;
+	};
+
+	timer0_pwm1_b_default: timer0_pwm1_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER0_PWM1_B>;
+	};
+
+	timer1_pwm0_a_default: timer1_pwm0_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER1_PWM0_A>;
+	};
+
+	timer1_pwm0_b_default: timer1_pwm0_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER1_PWM0_B>;
+	};
+
+	timer1_pwm1_a_default: timer1_pwm1_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER1_PWM1_A>;
+	};
+
+	timer1_pwm1_b_default: timer1_pwm1_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER1_PWM1_B>;
+	};
+
+	timer2_pwm0_a_default: timer2_pwm0_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER2_PWM0_A>;
+	};
+
+	timer2_pwm0_b_default: timer2_pwm0_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER2_PWM0_B>;
+	};
+
+	timer2_pwm1_a_default: timer2_pwm1_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_TIMER2_PWM1_A>;
+	};
+
+	timer2_pwm1_b_default: timer2_pwm1_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_TIMER2_PWM1_B>;
+	};
+
+	pwm0_a_default: pwm0_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_PWM0_A>;
+	};
+
+	pwm0_b_default: pwm0_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_PWM0_B>;
+	};
+
+	pwm1_a_default: pwm1_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_PWM1_A>;
+	};
+
+	pwm1_b_default: pwm1_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_PWM1_B>;
+	};
+
+	pwm2_a_default: pwm2_a_default {
+		pinmuxs = <&pinctrl 4 IO_SOURCE_PWM2_A>;
+	};
+
+	pwm2_b_default: pwm2_b_default {
+		pinmuxs = <&pinctrl 5 IO_SOURCE_PWM2_B>;
+	};
+};
+

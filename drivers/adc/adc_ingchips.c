@@ -10,6 +10,7 @@
 #include <zephyr/sys/__assert.h>
 #include <zephyr/pm/device.h>
 
+#include "peripheral_pinctrl.h"
 #include "peripheral_sysctrl.h"
 #include "peripheral_adc.h"
 

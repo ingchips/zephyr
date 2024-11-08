@@ -30,7 +30,7 @@
 #define SPI_FLASH_MULTI_SECTOR_TEST
 #endif
 
-void single_sector_test(const struct device *flash_dev)
+void single_sector_testk(const struct device *flash_dev)
 {
 	const uint8_t expected[] = { 0x55, 0xaa, 0x66, 0x99 };
 	const size_t len = sizeof(expected);

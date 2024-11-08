@@ -9,12 +9,15 @@
 #include <zephyr/drivers/pinctrl.h>
 #include <zephyr/drivers/reset.h>
 #include <zephyr/drivers/spi.h>
-#include <zephyr/logging/log.h>
 #include <zephyr/irq.h>
-#include <peripheral_sysctrl.h>
-#include <peripheral_pinctrl.h>
-#include <peripheral_gpio.h>
-#include <peripheral_ssp.h>
+#include "ingsoc.h"
+#include "peripheral_pinctrl.h"
+#include "peripheral_sysctrl.h"
+#include "peripheral_gpio.h"
+#include "peripheral_ssp.h"
+#include "spi_context.h"
+#include <zephyr/logging/log.h>
+
 
 #define SPI_MIC_CLK         GIO_GPIO_7
 #define SPI_MIC_MOSI        GIO_GPIO_8
@@ -22,6 +25,25 @@
 #define SPI_MIC_CS          GIO_GPIO_10
 #define SPI_MIC_WP          GIO_GPIO_11
 #define SPI_MIC_HOLD        GIO_GPIO_12
+
+struct spi_ingchips_config {
+	uintptr_t reg;                          // 寄存器地址
+	uint32_t clkid;                         // 时钟 ID
+	apSSP_sDeviceControlBlock reset;                // 复位配置结构体
+	const struct pinctrl_dev_config *pcfg;  // 引脚控制配置指针
+#ifdef CONFIG_SPI_ingchips_DMA
+	struct dma_config *dma;                 // DMA 配置
+#endif
+#ifdef CONFIG_SPI_ingchips_INTERRUPT
+	void (*irq_configure)(void);            // 中断配置函数指针
+#endif
+};
+
+struct spi_ingchips_data {
+	struct spi_context ctx;                 // SPI 上下文结构体，包含锁和同步变量
+};
+
+
 
 static bool spi_ingchips_transfer_ongoing(struct spi_ingchips_data *data) {
     return 1;
@@ -141,6 +163,13 @@ static struct spi_driver_api spi_ingchips_driver_api = {
 
 int spi_ingchips_init(const struct device *dev)
 {
+	const struct spi_ingchips_config *cfg = dev->config;
+	int err;
+	/* Configure dt provided device signals when available */
+	err = pinctrl_apply_state(cfg->pcfg, PINCTRL_STATE_DEFAULT);
+	if (err < 0) {
+		return err;
+	}
 	return 0;
 }
 
@@ -154,6 +183,7 @@ int spi_ingchips_init(const struct device *dev)
 	}
 
 #define INGCHIPS_SPI_INIT(idx)						       \
+	PINCTRL_DT_INST_DEFINE(id); \
 	IF_ENABLED(CONFIG_SPI_ingchips_INTERRUPT, (ingchips_IRQ_CONFIGURE(idx)));      \
 	static struct spi_ingchips_data spi_ingchips_data_##idx = {		       \
 		SPI_CONTEXT_INIT_LOCK(spi_ingchips_data_##idx, ctx),	       \
