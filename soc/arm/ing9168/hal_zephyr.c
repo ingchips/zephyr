@@ -84,7 +84,16 @@ uint32_t query_deep_sleep_allowed(void *dummy, void *user_data)
 
 trace_rtt_t trace_ctx = {0};
 
+#if defined(CONFIG_BT_INGCHIPS)
 extern uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *_);
+#else
+static uint32_t cb_hci_recv(const platform_hci_recv_t *msg, void *user_data)
+{
+    (void)msg;
+    (void)user_data;
+    return 0;
+}
+#endif
 
 static const platform_evt_cb_table_t evt_cb_table =
 {
